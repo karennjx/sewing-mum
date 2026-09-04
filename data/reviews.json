@@ -1,0 +1,79 @@
+[
+  {
+    "id": "amirah-tote",
+    "name": "Amirah R.",
+    "location": "Tampines",
+    "rating": 5,
+    "productSlug": "everyday-linen-tote",
+    "quote": "I have carried the linen tote every working day since March, including through two downpours, and the handles have not budged. It has gone softer and somehow nicer looking.",
+    "source": "whatsapp",
+    "date": "2026-07-14",
+    "featured": true
+  },
+  {
+    "id": "jo-elephant",
+    "name": "Jo T.",
+    "location": "Bukit Timah",
+    "rating": 5,
+    "productSlug": "sleepy-elephant",
+    "quote": "Ordered the sleepy elephant with my niece's name on the foot. My sister cried. It has been through the wash twice already and still looks new.",
+    "source": "whatsapp",
+    "date": "2026-06-02",
+    "featured": true
+  },
+  {
+    "id": "priya-bookish",
+    "name": "Priya M.",
+    "location": "Serangoon",
+    "rating": 5,
+    "productSlug": "book-sleeve-bookmark-set",
+    "quote": "She cut the sleeve to fit the exact paperback size I asked for. My books no longer come out of my bag with bent covers, which I did not think was a solvable problem.",
+    "source": "google",
+    "date": "2026-05-21",
+    "featured": true
+  },
+  {
+    "id": "kenneth-batik",
+    "name": "Kenneth L.",
+    "location": "Queenstown",
+    "rating": 5,
+    "productSlug": "batik-panel-sling-bag",
+    "quote": "She sent me photographs of four batik panels to choose from before cutting. That is not the kind of service you get anywhere else at this price.",
+    "source": "whatsapp",
+    "date": "2026-04-30",
+    "featured": true
+  },
+  {
+    "id": "hui-min-bunny",
+    "name": "Hui Min C.",
+    "location": "Punggol",
+    "rating": 5,
+    "productSlug": "patchwork-bunny",
+    "quote": "My son has dragged this bunny around by one ear for eight months. The ear is still attached. I consider that the highest possible praise.",
+    "source": "instagram",
+    "date": "2026-03-11",
+    "featured": true
+  },
+  {
+    "id": "sarah-rabbit",
+    "name": "Sarah W.",
+    "location": "Novena",
+    "rating": 5,
+    "productSlug": "mid-autumn-lantern-rabbit",
+    "quote": "I missed the lantern rabbit last year and she remembered to message me when this year's batch went on. It now lives on our bookshelf all year round.",
+    "source": "whatsapp",
+    "date": "2026-09-01",
+    "featured": false
+  },
+  {
+    "id": "denise-cosy",
+    "name": "Denise K.",
+    "location": "Holland Village",
+    "rating": 4,
+    "productSlug": "cosy-reader-bundle",
+    "quote": "Beautiful bundle and the handwritten note was a lovely touch. Only wish the throw came in a second colour, so I could have bought two without them matching.",
+    "source": "google",
+    "date": "2025-12-18",
+    "featured": false
+  }
+]

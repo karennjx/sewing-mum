@@ -1,0 +1,247 @@
+[
+  {
+    "slug": "everyday-linen-tote",
+    "name": "Everyday Linen Tote",
+    "category": "handbags",
+    "price": 48,
+    "featured": true,
+    "blurb": "A roomy washed-linen tote that softens beautifully with use.",
+    "description": [
+      "The bag I kept making for friends until it turned into a proper product. Cut from heavyweight washed linen, with handles long enough to sit on your shoulder over a jacket, and a base wide enough that a water bottle stands up instead of rolling around.",
+      "Every seam is double-stitched and the handles are bar-tacked where they meet the body, because that is the first place a tote gives out. It arrives crisp and goes soft after a few washes."
+    ],
+    "details": [
+      "Heavyweight washed linen, cotton lining",
+      "Roughly 38cm wide, 34cm tall, 12cm deep",
+      "One inner slip pocket for keys and a phone",
+      "Machine wash cold, hang to dry, warm iron"
+    ],
+    "images": [
+      {
+        "src": "/products/everyday-linen-tote.jpg",
+        "alt": "Navy washed-linen tote bag standing upright with double shoulder handles and visible topstitching",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "quilted-crossbody-pouch",
+    "name": "Quilted Crossbody Pouch",
+    "category": "handbags",
+    "price": 36,
+    "blurb": "Hand-quilted patchwork, sized for the things you actually carry.",
+    "description": [
+      "Small bags are usually too small. This one holds a phone, a card case, keys and a lipstick without bulging, and nothing more, which is rather the point.",
+      "The front panel is pieced from cotton offcuts and then hand-quilted, so no two are identical. The strap is fully adjustable with antique brass hardware and unclips if you would rather carry it as a clutch."
+    ],
+    "details": [
+      "Pieced cotton front, hand-quilted, cotton lining",
+      "Roughly 22cm wide, 17cm tall",
+      "Adjustable detachable strap, antique brass hardware",
+      "Spot clean, or hand wash cold"
+    ],
+    "images": [
+      {
+        "src": "/products/quilted-crossbody-pouch.jpg",
+        "alt": "Hand-quilted patchwork crossbody pouch in dusty rose and sage florals with an adjustable strap",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "batik-panel-sling-bag",
+    "name": "Batik Panel Sling Bag",
+    "category": "handbags",
+    "price": 62,
+    "featured": true,
+    "blurb": "A curved sling built around a single panel of hand-drawn batik.",
+    "description": [
+      "Each of these begins with a piece of batik I could not bring myself to cut into scraps. The curved body is shaped to sit flat against you rather than swing about, and the natural canvas top and strap let the pattern do the talking.",
+      "Because every batik length is different, the panel you receive will not match the photograph exactly. Tell me the colours you gravitate towards when you enquire and I will show you what is on the shelf."
+    ],
+    "details": [
+      "Hand-drawn batik panel, natural cotton canvas body",
+      "Roughly 30cm wide, 26cm tall",
+      "Wooden button closure, lined with cotton",
+      "Made to order, usually ready in 7 to 10 days",
+      "Hand wash cold, dry in shade"
+    ],
+    "images": [
+      {
+        "src": "/products/batik-panel-sling-bag.jpg",
+        "alt": "Curved sling bag with an indigo and brown hand-drawn batik front panel, natural canvas strap and a wooden button",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "patchwork-bunny",
+    "name": "Patchwork Bunny",
+    "category": "soft-toys",
+    "price": 32,
+    "featured": true,
+    "blurb": "Long-eared, hand-pieced, and built to survive being loved hard.",
+    "description": [
+      "Made entirely from cotton offcuts left over from the bags, which is why every bunny turns out a little different. The ears are deliberately long and floppy, because that is the bit small hands grab and drag around.",
+      "Eyes and nose are embroidered rather than glued or buttoned, so there is nothing to work loose. Stuffed firmly enough to sit up on a shelf on its own."
+    ],
+    "details": [
+      "Pieced cotton, polyester fibre filling",
+      "Roughly 28cm tall sitting",
+      "Embroidered features, no buttons or plastic parts",
+      "Suitable from newborn",
+      "Surface wash, or hand wash cold and dry flat"
+    ],
+    "images": [
+      {
+        "src": "/products/patchwork-bunny.jpg",
+        "alt": "Patchwork fabric bunny soft toy in dusty pink florals and gingham with long floppy ears and embroidered eyes",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "sleepy-elephant",
+    "name": "Sleepy Elephant",
+    "category": "soft-toys",
+    "price": 38,
+    "blurb": "Grey linen, sage-lined ears, and eyes already closed for the night.",
+    "description": [
+      "The most requested piece I make, usually as a new-baby gift. Soft grey linen body, pale sage inside the ears, and a face embroidered mid-yawn.",
+      "The ears are large and floppy on purpose, and the trunk is stitched in gentle folds so it holds its shape. If you would like a name embroidered on one foot, mention it when you enquire."
+    ],
+    "details": [
+      "Soft grey linen, cotton contrast ears, polyester filling",
+      "Roughly 32cm tall sitting",
+      "Embroidered features, no buttons or plastic parts",
+      "Name embroidery available on request",
+      "Surface wash, or hand wash cold and dry flat"
+    ],
+    "images": [
+      {
+        "src": "/products/sleepy-elephant.jpg",
+        "alt": "Grey linen elephant soft toy with pale sage inner ears, closed embroidered eyes and a stitched smile",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "mid-autumn-lantern-rabbit",
+    "name": "Mid-Autumn Lantern Rabbit",
+    "category": "soft-toys",
+    "price": 45,
+    "blurb": "A jade rabbit in an amber robe, carrying a tiny stitched lantern.",
+    "description": [
+      "Made only in the weeks around Mid-Autumn. The rabbit wears a wrapped robe in amber cotton with a linen apron, and carries a little lantern with a hand-twisted tassel that comes off if you would rather it did not.",
+      "These take an afternoon each, so I make a limited run and they usually go before the festival itself. If you are reading this out of season, do enquire anyway and I will note you down for next year."
+    ],
+    "details": [
+      "Cotton and linen, polyester filling, hand-twisted tassel",
+      "Roughly 30cm tall standing",
+      "Removable lantern, embroidered features",
+      "A decorative piece rather than a baby toy",
+      "Spot clean only"
+    ],
+    "images": [
+      {
+        "src": "/products/mid-autumn-lantern-rabbit.jpg",
+        "alt": "Fabric rabbit soft toy in an amber robe and linen apron holding a small stitched lantern with a tassel",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "seasonal", "months": [8, 9] }
+  },
+  {
+    "slug": "book-sleeve-bookmark-set",
+    "name": "Book Sleeve & Bookmark Set",
+    "category": "bookish-bundles",
+    "price": 34,
+    "featured": true,
+    "blurb": "A padded sleeve so your paperback survives the bottom of your bag.",
+    "description": [
+      "Quilted and padded on both sides, with a wooden button and loop closure that keeps the flap shut when it is jostled about. It fits a standard hardback or two slim paperbacks.",
+      "Comes with a matching quilted bookmark and a hand-twisted tassel. If you tell me the size of the book you carry most, I will cut the sleeve to suit it."
+    ],
+    "details": [
+      "Quilted cotton, padded wadding, cotton lining",
+      "Fits books up to roughly 23cm by 16cm",
+      "Wooden button and loop closure",
+      "Matching bookmark with hand-twisted tassel included",
+      "Custom sizing available on request"
+    ],
+    "images": [
+      {
+        "src": "/products/book-sleeve-bookmark-set.jpg",
+        "alt": "Sage green botanical quilted book sleeve with a hardback tucked inside, beside a matching tasselled bookmark",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "regular" }
+  },
+  {
+    "slug": "cosy-reader-bundle",
+    "name": "Cosy Reader Bundle",
+    "category": "bookish-bundles",
+    "price": 78,
+    "blurb": "Book sleeve, mug cosy, bookmark and a lambswool throw, boxed together.",
+    "description": [
+      "Put together for the months when nobody wants to leave the sofa. A quilted book sleeve in autumn florals, a cable-knit mug cosy, an embroidered bookmark, and a small checked lambswool throw for your knees.",
+      "It arrives boxed and wrapped in tissue, ready to give as it is. Add a handwritten note at no charge when you enquire and I will tuck it inside."
+    ],
+    "details": [
+      "Quilted book sleeve, knitted mug cosy, embroidered bookmark, lambswool throw",
+      "Throw is roughly 100cm by 130cm",
+      "Gift boxed and wrapped in tissue",
+      "Handwritten note included on request",
+      "Mug not included"
+    ],
+    "images": [
+      {
+        "src": "/products/cosy-reader-bundle.jpg",
+        "alt": "Flat lay of a rust quilted book sleeve, knitted mug cosy on a stoneware mug, embroidered bookmark and folded checked throw",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "seasonal", "months": [10, 11, 12] }
+  },
+  {
+    "slug": "christmas-story-bundle",
+    "name": "Christmas Story Bundle",
+    "category": "bookish-bundles",
+    "price": 68,
+    "blurb": "A starry green book sleeve, gingham bookmark and a stitched felt star.",
+    "description": [
+      "The bundle I make most of in December, usually as a teacher or secret-santa gift. Forest green cotton scattered with tiny gold stars, a cranberry gingham bookmark, and a felt star ornament stitched by hand in running stitch.",
+      "The star has a cotton loop so it can go straight on the tree, and the sleeve is plain enough inside to be used all year once the tinsel comes down."
+    ],
+    "details": [
+      "Star-print cotton book sleeve, gingham bookmark, hand-stitched felt star",
+      "Sleeve fits books up to roughly 23cm by 16cm",
+      "Star ornament has a hanging loop",
+      "Gift boxed and wrapped in tissue",
+      "Order by early December to be sure of Christmas"
+    ],
+    "images": [
+      {
+        "src": "/products/christmas-story-bundle.jpg",
+        "alt": "Flat lay of a forest green star-print book sleeve, red gingham bookmark, hand-stitched felt star and a pine sprig",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "availability": { "kind": "seasonal", "months": [11, 12] }
+  }
+]
