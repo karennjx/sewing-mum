@@ -1,5 +1,8 @@
 import { ImageResponse } from "next/og";
 
+// Required so the icon can also be emitted by `output: "export"` builds.
+export const dynamic = "force-static";
+
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 

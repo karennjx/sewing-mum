@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { getAllProducts } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
+// Required so the sitemap can also be emitted by `output: "export"` builds.
+export const dynamic = "force-static";
+
 const STATIC_ROUTES = ["", "/products", "/about", "/reviews"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
