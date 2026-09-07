@@ -7,9 +7,9 @@ product detail, customer voice) is built and runs locally. Everything in it is
 placeholder content. Nothing is deployed and the domain is not pointed
 anywhere yet.
 
-The six items below are roughly in the order they unblock each other. Items 1,
-2 and 4 need Kim's input before code can move. Items 3, 5 and 6 are linked
-decisions and are best made together — see the note under item 5.
+The seven items below are roughly in the order they unblock each other. Items
+1, 2 and 4 need Kim's input before code can move. Items 3, 5, 6 and 7 are
+linked decisions and are best made together — see the note under item 5.
 
 ---
 
@@ -25,7 +25,8 @@ this backlog.
 - [ ] Real product names, prices and descriptions in `data/products.json`
 - [ ] Real "Our story" copy in `app/about/page.tsx`
 - [ ] Real customer reviews in `data/reviews.json`, published with permission
-- [ ] Decide hosting and point the domain (item 6)
+- [ ] Point the domain at Vercel (item 6 — the host is now decided, the domain
+      still resolves nowhere)
 
 ---
 
@@ -153,6 +154,35 @@ volume is genuinely annoying to handle by hand. When it is, go to (b) — it
 solves inventory, payments and item 5 in one move. Avoid (a) as a permanent
 answer; a split source of truth causes more work than it saves.
 
+**If we ever take path (c), what survives the port.** The storefront can be
+made effectively identical. The whole visual identity is nine hex values and
+one radius in `app/globals.css`, Fraunces and Karla are free fonts that can be
+uploaded into a Shopify theme and wired up with `@font-face`, and Tailwind
+compiles to plain CSS a theme can serve. Nothing in the design depends on
+React or on interactivity, which is lucky. But an identical result needs a
+one-off custom theme, and that is code again — Liquid instead of React. A
+stock theme configured through Shopify's visual editor gets the same palette,
+the same fonts and the same warmth but a different layout: recognisably Sewing
+Mum, not the same site. The distinction worth holding on to is between "no
+code exists" and "Kim never touches code". Only the second matters to her, and
+Shopify gives it either way.
+
+**The checkout is the hard limit, on any plan we would realistically buy.** On
+Shopify's normal plans the checkout editor allows a logo, colours, a
+background and a font choice, and nothing else. Corner radii, spacing and
+component styling run through the Checkout Branding API, which is Shopify Plus
+only and far outside this project's budget. So checkout will always look like
+a Shopify checkout wearing Kim's colours. Treat that as a feature: a
+recognisable checkout reassures people about their card details in a way a
+bespoke one does not.
+
+**The real argument for path (c) is succession, not design.** A Shopify theme
+survives neglect; a Next.js codebase does not. Dependencies age, major
+versions ship, and a site left alone for two years eventually stops building.
+If whoever maintains this moves on and nobody replaces them, path (b) becomes
+a liability and path (c) does not. That, rather than anything visual, is the
+reason to keep collapsing onto a theme on the table.
+
 **Decisions needed:**
 
 - [ ] Agree the trigger for moving. Suggest: more than roughly ten enquiries a
@@ -230,10 +260,19 @@ mark it sold out. It also handles orders and payments, which none of the above
 do. This is item 3, path (b) — the same decision seen from Kim's side.
 
 **Recommendation:** start with (a) while there are nine products and the site
-is new; it costs nothing and defers the decision. Then go straight to (d) when
-enquiry volume justifies it, and skip (b) and (c) entirely. Building a custom
-CMS that Kim must learn, only to move her to Shopify's admin a year later,
-means teaching her two systems instead of one.
+is new; it costs nothing and defers the decision. Then move on when enquiry
+volume justifies it. Skip (b) entirely — a spreadsheet is the worst of both
+worlds on images, which are the actual bottleneck.
+
+**Amended 5 September 2026.** This item originally argued against (c) on the
+grounds that Kim would learn a custom CMS only to have to learn Shopify's
+admin a year later, so we would be teaching her two systems instead of one.
+That objection is weaker than it was written. A hosted CMS product form and a
+Shopify product form are both "fields plus a photo drop zone", so most of what
+she learns transfers. Option (c) is now costed properly in item 7 and reads as
+a reasonable interim step rather than wasted effort. What the original
+objection does still rule out is a hand-built admin interface, which would be
+unlike anything else she will ever use — see item 7, option 3.
 
 **On inventory specifically:** note that stock and seasonal availability are
 different things and the site currently only models the second. A piece can be
@@ -244,7 +283,7 @@ argument for moving to (d) sooner.
 **Decisions needed:**
 
 - [ ] How often does Kim expect to add or change products? This single answer
-      decides between (a) and (d).
+      decides between (a), (c) and (d) — see item 7 for what (c) really costs.
 - [ ] Does she keep any stock record today — a notebook, a spreadsheet, or
       nothing? Whatever it is, the new system should not be more work than it.
 - [ ] Who is the fallback if she gets stuck? Agree this explicitly rather than
@@ -261,7 +300,8 @@ gate before anything is public.
 
 **Current position:** `sewingmum.com` is registered; there is no hosting yet.
 The site is a Next.js application which builds to twenty fully static pages,
-so it is cheap and easy to host.
+so it is cheap and easy to host. **Vercel was decided on 5 September 2026** —
+see the recommendation below. The domain is still not pointed at it.
 
 **Options:**
 
@@ -279,17 +319,27 @@ will sit on the cheapest shared hosting. Works anywhere, but gives up
 on-demand image optimisation, meaning we would need to size and compress every
 product photo by hand.
 
-**Recommendation:** (a). It is free, it is the least work, and it does not
-foreclose anything — if Kim later moves to a full Shopify theme, the domain
-just gets repointed.
+**Decided: (a) Vercel.** It is free, it is the least work, and it forecloses
+nothing — if Kim later moves to a full Shopify theme the domain just gets
+repointed, and the photos, copy and product data are all files in the
+repository. There is no lock-in to worry about.
+
+**On the free tier's licence.** Vercel's Hobby plan is licensed for personal,
+non-commercial use, which is worth knowing because a shop looks commercial at
+a glance. It is fine here: this is a CSR project and the site takes no money,
+since the only conversion action is a WhatsApp enquiry. If payments ever
+arrive they arrive on Shopify, on a paid Shopify plan, so the question
+resolves itself rather than needing Vercel Pro at $20 a month. Revisit only if
+this site itself starts transacting.
 
 **Decisions needed:**
 
 - [ ] Confirm where the domain is registered, and who holds the login. This
       matters more than it sounds: losing access to a registrar account is a
       genuinely painful problem.
-- [ ] Decide the host (suggest Vercel) and create the account in Kim's name or
-      a shared account she can access, not a personal one she cannot
+- [x] Decide the host — Vercel
+- [ ] Create the Vercel account in Kim's name, or a shared account she can
+      access, not a personal one she cannot
 - [ ] Set up a `www` to apex redirect, or pick one and stick to it
 - [ ] Decide whether to put the site behind a holding page first, so the
       domain resolves to something while content is still being gathered
@@ -298,6 +348,135 @@ just gets repointed.
 - [ ] Create the Google Business Profile, so the "Write a Google review" link
       on the reviews page can be filled in. It is stubbed out and shows
       "coming soon" until then.
+
+---
+
+## 7. Giving Kim an admin login on Vercel
+
+**Why it matters:** this is item 5's option (c), costed properly. The question
+was whether Kim could log into an admin account and upload or replace product
+photos herself while the site stays on Vercel. She can, but not in the obvious
+way, and the reason is worth writing down before anyone tries.
+
+**The constraint that shapes every option.** On Vercel the site's filesystem is
+read-only, and `public/products/` is baked in when the site builds — anything
+written there at runtime would be wiped by the next deploy. So an upload form
+has nowhere to put the photo. Every option below is really an answer to the
+question "where does the photo live instead", and that choice is what drives
+the effort.
+
+**A second, smaller wrinkle.** `ProductImage` in `lib/catalog.ts` requires
+`width` and `height`. Kim will not know a photo's pixel dimensions, so
+whatever she uploads through has to work them out on her behalf. Hosted image
+services do this automatically; a hand-built form has to be told to.
+
+**Option 1 — a hosted CMS (Sanity or similar). Recommended.** Kim goes to
+`sewingmum.com/studio`, logs in with Google, and gets a real product form:
+type the name, drag in photos, reorder them, tick "seasonal", press publish.
+Changes reach the live site within seconds through a revalidation webhook, so
+there is no rebuild to wait for.
+
+- Effort: roughly four to six focused days for someone comfortable in this
+  stack. A day for the schema, half a day to mount and lightly style the
+  studio, a day to rewrite `lib/catalog.ts` to read from the CMS instead of
+  the JSON file, half a day to migrate the nine products and their photos,
+  half a day for the revalidation webhook, then testing and a one-page
+  illustrated guide for Kim — which matters more than any of the code.
+- Cost: nothing. Sanity's free plan covers 20 seats, 10,000 documents, 100GB
+  of asset storage and 100GB of monthly bandwidth (checked September 2026,
+  worth re-checking before committing). Nine products at five photos each is a
+  rounding error against that, so total running cost stays at the domain
+  renewal.
+- Caveat: the free plan offers only Administrator and Viewer roles, so Kim
+  would be an admin and could in principle delete things. Acceptable for a
+  single trusted owner. The restricted Editor role costs $15 per seat per
+  month if we ever want that guardrail.
+- The real win is that authentication becomes someone else's problem. No
+  password storage, no session bugs, no security for us to own.
+- Kim never touches GitHub. Her photo goes from her phone straight to the
+  CMS's own servers, and the site reads it from there at request time. The
+  repository is only ever touched by whoever maintains the code.
+
+**Option 2 — a git-based CMS (Pages CMS, Decap, TinaCMS).** Much the same form
+for Kim, but saving commits to the repository and Vercel rebuilds. Photos stay
+in `public/products/`, `products.json` stays the source of truth, and
+`lib/catalog.ts` does not change at all.
+
+- Effort: one to three days, mostly configuration.
+- Cost: nothing.
+- Why not, for Kim specifically: Decap and Pages CMS authenticate her as a
+  GitHub user, since the commit is made under her own identity, so she would
+  need a GitHub account — an odd thing to ask a non-technical person to
+  maintain. TinaCMS avoids that: TinaCloud's own GitHub app makes the commit,
+  editors sign in with just an email address, and only the person who first
+  links the repository needs GitHub. The objection that survives for all
+  three is that the git model leaks. Saving triggers a rebuild, so a change
+  takes a minute or two to appear, and if that build fails her change simply
+  does not show up, with nothing to tell her why. A hosted CMS either saves
+  or shows her an error.
+
+**Option 3 — build the admin ourselves.** Login with Auth.js, photos in Vercel
+Blob, product data in a small database. This is the literal answer to the
+original question, and it is the one to avoid.
+
+- Effort: realistically two to four weeks to reach something she cannot
+  accidentally break. Beyond the login that means upload progress, file type
+  and size validation, dimension extraction, multi-image reordering, edit and
+  delete with confirmations, sensible error messages, and a phone-first layout
+  because a phone is where she will actually do this. Then password resets,
+  which is where hand-rolled auth usually turns nasty.
+- Cost: also near nothing in money. Vercel Blob's free tier covers 1GB of
+  storage, 2,000 uploads a month and 10GB of transfer; Neon or Supabase will
+  hold the data free. The whole cost is time and risk.
+- Why not: a month spent rebuilding, worse, what option 1 gives free in a
+  week — and we would then own the security of a public login form
+  indefinitely.
+
+**Two costs that are not money.**
+
+- `lib/catalog.ts` is synchronous today. Reading from a CMS makes its
+  functions async, so every page calling them needs `await` — about nine call
+  sites. Mechanical, but it touches most of the app, so budget for it rather
+  than being surprised by it.
+- `AGENTS.md` states "no database, no backend, no auth" as a hard rule.
+  Options 1 and 3 break it deliberately. The rule needs amending at the moment
+  we commit, so that future work does not keep arguing against a decision
+  already made.
+
+**Recommendation: launch first, then option 1 when the need is real.** Get the
+real photos, copy and WhatsApp number in, point the domain, and let Kim send
+changes on WhatsApp for the first month or two. That costs nothing, works
+today, and tells us the one thing we do not currently know: how often she
+actually changes anything. Building an admin now also means her first use of
+it would be the initial content upload, which needs hand-holding regardless.
+Then add option 1 once she is changing products more than about once a month,
+or when relaying changes through someone else starts to grate on either side.
+
+**On the pilot-then-Shopify reasoning.** The overall plan — pilot on Vercel,
+move to Shopify when volume justifies it — is sound. Vercel costs nothing,
+commits us to nothing, and the eventual move is a DNS change plus re-uploading
+photos. One correction: "when transactions are high" is not a usable trigger,
+because a WhatsApp-enquiry site has no transactions and nothing counts them.
+Use the trigger already agreed in item 3 instead: roughly ten enquiries a
+week, or Kim losing track of what is sold.
+
+**Worth pricing before deciding.** Going to Shopify Basic now, around $29–39 a
+month, as the back office from day one with this site as the shop window, is
+the only path where Kim ever learns one system instead of two, and it brings
+payments whenever she wants them. The trade is paying monthly before we know
+whether the shop earns anything, which for a CSR pilot may or may not be
+acceptable.
+
+**Decisions needed:**
+
+- [ ] Confirm the sequence: launch on WhatsApp updates first and add the CMS
+      later, or build the CMS before launch anyway
+- [ ] If the CMS is wanted, confirm Sanity over the git-based alternatives
+- [ ] Decide who holds the CMS admin account, and who the fallback is if Kim
+      is locked out — the same question as the registrar login in item 6
+- [ ] Price Shopify Basic from day one against an interim CMS, and decide
+      whether paying monthly before any revenue is acceptable here
+- [ ] Amend the `AGENTS.md` hard rules at the point we commit to a CMS
 
 ---
 
