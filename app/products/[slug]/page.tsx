@@ -92,7 +92,7 @@ export default async function ProductPage(
           </div>
 
           {isSeasonal(product) && seasonWindow ? (
-            <p className="mt-4 rounded-card border border-gold/30 bg-gold/10 px-4 py-3 text-sm leading-relaxed text-ink">
+            <p className="mt-4 rounded-card border border-spool/30 bg-spool/10 px-4 py-3 text-sm leading-relaxed text-ink">
               A seasonal piece, made only from {seasonWindow}. Enquire out of
               season and you will be first on the list when the next batch
               starts.

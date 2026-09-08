@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
-type BadgeTone = "sage" | "gold" | "berry" | "neutral";
+type BadgeTone = "rose" | "spool" | "berry" | "neutral";
 
 const TONE_CLASSES: Record<BadgeTone, string> = {
-  sage: "bg-sage/15 text-sage",
-  gold: "bg-gold/15 text-gold",
+  rose: "bg-rose/15 text-berry",
+  spool: "bg-spool/15 text-spool",
   berry: "bg-berry/10 text-berry",
   neutral: "bg-linen text-muted",
 };

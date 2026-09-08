@@ -1,7 +1,7 @@
 import productsData from "@/data/products.json";
 import { site } from "@/lib/site";
 
-export type Category = "handbags" | "soft-toys" | "bookish-bundles";
+export type Category = "sewing-mums" | "bookish-bundles" | "festive-specials";
 
 export type Availability =
   | { kind: "regular" }
@@ -30,27 +30,32 @@ export type Product = {
 export type CategoryInfo = {
   slug: Category;
   label: string;
+  /** One line, short enough for the header dropdown. */
+  short: string;
   blurb: string;
 };
 
 const CATEGORIES: readonly CategoryInfo[] = [
   {
-    slug: "handbags",
-    label: "Handbags",
+    slug: "sewing-mums",
+    label: "Sewing Mums",
+    short: "Plushies, pouches, placemats and more",
     blurb:
-      "Totes, slings and pouches in linen, canvas and batik, cut and stitched to be carried every day.",
-  },
-  {
-    slug: "soft-toys",
-    label: "Soft Toys",
-    blurb:
-      "Bunnies, elephants and festival characters with embroidered faces and nothing that can work loose.",
+      "The core handmade line. Fabric crafts, toys and good-to-haves, sewn at home by the mothers themselves.",
   },
   {
     slug: "bookish-bundles",
     label: "Bookish Bundles",
+    short: "Reading and stationery gift sets",
     blurb:
-      "Padded book sleeves, bookmarks and gift sets for people who read on buses and in bed.",
+      "Curated reading and stationery sets, put together as ready-to-give gifts.",
+  },
+  {
+    slug: "festive-specials",
+    label: "Festive Specials",
+    short: "Christmas and Chinese New Year",
+    blurb:
+      "Made for the season and then put away. Christmas decorations and placemats, Chinese New Year treats.",
   },
 ];
 

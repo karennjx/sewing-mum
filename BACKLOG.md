@@ -1,6 +1,6 @@
 # Sewing Mum — backlog
 
-Last updated: 5 September 2026
+Last updated: 8 September 2026
 
 Where things stand: a working five-page prototype (home, our story, products,
 product detail, customer voice) is built and runs locally. Everything in it is
@@ -182,6 +182,87 @@ versions ship, and a site left alone for two years eventually stops building.
 If whoever maintains this moves on and nobody replaces them, path (b) becomes
 a liability and path (c) does not. That, rather than anything visual, is the
 reason to keep collapsing onto a theme on the table.
+
+### Porting checklist
+
+**URLs are already compatible, which is the expensive part of most
+migrations.** Shopify serves products at `/products/<handle>`; this site
+serves them at `/products/[slug]`. If slugs become handles unchanged, every
+product URL survives a Shopify move untouched, so no search ranking and no
+WhatsApp link anyone has shared will break. Only three routes need redirects,
+and Shopify has a built-in tool for them: `/products` becomes
+`/collections/all`, `/about` becomes `/pages/about`, and `/reviews` becomes
+`/pages/reviews`.
+
+**Field mapping.** Most of `Product` has a direct Shopify equivalent:
+
+| This site | Shopify | Notes |
+| --- | --- | --- |
+| `slug` | Handle | Direct — this is what keeps the URL |
+| `name` | Title | Direct |
+| `price` | Variant price | Direct |
+| `category` | Collection | Three collections |
+| `description[]` | `body_html` | Join the paragraphs as `<p>` tags |
+| `details[]` | Metafield | Or appended to the description |
+| `images[]` | Product images | Re-upload; alt text carries over |
+| `featured` | Tag or collection | Either works |
+| `availability` | — | No equivalent; see below |
+
+**The one field that does not port.** `Availability` is ours alone — Shopify
+has no concept of "made only in October to December". It would become tags or
+a metafield, and `isInSeason`, `seasonWindowLabel` and `availabilityLabel`
+would all be rewritten as theme logic. Budget a day for it and treat it as a
+rewrite rather than a move.
+
+**The fields Shopify wants that do not exist yet** are exactly the open list
+in item 2: SKU, weight, stock quantity and variants. Variants matter most,
+because Shopify models them strictly and retrofitting them onto products
+already photographed and described as single items is the one migration task
+that genuinely hurts. Settle that question before shooting more products.
+
+**The CMS choice barely affects portability, but not quite equally.** A
+git-based CMS such as TinaCMS keeps content in `data/products.json`, so there
+is no export step at all — the file is already the export. Sanity holds
+content in its own hosted store, so it takes one extra command,
+`sanity dataset export`, which yields NDJSON plus the asset files. Neither is
+lock-in; the data is ours in both cases.
+
+**Adding a CMS pays down part of the Shopify migration rather than
+duplicating it.** `lib/catalog.ts` is synchronous today, so any CMS forces its
+functions async and every page updated to `await` them — about nine call
+sites, and the bulk of the mechanical work. Once that is done, swapping the
+CMS for the Storefront API is a rewrite of one file with no ripple at all. The
+CMS step is the first half of the Shopify step, not a detour from it. This is
+a further reason the "two systems" objection in item 5 was overstated.
+
+**WordPress would be a rebuild, not a port.** The content itself moves fine —
+WordPress has a REST API and importer plugins accept JSON or CSV — but the
+design gets rebuilt inside a theme, the seasonal logic rewritten in PHP, and
+the pages recreated in the block editor. Nothing carries over except words and
+pictures. Note also that WooCommerce defaults to `/product/<slug>` singular,
+so permalinks would need configuring or every product URL breaks.
+
+**Disciplines to adopt now, while they are free:**
+
+- [ ] Never change a slug once a product is published. Redirects hang off
+      them, and being disciplined about it costs nothing today.
+- [ ] Keep the original full-resolution photos somewhere separate from the
+      web-sized files in `public/products/`. Every platform does its own
+      resizing and will want the originals.
+- [ ] Settle the variant question (item 2) before photographing or writing up
+      any more products.
+- [ ] Add a SKU field even though nothing reads it yet, so records reconcile
+      after a move.
+- [ ] Keep pricing and stock logic out of the frontend — that is the first
+      thing a platform will want to own.
+
+**On "scalable": it will not be scale that forces the move.** A statically
+built site on Vercel serves pre-rendered pages from the edge, so a hundred
+visitors and a hundred thousand cost the same and perform the same. The
+reasons to move are all capability — card payments, real stock tracking, order
+management, and giving Kim a system with support behind it. Framing the
+trigger as "when it outgrows Vercel" would mean waiting for a signal that
+never fires; use the enquiry-volume trigger below instead.
 
 **Decisions needed:**
 

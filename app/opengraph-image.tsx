@@ -19,8 +19,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#fdf8f3",
-          color: "#3b2f2a",
+          backgroundColor: "#fdf9f7",
+          color: "#3a2a2c",
         }}
       >
         <div
@@ -28,10 +28,10 @@ export default function OpengraphImage() {
             fontSize: 26,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#9c4a63",
+            color: "#9a3346",
           }}
         >
-          Handmade in small batches
+          A Singapore social enterprise
         </div>
         <div style={{ display: "flex", fontSize: 104, marginTop: 24 }}>
           {site.name}
@@ -41,10 +41,10 @@ export default function OpengraphImage() {
             display: "flex",
             fontSize: 42,
             marginTop: 12,
-            color: "#7a6a60",
+            color: "#7c6669",
           }}
         >
-          Bags, soft toys and bookish bundles
+          {site.tagline}
         </div>
         <div
           style={{
@@ -52,7 +52,7 @@ export default function OpengraphImage() {
             width: 160,
             height: 8,
             marginTop: 48,
-            backgroundColor: "#9c4a63",
+            backgroundColor: "#9a3346",
           }}
         />
       </div>

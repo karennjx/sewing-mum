@@ -76,6 +76,16 @@ export function SiteFooter() {
             </li>
             <li>
               <a
+                href={site.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink transition-colors hover:text-berry"
+              >
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a
                 href={`mailto:${site.email}`}
                 className="text-ink transition-colors hover:text-berry"
               >

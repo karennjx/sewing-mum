@@ -4,7 +4,7 @@ import { isSeasonal, seasonWindowLabel, type Product } from "@/lib/catalog";
 
 export function AvailabilityBadge({ product }: { product: Product }) {
   if (!isSeasonal(product)) {
-    return <Badge tone="sage">Made all year</Badge>;
+    return <Badge tone="rose">Made all year</Badge>;
   }
 
   return (

@@ -23,7 +23,7 @@ export function SeasonalStatus({
   const hydrated = useSyncExternalStore(subscribe, onClient, onServer);
 
   if (!hydrated) {
-    return <Badge tone="gold">Seasonal &middot; {windowLabel}</Badge>;
+    return <Badge tone="spool">Seasonal &middot; {windowLabel}</Badge>;
   }
 
   const now = new Date();
@@ -31,7 +31,7 @@ export function SeasonalStatus({
   const label = availabilityLabel(product, now);
 
   return (
-    <Badge tone={inSeason ? "sage" : "gold"}>
+    <Badge tone={inSeason ? "berry" : "spool"}>
       {inSeason ? `${label} \u00b7 seasonal` : label}
     </Badge>
   );

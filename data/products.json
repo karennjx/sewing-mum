@@ -2,7 +2,7 @@
   {
     "slug": "everyday-linen-tote",
     "name": "Everyday Linen Tote",
-    "category": "handbags",
+    "category": "sewing-mums",
     "price": 48,
     "featured": true,
     "blurb": "A roomy washed-linen tote that softens beautifully with use.",
@@ -29,7 +29,7 @@
   {
     "slug": "quilted-crossbody-pouch",
     "name": "Quilted Crossbody Pouch",
-    "category": "handbags",
+    "category": "sewing-mums",
     "price": 36,
     "blurb": "Hand-quilted patchwork, sized for the things you actually carry.",
     "description": [
@@ -55,7 +55,7 @@
   {
     "slug": "batik-panel-sling-bag",
     "name": "Batik Panel Sling Bag",
-    "category": "handbags",
+    "category": "sewing-mums",
     "price": 62,
     "featured": true,
     "blurb": "A curved sling built around a single panel of hand-drawn batik.",
@@ -83,7 +83,7 @@
   {
     "slug": "patchwork-bunny",
     "name": "Patchwork Bunny",
-    "category": "soft-toys",
+    "category": "sewing-mums",
     "price": 32,
     "featured": true,
     "blurb": "Long-eared, hand-pieced, and built to survive being loved hard.",
@@ -111,7 +111,7 @@
   {
     "slug": "sleepy-elephant",
     "name": "Sleepy Elephant",
-    "category": "soft-toys",
+    "category": "sewing-mums",
     "price": 38,
     "blurb": "Grey linen, sage-lined ears, and eyes already closed for the night.",
     "description": [
@@ -138,7 +138,7 @@
   {
     "slug": "mid-autumn-lantern-rabbit",
     "name": "Mid-Autumn Lantern Rabbit",
-    "category": "soft-toys",
+    "category": "festive-specials",
     "price": 45,
     "blurb": "A jade rabbit in an amber robe, carrying a tiny stitched lantern.",
     "description": [
@@ -220,7 +220,7 @@
   {
     "slug": "christmas-story-bundle",
     "name": "Christmas Story Bundle",
-    "category": "bookish-bundles",
+    "category": "festive-specials",
     "price": 68,
     "blurb": "A starry green book sleeve, gingham bookmark and a stitched felt star.",
     "description": [

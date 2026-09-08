@@ -9,16 +9,16 @@ import { site } from "@/lib/site";
 
 const PROMISES = [
   {
-    title: "One pair of hands",
-    body: "Every piece is cut, pieced and stitched by me. Nothing is outsourced and nothing is bulk bought and relabelled.",
+    title: "Made by mothers at home",
+    body: "Single mothers with medical conditions, or caring for a child with chronic illness, for whom work outside the home is not possible.",
   },
   {
-    title: "Small batches, some seasonal",
-    body: "Favourites are made all year round. Festival pieces appear for a few weeks and then go back in the drawer until next year.",
+    title: "Every order is a wage",
+    body: "Through sewing projects the mothers earn a livelihood as independent contributors. Buying a piece is the support, not a donation on top of it.",
   },
   {
     title: "Just send a message",
-    body: "No cart, no checkout. Tell me what caught your eye on WhatsApp and we will sort out sizing, fabric and delivery together.",
+    body: "No cart, no checkout. Tell us what caught your eye on WhatsApp and we will sort out sizing, fabric and delivery together.",
   },
 ];
 
@@ -35,20 +35,20 @@ export default function Home() {
       <section className="mx-auto grid max-w-5xl items-center gap-10 px-5 pt-12 pb-16 lg:grid-cols-2 lg:gap-16 lg:pt-20">
         <div>
           <p className="text-xs tracking-[0.2em] text-berry uppercase">
-            Handmade in small batches
+            A Singapore social enterprise
           </p>
           <h1 className="font-display mt-4 text-4xl leading-tight font-semibold tracking-tight text-ink sm:text-5xl">
-            Bags, soft toys and bookish bundles, stitched one at a time
+            Handmade by mothers who cannot leave home to work
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted">
-            {site.name} began at a kitchen table with a box of fabric offcuts
-            and a promise to make things that last longer than the trend they
-            were bought in. Everything here is sewn by hand, in ones and twos.
+            {site.name} helps single mothers in Singapore earn a livelihood
+            through sewing. Fabric crafts, toys, games and good-to-haves, every
+            one of them made at home, by hand, by a mother who needs the work.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/products"
-              className="inline-flex items-center rounded-full bg-ink px-6 py-3 font-medium text-cream transition-colors hover:bg-berry"
+              className="inline-flex items-center rounded-full bg-berry px-6 py-3 font-medium text-cream transition-colors hover:bg-berry-dark"
             >
               See what&rsquo;s available
             </Link>
@@ -188,8 +188,8 @@ export default function Home() {
           Seen something you like?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted">
-          There is no checkout here on purpose. Send a message and you will be
-          talking to the person who made the thing.
+          There is no checkout here on purpose. Send a message, and what you
+          buy goes straight back to the mother who made it.
         </p>
         <div className="mt-8">
           <EnquireButton />

@@ -6,7 +6,7 @@ import { getCategories, getProductsByCategory } from "@/lib/catalog";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Handmade handbags, soft toys and bookish bundles. Browse what is made all year round and what only comes out in its season.",
+    "Fabric crafts, toys, games and good-to-haves, sewn at home by single mothers in Singapore. Browse what is made all year round and what only comes out in its season.",
 };
 
 export default function ProductsPage() {

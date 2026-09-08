@@ -3,7 +3,7 @@ export function StarRating({ rating }: { rating: number }) {
 
   return (
     <span
-      className="text-sm tracking-widest text-gold"
+      className="text-sm tracking-widest text-rose"
       aria-label={`${rating} out of 5`}
     >
       <span aria-hidden="true">

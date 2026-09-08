@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+/* Palette sampled from the Sewing Mums logo: #9a3346 is the "sewing" script,
+   #d0838d the "mums" script, #a9784f the wooden spool. */
 @theme {
-  --color-cream: #fdf8f3;
-  --color-linen: #f4ebe0;
-  --color-linen-dark: #e7d9c8;
-  --color-ink: #3b2f2a;
-  --color-muted: #7a6a60;
-  --color-berry: #9c4a63;
-  --color-berry-dark: #7f3a50;
-  --color-sage: #6f8462;
-  --color-gold: #b8863a;
+  --color-cream: #fdf9f7;
+  --color-linen: #f8eaea;
+  --color-linen-dark: #ecd2d4;
+  --color-ink: #3a2a2c;
+  --color-muted: #7c6669;
+  --color-berry: #9a3346;
+  --color-berry-dark: #7c2939;
+  --color-rose: #d0838d;
+  --color-rose-soft: #e9bfc3;
+  --color-spool: #a9784f;
 
   --radius-card: 1rem;
 }

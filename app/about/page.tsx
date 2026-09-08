@@ -7,25 +7,21 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Our story",
   description:
-    "How Sewing Mum started, how each piece is made, and why there is no checkout button on this website.",
+    "Sewing Mums is a social enterprise run by Kim, helping single mothers in Singapore earn a livelihood through sewing.",
 };
 
-const STEPS = [
+const HOW_IT_WORKS = [
   {
-    title: "Fabric first",
-    body: "Most pieces start with a length of fabric rather than a plan. Offcuts from a bag become a bunny; a batik panel too good to cut up decides what bag it wants to be.",
+    title: "Mothers who cannot leave home to work",
+    body: "Single mothers with medical conditions, or caring for a child with chronic illness, for whom employment outside the home is not possible.",
   },
   {
-    title: "Cut and pieced by hand",
-    body: "Patchwork is laid out on the table and rearranged until it looks right. This is the slow part, and the reason no two pieces come out identical.",
+    title: "Sewing projects they can take on at home",
+    body: "Fabric crafts, toys, games and good-to-haves, made in their own time and at their own pace.",
   },
   {
-    title: "Sewn to be used",
-    body: "Seams are doubled, handles are bar-tacked, faces are embroidered rather than glued. The test is whether it survives a toddler or a year of commuting.",
-  },
-  {
-    title: "Finished and photographed",
-    body: "Each piece is pressed, checked over, and photographed as it actually is, so what arrives is what you saw.",
+    title: "Income, not charity",
+    body: "Through these projects they earn a livelihood as independent contributors, and with it the confidence that financial independence brings.",
   },
 ];
 
@@ -40,38 +36,36 @@ export default function AboutPage() {
           Our story
         </p>
         <h1 className="font-display mt-4 text-4xl leading-tight font-semibold tracking-tight text-ink">
-          A sewing machine, a box of offcuts, and too many ideas
+          A social enterprise, not a shop
         </h1>
       </header>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-5 lg:gap-14">
         <div className="space-y-5 text-lg leading-relaxed text-muted lg:col-span-3">
           <p>
-            {site.name} started the way these things usually do: with a bag made
-            for myself, then one for a friend, then one for her sister, until
-            the requests outgrew the evenings I had free. What began as a way to
-            use up a growing pile of fabric offcuts turned into something
-            people were willing to wait a fortnight for.
+            {site.name} is a Social Enterprise run by {site.founder} to help
+            single mothers in Singapore with challenges most of us cannot begin
+            to imagine.
           </p>
           <p>
-            The initiative is deliberately small. I make in ones and twos rather
-            than dozens, which means I can take on a request for a different
-            fabric, a longer strap, or a name embroidered on the foot of an
-            elephant. It also means some things sell out and take a while to
-            come back.
+            {site.name} helps single mothers with medical conditions or looking
+            after a child with chronic illness, who are unable to seek
+            employment outside their homes. Through sewing projects, they are
+            able to earn a livelihood as independent contributors.
           </p>
           <p>
-            A few pieces are seasonal by nature. Mid-Autumn rabbits, Christmas
-            bundles and the like are made for a few weeks and then put away
-            until the following year. They are still listed here all year round,
-            so you know what to look forward to, with the months they are made
-            in marked on each one.
+            What better way to build confidence and empower these women to
+            attain financial independence.
           </p>
           <p>
-            There is no checkout on this site, and that is a choice rather than
-            an oversight. Half of the messages I get are questions about sizing,
-            fabric or timing, and those are much better answered in a
-            conversation than guessed at in a shopping cart.
+            Their stories of struggle and sacrifice are stories that should be
+            shared and {site.founder} has done just that.
+          </p>
+          <p>
+            With our line-up of fabric crafts, toys, games and good-to-haves,
+            everyone can help shed some light on these forgotten members of our
+            society and provide these incredible mothers the support they so
+            desire and need.
           </p>
         </div>
 
@@ -91,12 +85,12 @@ export default function AboutPage() {
 
       <section className="mt-16 border-t border-linen-dark/60 pt-10">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
-          How a piece gets made
+          How it works
         </h2>
-        <ol className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((step, index) => (
+        <ol className="mt-8 grid gap-8 sm:grid-cols-3">
+          {HOW_IT_WORKS.map((step, index) => (
             <li key={step.title}>
-              <span className="font-display text-3xl font-semibold text-linen-dark">
+              <span className="font-display text-3xl font-semibold text-rose-soft">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="font-display mt-2 text-lg font-semibold text-ink">
@@ -112,14 +106,15 @@ export default function AboutPage() {
 
       <section className="mt-16 rounded-card border border-linen-dark/60 bg-linen/50 p-8 text-center">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
-          Questions are welcome
+          Corporate gifts and one-offs
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">
-          Whether it is about a fabric, a delivery date or a commission you have
-          been thinking about, the fastest way to an answer is a message.
+          Bulk orders for corporate gifting, event favours and Christmas
+          presents are some of the most useful work we can pass on to the
+          mothers. Tell us what you need and by when.
         </p>
         <div className="mt-6">
-          <EnquireButton size="sm" />
+          <EnquireButton size="sm" label="Talk to us about an order" />
         </div>
       </section>
     </div>

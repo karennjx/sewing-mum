@@ -14,7 +14,7 @@ import { site, whatsappLink } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Customer voice",
   description:
-    "What customers say about their handmade Sewing Mum pieces, and how to leave your own feedback.",
+    "What customers say about their handmade Sewing Mums pieces, and how to leave your own feedback.",
 };
 
 export default function ReviewsPage() {
