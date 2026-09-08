@@ -59,12 +59,14 @@ export default function Home() {
               Our story
             </Link>
           </div>
-          <div className="mt-8 flex items-center gap-3">
-            <StarRating rating={averageRating} />
-            <p className="text-sm text-muted">
-              {averageRating} average from customers who came back to tell us
-            </p>
-          </div>
+          {reviews.length > 0 ? (
+            <div className="mt-8 flex items-center gap-3">
+              <StarRating rating={averageRating} />
+              <p className="text-sm text-muted">
+                {averageRating} average from customers who came back to tell us
+              </p>
+            </div>
+          ) : null}
         </div>
 
         <div className="grid grid-cols-5 gap-4">
@@ -151,37 +153,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-linen-dark/60 bg-linen/40">
-        <div className="mx-auto max-w-5xl px-5 py-16">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-ink">
-              In their words
-            </h2>
-            <Link
-              href="/reviews"
-              className="text-sm font-medium text-berry hover:text-berry-dark"
-            >
-              Read all reviews &rarr;
-            </Link>
-          </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {reviews.map((review) => (
-              <blockquote
-                key={review.id}
-                className="rounded-card border border-linen-dark/60 bg-cream p-6"
+      {reviews.length > 0 ? (
+        <section className="border-t border-linen-dark/60 bg-linen/40">
+          <div className="mx-auto max-w-5xl px-5 py-16">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-ink">
+                In their words
+              </h2>
+              <Link
+                href="/reviews"
+                className="text-sm font-medium text-berry hover:text-berry-dark"
               >
-                <StarRating rating={review.rating} />
-                <p className="mt-3 text-sm leading-relaxed text-ink">
-                  &ldquo;{review.quote}&rdquo;
-                </p>
-                <footer className="mt-4 text-xs text-muted">
-                  {review.name} &middot; {review.location}
-                </footer>
-              </blockquote>
-            ))}
+                Read all reviews &rarr;
+              </Link>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-3">
+              {reviews.map((review) => (
+                <blockquote
+                  key={review.id}
+                  className="rounded-card border border-linen-dark/60 bg-cream p-6"
+                >
+                  <StarRating rating={review.rating} />
+                  <p className="mt-3 text-sm leading-relaxed text-ink">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                  <footer className="mt-4 text-xs text-muted">
+                    {review.name} &middot; {review.location}
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-3xl px-5 py-20 text-center">
         <h2 className="font-display text-3xl font-semibold tracking-tight text-ink">

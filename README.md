@@ -1,8 +1,9 @@
 # sewingmum.com
 
-A static prototype storefront for Sewing Mum: handmade handbags, soft toys and
-bookish bundles. There is no database, no backend, no cart and no checkout. The
-only conversion action is a WhatsApp enquiry.
+A static prototype storefront for Sewing Mums, a Singapore social enterprise run
+by Kim Underhill that helps single mothers earn a livelihood through sewing.
+There is no database, no backend, no cart and no checkout. The only conversion
+action is a WhatsApp enquiry.
 
 ## Running it
 

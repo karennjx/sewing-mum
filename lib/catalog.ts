@@ -18,7 +18,8 @@ export type Product = {
   slug: string;
   name: string;
   category: Category;
-  price: number;
+  /** null until Kim confirms a price; the page then asks people to enquire. */
+  price: number | null;
   blurb: string;
   description: string[];
   details: string[];
@@ -106,6 +107,13 @@ export function getCategory(slug: Category): CategoryInfo {
 
 export function formatPrice(price: number): string {
   return `${site.currencySymbol}${price}`;
+}
+
+/** "S$48", or "Price on enquiry" where no price has been set yet. */
+export function priceLabel(product: Product): string {
+  return product.price === null
+    ? "Price on enquiry"
+    : formatPrice(product.price);
 }
 
 export function isSeasonal(product: Product): boolean {

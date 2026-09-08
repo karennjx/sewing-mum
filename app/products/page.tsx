@@ -19,10 +19,11 @@ export default function ProductsPage() {
           Everything we make
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Prices are for the piece as photographed. Sizes, fabrics and
-          embroidery can usually be changed, so ask if you have something
-          particular in mind. Seasonal pieces are marked with the months they
-          are made in.
+          Every piece is pieced by hand from whatever fabric is in the basket,
+          so no two come out the same and sizes vary. Send a message and we
+          will tell you what is finished, what it costs, and how soon it could
+          be ready. Seasonal pieces are marked with the months they are made
+          in.
         </p>
       </header>
 
@@ -43,11 +44,19 @@ export default function ProductsPage() {
                 {category.blurb}
               </p>
             </div>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((product) => (
-                <ProductCard key={product.slug} product={product} />
-              ))}
-            </div>
+            {products.length > 0 ? (
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {products.map((product) => (
+                  <ProductCard key={product.slug} product={product} />
+                ))}
+              </div>
+            ) : (
+              <p className="mt-6 rounded-card border border-linen-dark/60 bg-linen/40 px-5 py-4 text-sm leading-relaxed text-muted">
+                Nothing listed here at the moment. These pieces are made to
+                order in the run-up to the festival, so send a message and we
+                will tell you what is planned this year.
+              </p>
+            )}
           </section>
         );
       })}

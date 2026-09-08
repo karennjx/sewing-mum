@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AvailabilityBadge } from "@/components/availability-badge";
-import { formatPrice, type Product } from "@/lib/catalog";
+import { priceLabel, type Product } from "@/lib/catalog";
 
 export function ProductCard({
   product,
@@ -34,8 +34,8 @@ export function ProductCard({
           <h3 className="font-display text-lg leading-snug font-semibold text-ink group-hover:text-berry">
             {product.name}
           </h3>
-          <span className="mt-0.5 font-medium whitespace-nowrap text-ink">
-            {formatPrice(product.price)}
+          <span className="mt-0.5 text-sm font-medium whitespace-nowrap text-muted sm:text-base">
+            {priceLabel(product)}
           </span>
         </div>
         <p className="flex-1 text-sm leading-relaxed text-muted">

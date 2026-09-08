@@ -85,6 +85,47 @@ export default function AboutPage() {
 
       <section className="mt-16 border-t border-linen-dark/60 pt-10">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
+          Who is {site.founder}?
+        </h2>
+        <div className="mt-6 max-w-3xl space-y-5 leading-relaxed text-muted">
+          <p>
+            Kim Underhill has been where these mothers are. She left school at
+            fifteen to help with the family finances. At twenty-eight she found
+            herself out of an abusive marriage with two children, aged five and
+            one. At thirty-three she went back to school, and pushed through six
+            years of night classes while raising them and holding a full-time
+            job.
+          </p>
+          <p>
+            She came out of it with a Masters in Industrial and Organisational
+            Human Resource Psychology and more than twenty-five years in
+            international business &mdash; managing Fortune 500 accounts, then
+            senior roles leading organisational change. She now speaks, runs
+            workshops and coaches through Ultimate Balance Consultancy, under a
+            phrase she has built a career on: be the change, before change
+            changes you.
+          </p>
+          <p>
+            Sewing Mums grew out of that experience. Kim knows first-hand what
+            it costs to raise children alone with no way to earn, and what
+            actually helps is not sympathy but paid work that fits around a sick
+            child and a home you cannot leave.
+          </p>
+        </div>
+        <p className="mt-5 text-sm">
+          <a
+            href="https://www.kimunderhill.com/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-berry hover:text-berry-dark"
+          >
+            More about Kim &rarr;
+          </a>
+        </p>
+      </section>
+
+      <section className="mt-16 border-t border-linen-dark/60 pt-10">
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
           How it works
         </h2>
         <ol className="mt-8 grid gap-8 sm:grid-cols-3">

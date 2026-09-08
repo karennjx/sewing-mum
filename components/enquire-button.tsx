@@ -1,4 +1,4 @@
-import { formatPrice, type Product } from "@/lib/catalog";
+import { type Product } from "@/lib/catalog";
 import { site, whatsappLink } from "@/lib/site";
 
 const SIZE_CLASSES = {
@@ -18,7 +18,7 @@ export function EnquireButton({
   className?: string;
 }) {
   const message = product
-    ? `Hi ${site.name}! I would like to enquire about the ${product.name} (${formatPrice(product.price)}). Is it available?`
+    ? `Hi ${site.name}! I would like to enquire about the ${product.name}. Could you tell me the price and what you have ready?`
     : `Hi ${site.name}! I came from your website and would like to ask about your handmade pieces.`;
 
   return (

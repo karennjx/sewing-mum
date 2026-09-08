@@ -31,18 +31,28 @@ export default function ReviewsPage() {
         <h1 className="font-display mt-4 text-4xl leading-tight font-semibold tracking-tight text-ink">
           What people say once they have lived with it
         </h1>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <StarRating rating={averageRating} />
-          <p className="text-sm text-muted">
-            {averageRating} out of 5, from {reviewCount} customers
-          </p>
-        </div>
+        {reviewCount > 0 ? (
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <StarRating rating={averageRating} />
+            <p className="text-sm text-muted">
+              {averageRating} out of 5, from {reviewCount} customers
+            </p>
+          </div>
+        ) : null}
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          These are collected from messages, comments and Google reviews, and
+          Feedback is collected from messages, comments and Google reviews, and
           published with permission. Names are shortened because most people
           prefer it that way.
         </p>
       </header>
+
+      {reviews.length === 0 ? (
+        <p className="mt-10 rounded-card border border-linen-dark/60 bg-linen/40 px-5 py-4 leading-relaxed text-muted">
+          No reviews are published here yet. If you have bought something from{" "}
+          {site.name}, yours would be the first &mdash; there is a WhatsApp link
+          below.
+        </p>
+      ) : null}
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review) => {

@@ -51,7 +51,7 @@ export default async function ProductPage(
   }
 
   const category = getCategory(product.category);
-  const image = product.images[0];
+  const [heroImage, ...otherImages] = product.images;
   const seasonWindow = seasonWindowLabel(product);
   const reviews = getReviewsForProduct(product.slug);
 
@@ -68,25 +68,55 @@ export default async function ProductPage(
       </nav>
 
       <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-14">
-        <div className="overflow-hidden rounded-card bg-linen">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            sizes="(min-width: 1024px) 480px, 92vw"
-            priority
-            className="h-full w-full object-cover"
-          />
+        <div className="space-y-3">
+          {/* Photos come in whatever shape the maker's phone took them, from
+              tall owl portraits to wide flat-lays, so contain rather than crop. */}
+          <div className="overflow-hidden rounded-card bg-linen">
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt}
+              width={heroImage.width}
+              height={heroImage.height}
+              sizes="(min-width: 1024px) 480px, 92vw"
+              priority
+              className="max-h-[62vh] w-full object-contain"
+            />
+          </div>
+
+          {otherImages.length > 0 ? (
+            <ul className="grid grid-cols-2 gap-3">
+              {otherImages.map((image) => (
+                <li
+                  key={image.src}
+                  className="overflow-hidden rounded-card bg-linen"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    sizes="(min-width: 1024px) 236px, 45vw"
+                    className="h-auto w-full"
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
 
         <div>
           <h1 className="font-display text-3xl leading-tight font-semibold tracking-tight text-ink sm:text-4xl">
             {product.name}
           </h1>
-          <p className="mt-3 text-2xl font-medium text-ink">
-            {formatPrice(product.price)}
-          </p>
+          {product.price === null ? (
+            <p className="mt-3 text-lg font-medium text-muted">
+              Price on enquiry
+            </p>
+          ) : (
+            <p className="mt-3 text-2xl font-medium text-ink">
+              {formatPrice(product.price)}
+            </p>
+          )}
           <div className="mt-4">
             <AvailabilityBadge product={product} />
           </div>
