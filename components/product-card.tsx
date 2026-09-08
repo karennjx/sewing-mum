@@ -3,13 +3,7 @@ import Link from "next/link";
 import { AvailabilityBadge } from "@/components/availability-badge";
 import { priceLabel, type Product } from "@/lib/catalog";
 
-export function ProductCard({
-  product,
-  priority = false,
-}: {
-  product: Product;
-  priority?: boolean;
-}) {
+export function ProductCard({ product }: { product: Product }) {
   const image = product.images[0];
 
   return (
@@ -24,19 +18,21 @@ export function ProductCard({
           width={image.width}
           height={image.height}
           sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
-          priority={priority}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <div className="flex items-start justify-between gap-3">
+        {/* Price sits under the name rather than beside it: "Price on
+            enquiry" is far longer than a figure and overflows a card-width
+            row. */}
+        <div>
           <h3 className="font-display text-lg leading-snug font-semibold text-ink group-hover:text-berry">
             {product.name}
           </h3>
-          <span className="mt-0.5 text-sm font-medium whitespace-nowrap text-muted sm:text-base">
+          <p className="mt-1 text-sm font-medium text-muted">
             {priceLabel(product)}
-          </span>
+          </p>
         </div>
         <p className="flex-1 text-sm leading-relaxed text-muted">
           {product.blurb}

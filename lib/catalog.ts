@@ -25,7 +25,10 @@ export type Product = {
   details: string[];
   images: ProductImage[];
   availability: Availability;
+  /** Shown in the "Favourites" row on the homepage. */
   featured?: boolean;
+  /** Shown as one of the two large photos in the homepage hero. */
+  hero?: boolean;
 };
 
 export type CategoryInfo = {
@@ -91,6 +94,14 @@ export function getProductsByCategory(category: Category): readonly Product[] {
 
 export function getFeaturedProducts(): readonly Product[] {
   return products.filter((product) => product.featured === true);
+}
+
+/**
+ * Products whose photo leads the homepage. Kept separate from the featured set
+ * so the hero and the Favourites row never show the same photo twice.
+ */
+export function getHeroProducts(): readonly Product[] {
+  return products.filter((product) => product.hero === true);
 }
 
 export function getCategories(): readonly CategoryInfo[] {

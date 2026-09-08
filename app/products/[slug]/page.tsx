@@ -78,7 +78,8 @@ export default async function ProductPage(
               width={heroImage.width}
               height={heroImage.height}
               sizes="(min-width: 1024px) 480px, 92vw"
-              priority
+              loading="eager"
+              fetchPriority="high"
               className="max-h-[62vh] w-full object-contain"
             />
           </div>

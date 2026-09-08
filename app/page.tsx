@@ -3,7 +3,11 @@ import Link from "next/link";
 import { EnquireButton } from "@/components/enquire-button";
 import { ProductCard } from "@/components/product-card";
 import { StarRating } from "@/components/star-rating";
-import { getCategories, getFeaturedProducts } from "@/lib/catalog";
+import {
+  getCategories,
+  getFeaturedProducts,
+  getHeroProducts,
+} from "@/lib/catalog";
 import { getAverageRating, getFeaturedReviews } from "@/lib/reviews";
 import { site } from "@/lib/site";
 
@@ -27,8 +31,11 @@ export default function Home() {
   const categories = getCategories();
   const reviews = getFeaturedReviews().slice(0, 3);
   const averageRating = getAverageRating();
-  const heroImage = featured[0].images[0];
-  const secondaryImage = featured[1].images[0];
+  // Hero products are flagged separately from the featured ones, so these two
+  // photos are not the same photos the visitor meets again in Favourites.
+  const hero = getHeroProducts();
+  const heroImage = hero[0].images[0];
+  const secondaryImage = hero[1].images[0];
 
   return (
     <>
@@ -69,25 +76,29 @@ export default function Home() {
           ) : null}
         </div>
 
-        <div className="grid grid-cols-5 gap-4">
-          <div className="col-span-3 overflow-hidden rounded-card bg-linen">
+        {/* Equal columns with a shared aspect: the photos are a mix of
+            portrait and landscape, and unequal columns let the tall one
+            stretch the row and squash the wide one. */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="aspect-square overflow-hidden rounded-card bg-linen">
             <Image
               src={heroImage.src}
               alt={heroImage.alt}
               width={heroImage.width}
               height={heroImage.height}
-              sizes="(min-width: 1024px) 340px, 55vw"
-              priority
+              sizes="(min-width: 1024px) 280px, 45vw"
+              loading="eager"
+              fetchPriority="high"
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="col-span-2 mt-8 overflow-hidden rounded-card bg-linen">
+          <div className="mt-10 aspect-square overflow-hidden rounded-card bg-linen">
             <Image
               src={secondaryImage.src}
               alt={secondaryImage.alt}
               width={secondaryImage.width}
               height={secondaryImage.height}
-              sizes="(min-width: 1024px) 220px, 35vw"
+              sizes="(min-width: 1024px) 280px, 45vw"
               className="h-full w-full object-cover"
             />
           </div>
