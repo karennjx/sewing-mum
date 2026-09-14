@@ -225,6 +225,17 @@ async function recordOrder(
       console.error("Order sheet refused the row", response.status);
       return false;
     }
+    // Apps Script answers 200 even when it rejects the row, so the body is
+    // the only thing that says whether anything was actually written. A wrong
+    // secret looks like success until you read it.
+    const result = (await response.json().catch(() => null)) as {
+      ok?: unknown;
+      reason?: unknown;
+    } | null;
+    if (result?.ok !== true) {
+      console.error("Order sheet rejected the row", result?.reason);
+      return false;
+    }
     return true;
   } catch (error) {
     console.error("Order sheet write failed", error);
