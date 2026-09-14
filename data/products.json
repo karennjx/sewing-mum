@@ -43,6 +43,34 @@
     "hero": true
   },
   {
+    "slug": "sun-and-moon-cushion",
+    "name": "Sun and Moon Cushion",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "A soft shaped cushion. Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
     "slug": "trio-bundle",
     "name": "Trio Bundle",
     "category": "sewing-mums",
@@ -120,6 +148,62 @@
         "alt": "Tissue pouches in pink and pastel prints, including a cartoon animal print, fanned out on a cream background",
         "width": 768,
         "height": 1024
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
+    "slug": "woven-bag",
+    "name": "Woven Bag",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "A woven bag with ring handles. Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
+    "slug": "tote-bag",
+    "name": "Tote Bag",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "A cotton tote bag. Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
       }
     ],
     "availability": {
@@ -241,6 +325,62 @@
     }
   },
   {
+    "slug": "memory-square",
+    "name": "Memory Square",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
+    "slug": "cosmetic-pouch",
+    "name": "Cosmetic Pouch",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "A cotton pouch for make-up and toiletries. Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
     "slug": "toddler-patchwork-blanket",
     "name": "Toddler Patchwork Blanket",
     "category": "sewing-mums",
@@ -282,6 +422,34 @@
       "kind": "regular"
     },
     "hero": true
+  },
+  {
+    "slug": "pull-string-pouch",
+    "name": "Pull-string Pouch",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "comingSoon": true,
+    "blurb": "A drawstring cotton pouch. Photographs and details coming soon.",
+    "description": [
+      "We are still putting this listing together. Photographs and a proper description are on the way.",
+      "If you would like to know about it now, send a message and we will tell you what is made up and what it would cost."
+    ],
+    "details": [
+      "Photographs coming soon",
+      "Send a message to ask about this piece"
+    ],
+    "images": [
+      {
+        "src": "/products/photo-coming.jpg",
+        "alt": "Placeholder graphic reading Photograph coming, for a piece that has not been photographed for the site yet",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
   },
   {
     "slug": "bookish-bundle",

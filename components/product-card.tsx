@@ -31,7 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
             {product.name}
           </h3>
           <p className="mt-1 text-sm font-medium text-muted">
-            {priceLabel(product)}
+            {product.comingSoon ? "Photograph coming" : priceLabel(product)}
           </p>
         </div>
         <p className="flex-1 text-sm leading-relaxed text-muted">

@@ -29,6 +29,11 @@ export type Product = {
   featured?: boolean;
   /** Shown as one of the two large photos in the homepage hero. */
   hero?: boolean;
+  /**
+   * In Kim's Drive but with no usable photograph yet, so it stands in with
+   * photo-coming.jpg and placeholder copy. Clear this once real photos land.
+   */
+  comingSoon?: boolean;
 };
 
 export type CategoryInfo = {
