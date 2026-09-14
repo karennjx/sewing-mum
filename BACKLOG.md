@@ -71,7 +71,7 @@ limitation we have chosen to live with.
 | 8 | ~~Order confirmation email through Resend~~ | Done | |
 | 8 | ~~Resend account and `RESEND_API_KEY` live~~ | Done | |
 | 8 | ~~Every confirmed order recorded in a Google Sheet~~ | Done | |
-| 8 | **Scan a generated QR with a real banking app** | To do | Karen |
+| 8 | ~~Scan a generated QR with a real banking app~~ | Done | |
 | 8 | Verify a sending domain so buyers get their receipt | On hold | Kim |
 | 8 | Rate-limit the order route before that domain is live | To do | |
 | 8 | Refund policy, and a PDPA notice for the details collected | To do | |
@@ -728,11 +728,12 @@ that.
 
 **Outstanding.**
 
-- [ ] **Scan the generated QR with a real banking app before taking live
-      orders.** The payload decodes correctly field by field and its checksum
-      matches the published CRC-16/CCITT-FALSE check value, but only a bank
-      app can prove a bank accepts it. Check it shows Sewing Mums, the right
-      amount and the reference — then stop, do not complete the payment.
+- [x] ~~**Scan the generated QR with a real banking app.**~~ — done on 15
+      September, and a bank app reads it. This was the one thing the code
+      could not prove about itself: the payload decodes correctly field by
+      field and its checksum matches the published CRC-16/CCITT-FALSE check
+      value, but only a bank could show that a bank accepts it. Worth
+      repeating if `lib/paynow.ts` or the UEN ever changes.
 - [x] ~~**Order confirmation email** — the code~~ — built on 14 September.
       `app/api/orders/route.ts` is the project's first server route: it
       re-prices the order from the catalogue rather than trusting the
