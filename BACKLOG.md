@@ -726,6 +726,75 @@ pages do not change if a gateway is added later — only the payment step swaps.
 
 ---
 
+## 9. Automatic WhatsApp messages
+
+**Why it matters:** the ask was for the payment button to send the buyer a
+WhatsApp message and an email by itself, rather than opening WhatsApp for the
+buyer to press send. Investigated properly on 14 September. It is possible,
+it is cheap to run, and there is one practical problem that decides it.
+
+**How WhatsApp works here today.** The button is a `wa.me` deep link. It opens
+the *buyer's own* WhatsApp with the message pre-typed and addressed to Kim,
+and the buyer presses send. The site sends nothing and cannot: a link cannot
+send on someone's behalf, and it cannot send *to* the buyer either. Anything
+automatic means Meta's WhatsApp Business Platform (the Cloud API).
+
+**What it would actually take.**
+
+- **A dedicated phone number.** A number registered on the Cloud API cannot
+  also run the normal WhatsApp or WhatsApp Business app, and migrating one
+  loses its chat history. So Kim's number stays where it is and this needs a
+  separate line.
+- **An approved message template** for every business-initiated message, with
+  24 to 72 hours of review each, and a re-approval whenever the wording
+  changes.
+- **Opt-in.** Meta's policy requires the buyer to have agreed to be messaged,
+  naming the business. A checkbox at checkout covers it, and PDPA wants the
+  same thing anyway.
+- **A server route** holding a long-lived access token, calling the Graph API.
+  Perhaps one to two days of work alongside template setup.
+
+**Two things that are cheaper than expected.** Meta Business Verification is
+**not** required to start — an unverified business portfolio can send
+business-initiated template messages to 250 unique recipients per rolling 24
+hours, which is far beyond anything this shop will do. And going direct to the
+Cloud API has **no monthly platform fee**; a Business Solution Provider adds
+one, but a single narrow use case does not need one. A utility message to a
+Singapore number is about **S$0.02**. At a handful of orders a week the
+running cost is pennies.
+
+**The problem that decides it: Kim could not read the replies.** An API number
+has no app. Incoming messages arrive as webhooks to a server, so if a buyer
+replies to the automatic confirmation — which they will, because it is a
+conversation — it goes nowhere Kim can see. That leaves two real shapes, and
+both are worse than what exists:
+
+- **A second number for outbound only.** Cheap and simple, but buyers reply
+  into a void, and the shop now has two WhatsApp numbers with the one people
+  actually reach not being the one that messaged them.
+- **Move Kim's business number onto the API** and pay a Business Solution
+  Provider for an inbox she can read, which is a monthly fee and a new tool
+  for her to learn, to replace an app she already uses.
+
+**Recommendation: don't build this.** What it buys is one saved tap and a
+tidier confirmation. What it costs is a second phone line, a Meta template
+cycle, an opt-in checkbox, a new server integration, and either an
+unreadable inbox or a monthly subscription. Meanwhile the buyer already gets
+an emailed receipt the moment the domain is verified, and Kim's own WhatsApp
+reply is a warmer confirmation than a template.
+
+Note also that the current flow gets a free channel by accident: the buyer
+messaging first opens a 24-hour service window in which Kim's replies cost
+nothing. Automating the first message replaces a free buyer action with a
+paid business one.
+
+- [ ] Revisit only if buyers start saying they never saw the email, which is
+      the actual problem this would solve
+- [ ] If it is ever built, the opt-in checkbox and a stated purpose are
+      required before the first message, not after
+
+---
+
 ## Nice to have, not now
 
 Deliberately parked. None of these are worth doing before the site has real
