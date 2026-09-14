@@ -17,8 +17,13 @@ export type ProductImage = {
 export type ProductVariant = {
   /** Shown on the tag, and repeated back in the WhatsApp message. */
   name: string;
-  /** The `src` of the product image that shows this one, so picking a tag can
-   *  bring up its photo. Must match an entry in the product's `images`. */
+  /**
+   * The `src` of the product image that shows this one, so picking a tag can
+   * bring up its photo. Must match an entry in the product's `images`. Point it
+   * at the plain photo of the piece in that colourway, not at a staged shot
+   * that happens to use it: the tag is answering "what does this print look
+   * like", so a photo styled to show the piece in use is the wrong answer.
+   */
   image: string;
 };
 

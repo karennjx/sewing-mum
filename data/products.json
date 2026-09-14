@@ -130,12 +130,8 @@
     ],
     "variants": [
       {
-        "name": "Blue mandala",
-        "image": "/products/trio-bundle-1.jpg"
-      },
-      {
         "name": "Rainbow circles",
-        "image": "/products/trio-bundle-2.jpg"
+        "image": "/products/trio-bundle-3.jpg"
       },
       {
         "name": "Retro floral",
@@ -144,6 +140,10 @@
       {
         "name": "Autumn toadstool",
         "image": "/products/trio-bundle-5.jpg"
+      },
+      {
+        "name": "Blue mandala",
+        "image": "/products/trio-bundle-6.jpg"
       }
     ],
     "availability": {
