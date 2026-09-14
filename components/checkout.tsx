@@ -24,6 +24,14 @@ type Stage = "details" | "pay" | "done";
 
 type Contact = { email: string; mobile: string };
 
+/**
+ * Whether a copy of the order went out by email. "quiet" covers the case
+ * worth being careful about: the email sent, but only to us, because Resend's
+ * test sender cannot reach anyone but the account owner. Telling the shopper
+ * a copy is on its way would be a lie until a domain is verified.
+ */
+type Receipt = "idle" | "sending" | "shopper" | "quiet" | "failed";
+
 /** Deliberately loose. A rejected address that was actually fine is worse
  *  than a typo we catch later, when a person reads every order anyway. */
 function emailLooksWrong(email: string): boolean {
@@ -52,6 +60,7 @@ export function Checkout({ products }: { products: readonly CartProduct[] }) {
     total: number;
     reference: string;
   } | null>(null);
+  const [receipt, setReceipt] = useState<Receipt>("idle");
 
   const lines = useMemo(
     () => resolveCartLines(cart, products),
@@ -172,6 +181,41 @@ export function Checkout({ products }: { products: readonly CartProduct[] }) {
     "Could you confirm and let me know about delivery?",
   ].join("\n");
 
+  const order = placed;
+
+  /** Fire and forget. The email is a courtesy; the WhatsApp message is what
+   *  actually reaches Kim, so nothing here may block or undo an order. */
+  function emailACopy(): void {
+    setReceipt("sending");
+    fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        reference: order.reference,
+        email: contact.email.trim(),
+        mobile: contact.mobile.trim(),
+        lines: order.lines.map(({ line }) => line),
+      }),
+    })
+      .then(async (response) => {
+        const body = (await response.json().catch(() => null)) as {
+          emailedShopper?: unknown;
+          reason?: unknown;
+        } | null;
+
+        if (response.ok) {
+          setReceipt(body?.emailedShopper === true ? "shopper" : "quiet");
+          return;
+        }
+        // Email not being set up at all is our business, not the shopper's.
+        // Only a real attempt that failed is worth apologising for.
+        setReceipt(body?.reason === "not-configured" ? "quiet" : "failed");
+      })
+      .catch(() => {
+        setReceipt("failed");
+      });
+  }
+
   if (stage === "done") {
     return (
       <div className="mt-10">
@@ -185,6 +229,17 @@ export function Checkout({ products }: { products: readonly CartProduct[] }) {
           confirm and sort out delivery. Every piece is made by hand, so we
           will tell you exactly what is ready.
         </p>
+        {receipt === "shopper" ? (
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            A copy is on its way to {contact.email.trim()}.
+          </p>
+        ) : null}
+        {receipt === "failed" ? (
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            We could not email you a copy just now, but your order is with us
+            all the same.
+          </p>
+        ) : null}
         <div className="mt-8 border-t border-linen-dark/60 pt-6">
           <Summary lines={placed.lines} total={placed.total} />
         </div>
@@ -254,6 +309,7 @@ export function Checkout({ products }: { products: readonly CartProduct[] }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
+              emailACopy();
               clearCart();
               setStage("done");
             }}

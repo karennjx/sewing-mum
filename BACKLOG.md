@@ -642,20 +642,29 @@ that.
       matches the published CRC-16/CCITT-FALSE check value, but only a bank
       app can prove a bank accepts it. Check it shows Sewing Mums, the right
       amount and the reference — then stop, do not complete the payment.
-- [ ] **Order confirmation email.** Not built. The checkout collects an email
-      address but nothing sends to it; the order reaches Kim because the
-      customer sends it on WhatsApp as step two. Copy `karen.njx@gmail.com`
-      for the trial. Three things are needed, not one:
-      - a Resend account and an API key, set as `RESEND_API_KEY` in Vercel's
-        environment variables rather than committed to the repository;
-      - a **verified sending domain**. Resend's free tier is 3,000 emails a
-        month and 100 a day, which is ample, but its test address
-        `onboarding@resend.dev` can only send to your own account address —
-        so emailing an actual customer needs a domain verified by DNS
-        records, which loops back to the domain still not being set up.
-        Resend recommend a subdomain such as `notifications.sewingmum.com`;
-      - a server route to send from. The site is otherwise static, so this
-        would be the first real backend in the project.
+- [x] ~~**Order confirmation email** — the code~~ — built on 14 September.
+      `app/api/orders/route.ts` is the project's first server route: it
+      re-prices the order from the catalogue rather than trusting the
+      browser, sends through Resend, and the checkout swallows any failure
+      because the WhatsApp message is what actually reaches Kim.
+- [ ] **Create the Resend account and set `RESEND_API_KEY` in Vercel.**
+      Nothing sends until this exists; the route returns a 503 and the
+      checkout carries on silently. Free tier is 3,000 emails a month and
+      100 a day, which is ample.
+- [ ] **Verify a sending domain.** Resend's test address
+      `onboarding@resend.dev` can only send to the address that owns the
+      account, so **while it is in use the shopper is not emailed at all** —
+      the one copy comes to us, and the confirmation page deliberately says
+      nothing about email. Reaching actual customers needs a domain verified
+      by DNS records; Resend recommend a subdomain such as
+      `notifications.sewingmum.com`. Then set `ORDER_EMAIL_FROM` to an
+      address on it, and `ORDER_EMAIL_TO` to whoever should be copied.
+- [ ] **Rate-limit the order route before that domain is verified.** Right
+      now it can only email us, so the exposure is latent. The moment it can
+      email arbitrary addresses, an unauthenticated endpoint that sends mail
+      to any address given to it is worth abusing, even with fixed content.
+      The proper fix arrives with a server-side order record, which is what
+      lets the route send only for orders that exist.
 - [ ] **Nothing records orders.** There is no server and no database, so an
       order exists only in the WhatsApp message and in Kim's bank statement.
       Acceptable at this volume; the first thing to fix if it stops being so.

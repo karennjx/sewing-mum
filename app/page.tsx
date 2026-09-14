@@ -36,8 +36,8 @@ const PROMISES = [
     body: "Through sewing projects the mothers earn a livelihood as independent contributors. Buying a piece is the support, not a donation on top of it.",
   },
   {
-    title: "Just send a message",
-    body: "No cart, no checkout. Tell us what caught your eye on WhatsApp and we will sort out sizing, fabric and delivery together.",
+    title: "Buy it, or just ask",
+    body: "Pieces with a price can go in the cart and be paid by PayNow. For everything else, tell us what caught your eye on WhatsApp and we will sort out sizing, fabric and delivery together.",
   },
 ];
 
@@ -264,8 +264,9 @@ export default function Home() {
           Seen something you like?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted">
-          There is no checkout here on purpose. Send a message, and what you
-          buy goes straight back to the mother who made it.
+          Pieces with a price can be bought here and paid by PayNow. For
+          anything else, send a message. Either way, what you buy goes straight
+          back to the mother who made it.
         </p>
         <div className="mt-8">
           <EnquireButton />
