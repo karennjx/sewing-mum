@@ -52,6 +52,11 @@ export default async function ProductPage(
 
   const category = getCategory(product.category);
   const [heroImage, ...otherImages] = product.images;
+  // Most pieces have two photos under the hero, which sit happily side by side.
+  // The Trio Bundle has three, one per colourway, and in two columns the third
+  // would sit alone on a second row at double the width of its siblings.
+  const thumbnailColumns =
+    otherImages.length === 3 ? "grid-cols-3" : "grid-cols-2";
   const seasonWindow = seasonWindowLabel(product);
   const reviews = getReviewsForProduct(product.slug);
 
@@ -85,7 +90,7 @@ export default async function ProductPage(
           </div>
 
           {otherImages.length > 0 ? (
-            <ul className="grid grid-cols-2 gap-3">
+            <ul className={`grid ${thumbnailColumns} gap-3`}>
               {otherImages.map((image) => (
                 <li
                   key={image.src}
@@ -96,7 +101,11 @@ export default async function ProductPage(
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    sizes="(min-width: 1024px) 236px, 45vw"
+                    sizes={
+                      otherImages.length === 3
+                        ? "(min-width: 1024px) 156px, 30vw"
+                        : "(min-width: 1024px) 236px, 45vw"
+                    }
                     className="h-auto w-full"
                   />
                 </li>

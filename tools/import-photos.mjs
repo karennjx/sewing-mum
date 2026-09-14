@@ -30,18 +30,16 @@ const QUALITY = 86;
 // and Cup Sleeves moved into Archive, so both were dropped from the site.
 const jobs = [
   // Trio Bundle: a snap wallet, a flap pouch and a strapped cup carrier, three
-  // pieces to a set, one colourway per photo.
+  // pieces to a set, one colourway per photo, all four shot on the same sofa.
   //
-  // Kim asked for the three casual shots, "2026 - Wallet Bundle 3", "4.heic" and
-  // "5.jpg". Only 5 could be used. All three HEIC files in that folder are
-  // truncated in Drive — each one's decoder seeks about 32 bytes past the end of
-  // the file — so 3 (the tan toadstool colourway, extension missing) and 4 (the
-  // rainbow one) cannot be read at all. Re-upload those two as JPEG and they can
-  // go straight in. Until then the rainbow colourway and the all-colourways shot
-  // come from the WhatsApp copies.
-  { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 5.jpg", out: "trio-bundle-1.jpg" },
-  { folder: "Product - 3. Trio Bundle", file: "WhatsApp Image 2026-09-08 at 7.32.42 AM (1).jpeg", out: "trio-bundle-2.jpg" },
-  { folder: "Product - 3. Trio Bundle", file: "WhatsApp Image 2026-09-08 at 7.32.41 AM.jpeg", out: "trio-bundle-3.jpg" },
+  // The HEIC originals of 2, 3 and 4 are all truncated in Drive — each one's
+  // decoder seeks about 32 bytes past the end of the file — so Kim re-saved
+  // them as JPEG. Those are the files named here; ignore the .heic siblings.
+  // Number 5 is a much smaller copy than the rest, so it goes last.
+  { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 4.jpg", out: "trio-bundle-1.jpg" },
+  { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 2.jpg", out: "trio-bundle-2.jpg" },
+  { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 3.jpg", out: "trio-bundle-3.jpg" },
+  { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 5.jpg", out: "trio-bundle-4.jpg" },
 
   { folder: "Product - 2. Sun and Moon Cushion", file: "Sun and moon cushion_FB Image 1.jpg", out: "sun-and-moon-cushion-1.jpg" },
   { folder: "Product - 5. Woven Bag", file: "Woven bag_GB Image 1.jpg", out: "woven-bag-1.jpg" },

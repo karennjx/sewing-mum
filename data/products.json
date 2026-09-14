@@ -81,7 +81,7 @@
     "blurb": "Three matching pieces — wallet, pouch and cup carrier — cut from one print.",
     "description": [
       "A set of three, every piece cut from the same cotton: a wallet that closes on a snap, a flap pouch, and a cup carrier on a webbing strap that takes a takeaway cup or a tumbler.",
-      "It is made up in a few prints at a time — a blue and turquoise mandala, bright rainbow circles, a red floral and a tan toadstool print among them. Ask which prints are currently made up and we will send pictures of what is ready."
+      "It is made up in a few prints at a time — the four photographed here are bright rainbow circles, a red and ochre retro floral, an autumn toadstool print and a blue and turquoise mandala. Ask which prints are currently made up and we will send pictures of what is ready."
     ],
     "details": [
       "Three pieces: a snap-fastened wallet, a flap pouch and a cup carrier",
@@ -93,21 +93,27 @@
     "images": [
       {
         "src": "/products/trio-bundle-1.jpg",
-        "alt": "The three pieces of a trio bundle in a blue and turquoise mandala print, including a wallet with a white snap and a carrier on a black webbing strap, laid on a sofa",
-        "width": 856,
-        "height": 916
+        "alt": "A trio bundle in a bright rainbow circle print laid on a sofa — a wallet closed with a white snap, a flap pouch, and a cup carrier on a black webbing strap",
+        "width": 1200,
+        "height": 1280
       },
       {
         "src": "/products/trio-bundle-2.jpg",
-        "alt": "Trio bundle in a bright rainbow circle print — a snap-fastened wallet, a tall flap pouch, and a cup carrier on a black strap holding a white tumbler",
+        "alt": "The same three pieces in a red and ochre retro floral print on cream, the wallet closed with a tan snap",
         "width": 1200,
-        "height": 1200
+        "height": 1289
       },
       {
         "src": "/products/trio-bundle-3.jpg",
-        "alt": "Four colourways of the trio bundle shown together — red floral, rainbow circles, blue mandala and a tan toadstool print",
+        "alt": "The same three pieces in an autumn print of red toadstools and golden leaves on tan",
         "width": 1200,
-        "height": 1200
+        "height": 1165
+      },
+      {
+        "src": "/products/trio-bundle-4.jpg",
+        "alt": "The same three pieces in a blue and turquoise mandala print",
+        "width": 856,
+        "height": 916
       }
     ],
     "availability": {
