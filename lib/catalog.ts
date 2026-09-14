@@ -14,6 +14,14 @@ export type ProductImage = {
   height: number;
 };
 
+export type ProductVariant = {
+  /** Shown on the tag, and repeated back in the WhatsApp message. */
+  name: string;
+  /** The `src` of the product image that shows this one, so picking a tag can
+   *  bring up its photo. Must match an entry in the product's `images`. */
+  image: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -34,6 +42,12 @@ export type Product = {
    * photo-coming.jpg and placeholder copy. Clear this once real photos land.
    */
   comingSoon?: boolean;
+  /**
+   * The prints this piece is made up in. Listing them also opts the product
+   * into the interactive gallery, where the thumbnails switch the main photo,
+   * so a piece with one print and no choice to make keeps the plain layout.
+   */
+  variants?: ProductVariant[];
 };
 
 export type CategoryInfo = {

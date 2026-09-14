@@ -76,7 +76,7 @@
     "slug": "trio-bundle",
     "name": "Trio Bundle",
     "category": "sewing-mums",
-    "price": null,
+    "price": 20,
     "featured": true,
     "blurb": "Three matching pieces — wallet, pouch and cup carrier — cut from one print.",
     "description": [
@@ -126,6 +126,24 @@
         "alt": "A trio bundle in a blue and turquoise mandala print",
         "width": 856,
         "height": 916
+      }
+    ],
+    "variants": [
+      {
+        "name": "Blue mandala",
+        "image": "/products/trio-bundle-1.jpg"
+      },
+      {
+        "name": "Rainbow circles",
+        "image": "/products/trio-bundle-2.jpg"
+      },
+      {
+        "name": "Retro floral",
+        "image": "/products/trio-bundle-4.jpg"
+      },
+      {
+        "name": "Autumn toadstool",
+        "image": "/products/trio-bundle-5.jpg"
       }
     ],
     "availability": {
