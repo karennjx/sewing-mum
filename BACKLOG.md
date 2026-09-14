@@ -673,7 +673,16 @@ that.
 - [ ] **Create the Resend account and set `RESEND_API_KEY` in Vercel.**
       Nothing sends until this exists; the route returns a 503 and the
       checkout carries on silently. Free tier is 3,000 emails a month and
-      100 a day, which is ample.
+      100 a day, which is ample. **The account must be opened with
+      `karen.njx@gmail.com`**, because the test sender can only reach the
+      address that owns the account and that is the address the route copies.
+
+      **Interim arrangement, agreed 14 September.** The site stays on the
+      Vercel address and the email stays on Resend's test sender while the
+      domain question is on hold. That means order copies come to Karen
+      only, shoppers are not emailed, and the confirmation page says nothing
+      about email. Revisit both together once the domain and its login are
+      confirmed.
 - [ ] **Verify a sending domain.** Resend's test address
       `onboarding@resend.dev` can only send to the address that owns the
       account, so **while it is in use the shopper is not emailed at all** —
