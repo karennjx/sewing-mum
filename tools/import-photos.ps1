@@ -13,31 +13,41 @@ $root = Join-Path $PSScriptRoot ".."
 $maxWidth = 1200
 $quality = 86
 
+# Kim renumbered the Drive folders into her intended catalogue order, so every
+# folder name here changed in September 2026. "Product - Wallet Bundle" became
+# "Product - 3. Trio Bundle" (same source files), and Face Mask and Cup Sleeves
+# were moved into Archive, so both have been dropped from the site.
 $jobs = @(
   # Tissue Pouch
-  @{ folder = "Product - Tissue Pouches"; file = "D800B0B0-41C7-404D-818E-9A778A0D39B4_1_105_c.jpeg"; out = "tissue-pouch-1.jpg" }
-  @{ folder = "Product - Tissue Pouches"; file = "11B65382-0169-4E46-AD45-227F707FA594_1_105_c.jpeg"; out = "tissue-pouch-2.jpg" }
-  @{ folder = "Product - Tissue Pouches"; file = "953993DA-1863-49C4-B47C-3EAEA4B994D1_1_105_c.jpeg"; out = "tissue-pouch-3.jpg" }
+  @{ folder = "Product - 4. Tissue Pouch"; file = "D800B0B0-41C7-404D-818E-9A778A0D39B4_1_105_c.jpeg"; out = "tissue-pouch-1.jpg" }
+  @{ folder = "Product - 4. Tissue Pouch"; file = "11B65382-0169-4E46-AD45-227F707FA594_1_105_c.jpeg"; out = "tissue-pouch-2.jpg" }
+  @{ folder = "Product - 4. Tissue Pouch"; file = "953993DA-1863-49C4-B47C-3EAEA4B994D1_1_105_c.jpeg"; out = "tissue-pouch-3.jpg" }
 
-  # Wallet Bundle
-  @{ folder = "Product - Wallet Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.42 AM.jpeg";     out = "wallet-bundle-1.jpg" }
-  @{ folder = "Product - Wallet Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.42 AM (1).jpeg"; out = "wallet-bundle-2.jpg" }
-  @{ folder = "Product - Wallet Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.41 AM.jpeg";     out = "wallet-bundle-3.jpg" }
+  # Trio Bundle, listed as "Wallet Bundle" until Kim renamed the folder.
+  @{ folder = "Product - 3. Trio Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.42 AM.jpeg";     out = "trio-bundle-1.jpg" }
+  @{ folder = "Product - 3. Trio Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.42 AM (1).jpeg"; out = "trio-bundle-2.jpg" }
+  @{ folder = "Product - 3. Trio Bundle"; file = "WhatsApp Image 2026-09-08 at 7.32.41 AM.jpeg";     out = "trio-bundle-3.jpg" }
 
   # Placemats
-  @{ folder = "Product - Placemat"; file = "42832CFE-8ADC-47E5-A77C-16B2DDA13CF7_1_105_c.jpeg"; out = "placemats-1.jpg" }
-  @{ folder = "Product - Placemat"; file = "619E4E07-5010-437C-B043-C4BBFBA61915_1_105_c.jpeg"; out = "placemats-2.jpg" }
-  @{ folder = "Product - Placemat"; file = "9B4BA88C-87EC-4ECE-AFA6-0B3AEB2CB1F2_1_105_c.jpeg"; out = "placemats-3.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "42832CFE-8ADC-47E5-A77C-16B2DDA13CF7_1_105_c.jpeg"; out = "placemats-1.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "619E4E07-5010-437C-B043-C4BBFBA61915_1_105_c.jpeg"; out = "placemats-2.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "9B4BA88C-87EC-4ECE-AFA6-0B3AEB2CB1F2_1_105_c.jpeg"; out = "placemats-3.jpg" }
 
   # Christmas Placemats
-  @{ folder = "Product - Placemat"; file = "E509844E-9EAF-48B9-A8CA-4332C440DF90_4_5005_c.jpeg"; out = "christmas-placemats-1.jpg" }
-  @{ folder = "Product - Placemat"; file = "A3416282-3C55-4AEA-9608-03AA49FCFE10_4_5005_c.jpeg"; out = "christmas-placemats-2.jpg" }
-  @{ folder = "Product - Placemat"; file = "SM - Placemats (Xmas).jpeg";                          out = "christmas-placemats-3.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "E509844E-9EAF-48B9-A8CA-4332C440DF90_4_5005_c.jpeg"; out = "christmas-placemats-1.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "A3416282-3C55-4AEA-9608-03AA49FCFE10_4_5005_c.jpeg"; out = "christmas-placemats-2.jpg" }
+  @{ folder = "Product - 7. Placemat"; file = "SM - Placemats (Xmas).jpeg";                          out = "christmas-placemats-3.jpg" }
 
-  # Cup Sleeve
-  @{ folder = "Product - Cup Sleeves"; file = "722977CC-FC8C-4FBF-BD07-87BED5E83B90_1_105_c.jpeg"; out = "cup-sleeve-1.jpg" }
-  @{ folder = "Product - Cup Sleeves"; file = "AEBBE7D8-92F0-4E78-B8E2-F486A0F0180F_1_105_c.jpeg"; out = "cup-sleeve-2.jpg" }
-  @{ folder = "Product - Cup Sleeves"; file = "SM - Cup Sleeves.jpg";                              out = "cup-sleeve-3.jpg" }
+  # Heat Pads. Two of the four available photos are skipped: "Head Pad_FB
+  # Image 2.jpg" has a "Heat Pads" caption baked in, and "SM - Heat Pads 2.jpg"
+  # is all but the same shot as "Head Pad_FB Image 1.jpg".
+  @{ folder = "Product - 9. Heat Pad"; file = "Head Pad_FB Image 1.jpg"; out = "heat-pad-1.jpg" }
+  @{ folder = "0. Photos";             file = "SM - Heat Pads 1.jpeg";  out = "heat-pad-2.jpg" }
+
+  # Coasters. The folder Kim numbered for these is empty; the only photos of
+  # them sit loose in "0. Photos".
+  @{ folder = "0. Photos"; file = "SM - Coasters.jpg";   out = "coasters-1.jpg" }
+  @{ folder = "0. Photos"; file = "SM - Coasters 2.jpeg"; out = "coasters-2.jpg" }
 
   # Corporate collaboration samples. Both are cropped: the first to cut the
   # "We customised your brand & name" caption baked into the Facebook version,

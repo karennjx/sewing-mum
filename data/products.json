@@ -43,103 +43,18 @@
     "hero": true
   },
   {
-    "slug": "toddler-patchwork-blanket",
-    "name": "Toddler Patchwork Blanket",
-    "category": "sewing-mums",
-    "price": null,
-    "featured": false,
-    "blurb": "A patchwork cot blanket pieced from cotton prints, backed in a contrasting fabric.",
-    "description": [
-      "Squares and triangle blocks of cotton print, pieced into a blanket sized for a cot, a pram or a toddler's bed, then backed with a single contrasting fabric and bound all the way round the edge.",
-      "Because they are pieced from whatever is in the basket, every blanket is a one-off. Some come out bright and busy with children's novelty prints; others are quieter, worked in a limited set of colours. Ask and we will show you what is finished rather than have you choose from a photograph of something already gone."
-    ],
-    "details": [
-      "Cotton patchwork top, contrasting cotton backing",
-      "Bound edge all the way round",
-      "Pieced in squares or triangle blocks depending on the blanket",
-      "Every blanket is a one-off",
-      "Sizes and washing instructions on request"
-    ],
-    "images": [
-      {
-        "src": "/products/toddler-patchwork-blanket-1.jpg",
-        "alt": "Patchwork blanket laid flat, pieced in pinwheel triangle blocks of dusty pink, charcoal and cream with a cream border",
-        "width": 1024,
-        "height": 768
-      },
-      {
-        "src": "/products/toddler-patchwork-blanket-2.jpg",
-        "alt": "Bright patchwork blanket in red, navy and cream children's prints with one corner folded back to show the contrasting backing",
-        "width": 990,
-        "height": 793
-      },
-      {
-        "src": "/products/toddler-patchwork-blanket-3.jpg",
-        "alt": "Patchwork blanket of mixed cotton squares in blues, greens and pinks, laid out with a corner turned back",
-        "width": 975,
-        "height": 804
-      }
-    ],
-    "availability": {
-      "kind": "regular"
-    },
-    "hero": true
-  },
-  {
-    "slug": "fabric-face-mask",
-    "name": "Fabric Face Mask",
-    "category": "sewing-mums",
-    "price": null,
-    "featured": false,
-    "blurb": "A shaped, reusable cotton mask with an adjustable cord and toggle.",
-    "description": [
-      "A contoured mask, cut and seamed so it sits away from the mouth rather than flat against it, lined in cotton, with a cord and toggle at the back so it can be pulled in to fit.",
-      "These are made in whatever prints have come in — batik, Japanese florals, paisley, and novelty prints for children — and in adult and child sizes. Each one comes packaged with a Sewing Mums card, which makes them easy to hand over as a small gift or a party favour."
-    ],
-    "details": [
-      "Cotton outer with a cotton lining",
-      "Contoured shape with an adjustable cord and toggle",
-      "Adult and child sizes",
-      "Reusable and washable",
-      "Prints change constantly — ask what is in stock"
-    ],
-    "images": [
-      {
-        "src": "/products/fabric-face-mask-1.jpg",
-        "alt": "Two contoured fabric face masks on a wooden table, one in a multicoloured floral print and one in red cherry blossom, both with cream linings and white adjustable cords",
-        "width": 768,
-        "height": 1024
-      },
-      {
-        "src": "/products/fabric-face-mask-2.jpg",
-        "alt": "A single contoured face mask in purple, blue and turquoise batik print with a black adjustable cord and toggle",
-        "width": 768,
-        "height": 1024
-      },
-      {
-        "src": "/products/fabric-face-mask-3.jpg",
-        "alt": "Around twenty fabric face masks laid out in rows in a range of florals, novelty prints and polka dots, in both adult and child sizes",
-        "width": 768,
-        "height": 1024
-      }
-    ],
-    "availability": {
-      "kind": "regular"
-    }
-  },
-  {
-    "slug": "wallet-bundle",
-    "name": "Wallet Bundle",
+    "slug": "trio-bundle",
+    "name": "Trio Bundle",
     "category": "sewing-mums",
     "price": null,
     "featured": true,
     "blurb": "A matching set — wallet, pouches and a cup carrier, all cut from one print.",
     "description": [
-      "The bundle is a coordinated set, every piece cut from the same cotton: a slim wallet, two flat pouches in different sizes, and a cup carrier with a webbing strap that takes a takeaway cup or a tumbler.",
+      "A coordinated set, every piece cut from the same cotton: a slim wallet, flat pouches, and a cup carrier with a webbing strap that takes a takeaway cup or a tumbler.",
       "It is made up in a few prints at a time. The ones photographed here are a blue and turquoise mandala, bright rainbow circles, a small red floral and a warm orange batik. Ask which prints are currently made up and we will send pictures of what is ready."
     ],
     "details": [
-      "Slim wallet, two flat pouches and a cup carrier with a strap",
+      "A slim wallet, flat pouches and a cup carrier with a strap",
       "Every piece in the set cut from the same print",
       "Cotton, made up in a few prints at a time",
       "Sold as a set; individual pieces on request",
@@ -147,22 +62,64 @@
     ],
     "images": [
       {
-        "src": "/products/wallet-bundle-1.jpg",
-        "alt": "Wallet bundle in a blue and turquoise mandala print — a slim wallet and two flat pouches standing on a wooden riser, beside a tumbler in a matching fabric cup carrier with a black strap",
+        "src": "/products/trio-bundle-1.jpg",
+        "alt": "Trio bundle in a blue and turquoise mandala print — a slim wallet and two flat pouches standing on a wooden riser, beside a tumbler in a matching fabric cup carrier with a black strap",
         "width": 1200,
         "height": 1200
       },
       {
-        "src": "/products/wallet-bundle-2.jpg",
-        "alt": "Wallet bundle in a bright rainbow circle print — wallet and pouches on a wooden riser next to a tumbler in a matching cup carrier",
+        "src": "/products/trio-bundle-2.jpg",
+        "alt": "Trio bundle in a bright rainbow circle print — wallet and pouches on a wooden riser next to a tumbler in a matching cup carrier",
         "width": 1200,
         "height": 1200
       },
       {
-        "src": "/products/wallet-bundle-3.jpg",
-        "alt": "Four wallet bundles shown together in red floral, rainbow circle, blue mandala and orange batik prints",
+        "src": "/products/trio-bundle-3.jpg",
+        "alt": "Four trio bundles shown together in red floral, rainbow circle, blue mandala and orange batik prints",
         "width": 1200,
         "height": 1200
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    }
+  },
+  {
+    "slug": "tissue-pouch",
+    "name": "Tissue Pouch",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "blurb": "A small cotton sleeve that holds a pocket pack of tissues.",
+    "description": [
+      "A little cotton sleeve sized around a pocket pack of tissues, so the packet stops splitting open at the bottom of a bag.",
+      "They are made from whatever cotton is on the table, which is why the photographs show so many at once — florals, batiks and stripes, and novelty prints with dinosaurs, teddy bears and cartoon faces for children. Tell us who it is for and we will pick a few and send pictures."
+    ],
+    "details": [
+      "Cotton, sized for a standard pocket tissue pack",
+      "Dozens of prints, changing all the time",
+      "Novelty prints for children, florals and batiks for adults",
+      "Works as a small gift or a party favour",
+      "Ask for a photograph of what is made up"
+    ],
+    "images": [
+      {
+        "src": "/products/tissue-pouch-1.jpg",
+        "alt": "Several tissue pouches in patterned cotton — black and white geometric, gold spots and bright florals — arranged on a wooden table",
+        "width": 961,
+        "height": 818
+      },
+      {
+        "src": "/products/tissue-pouch-2.jpg",
+        "alt": "Around twenty tissue pouches laid out in rows, each one in a different cotton print",
+        "width": 801,
+        "height": 980
+      },
+      {
+        "src": "/products/tissue-pouch-3.jpg",
+        "alt": "Tissue pouches in pink and pastel prints, including a cartoon animal print, fanned out on a cream background",
+        "width": 768,
+        "height": 1024
       }
     ],
     "availability": {
@@ -212,41 +169,35 @@
     }
   },
   {
-    "slug": "tissue-pouch",
-    "name": "Tissue Pouch",
+    "slug": "coasters",
+    "name": "Coasters",
     "category": "sewing-mums",
     "price": null,
-    "featured": true,
-    "blurb": "A small cotton sleeve that holds a pocket pack of tissues.",
+    "featured": false,
+    "blurb": "Padded fabric coasters, some pieced from four prints, some cut from one.",
     "description": [
-      "A little cotton sleeve sized around a pocket pack of tissues, so the packet stops splitting open at the bottom of a bag.",
-      "They are made from whatever cotton is on the table, which is why the photographs show so many at once — florals, batiks and stripes, and novelty prints with dinosaurs, teddy bears and cartoon faces for children. Tell us who it is for and we will pick a few and send pictures."
+      "Small padded squares to sit under a glass or a mug. Some are pieced as a four-patch, with a different print in each quarter; others are cut from a single cotton and topstitched round the edge.",
+      "They are made in sets from offcuts, so a combination is rarely repeated exactly. The bright ones photographed here are in bold graphic prints; there are quieter florals and novelty cottons too. Tell us how many you need and we will photograph what is made up."
     ],
     "details": [
-      "Cotton, sized for a standard pocket tissue pack",
-      "Dozens of prints, changing all the time",
-      "Novelty prints for children, florals and batiks for adults",
-      "Works as a small gift or a party favour",
-      "Ask for a photograph of what is made up"
+      "Padded cotton squares, for a glass or a mug",
+      "Either pieced as a four-patch or cut from a single print",
+      "Made from offcuts, so no two sets are quite alike",
+      "Sold in sets; any number on request",
+      "Measurements on request"
     ],
     "images": [
       {
-        "src": "/products/tissue-pouch-1.jpg",
-        "alt": "Several tissue pouches in patterned cotton — black and white geometric, gold spots and bright florals — arranged on a wooden table",
-        "width": 961,
-        "height": 818
+        "src": "/products/coasters-2.jpg",
+        "alt": "Six four-patch fabric coasters fanned out in bold red, yellow, blue and green graphic prints, with a wine glass and a tumbler standing on two more above them",
+        "width": 910,
+        "height": 863
       },
       {
-        "src": "/products/tissue-pouch-2.jpg",
-        "alt": "Around twenty tissue pouches laid out in rows, each one in a different cotton print",
-        "width": 801,
-        "height": 980
-      },
-      {
-        "src": "/products/tissue-pouch-3.jpg",
-        "alt": "Tissue pouches in pink and pastel prints, including a cartoon animal print, fanned out on a cream background",
-        "width": 768,
-        "height": 1024
+        "src": "/products/coasters-1.jpg",
+        "alt": "Five padded coasters cut from single cotton prints — pink kokeshi dolls, red Japanese motifs, paisley and blue floral — overlapping on a dark table",
+        "width": 665,
+        "height": 1182
       }
     ],
     "availability": {
@@ -254,46 +205,83 @@
     }
   },
   {
-    "slug": "cup-sleeve",
-    "name": "Cup Sleeve",
+    "slug": "heat-pad",
+    "name": "Heat Pads",
     "category": "sewing-mums",
     "price": null,
-    "featured": false,
-    "blurb": "A cotton sleeve for a takeaway cup, also made as a drawstring carrier.",
+    "featured": true,
+    "blurb": "A long cotton pad to warm and rest on a sore shoulder, back or stomach.",
     "description": [
-      "A cotton sleeve that slips over a takeaway coffee cup so you can hold a hot drink without a cardboard band. They go out labelled coffee cozies.",
-      "There is also a drawstring version — a deeper pouch that closes at the top and holds a cup or a small bottle upright. Both are made in a wide run of prints, from sunflowers and batiks to gingham, palm leaves and novelty cottons for children."
+      "A slim rectangular pad, filled and sewn shut, made to be warmed and laid across a stiff neck, a sore shoulder or an aching stomach. Each one has a Sewing Mums label stitched onto the front.",
+      "They are made in long runs from whatever cotton is on the table, which is why the photographs show so many at once — paisleys, florals, plains, and a set of Christmas cottons with reindeer, wreaths and snowflakes. Ask what is made up and we will send pictures."
     ],
     "details": [
-      "Cotton sleeve that slides onto a takeaway cup",
-      "Drawstring version holds a cup or small bottle upright",
-      "Saves a cardboard sleeve on every coffee",
-      "Made in a wide range of prints",
-      "Ask what is made up"
+      "Cotton, filled and sewn shut, with a Sewing Mums label on the front",
+      "Long and slim, to sit across a shoulder or the small of a back",
+      "Made in long runs, so the prints change constantly",
+      "Christmas prints made up ahead of December",
+      "Filling, measurements and heating instructions on request"
     ],
     "images": [
       {
-        "src": "/products/cup-sleeve-1.jpg",
-        "alt": "Nine cup sleeves fanned out in bright cotton prints including sunflowers, blue and yellow flowers, teddy bears and dinosaurs",
-        "width": 996,
-        "height": 788
+        "src": "/products/heat-pad-1.jpg",
+        "alt": "Thirteen heat pads fanned out in mixed cotton prints, including Christmas reindeer, wreaths and snowflakes, each with a Sewing Mums label stitched to the front",
+        "width": 1179,
+        "height": 842
       },
       {
-        "src": "/products/cup-sleeve-2.jpg",
-        "alt": "Four drawstring cup carriers in black and white palm print, red gingham, red floral and turquoise leaf print",
-        "width": 791,
-        "height": 992
-      },
-      {
-        "src": "/products/cup-sleeve-3.jpg",
-        "alt": "A stainless steel travel mug wearing a red and black leaf print fabric sleeve, beside packaged sleeves and a handwritten Coffee Cozy sign",
-        "width": 360,
-        "height": 480
+        "src": "/products/heat-pad-2.jpg",
+        "alt": "Six heat pads in paisley, red geometric, blue floral and rust oak-leaf cottons, each sealed in a clear sleeve with its Sewing Mums label showing",
+        "width": 1200,
+        "height": 1598
       }
     ],
     "availability": {
       "kind": "regular"
     }
+  },
+  {
+    "slug": "toddler-patchwork-blanket",
+    "name": "Toddler Patchwork Blanket",
+    "category": "sewing-mums",
+    "price": null,
+    "featured": false,
+    "blurb": "A patchwork cot blanket pieced from cotton prints, backed in a contrasting fabric.",
+    "description": [
+      "Squares and triangle blocks of cotton print, pieced into a blanket sized for a cot, a pram or a toddler's bed, then backed with a single contrasting fabric and bound all the way round the edge.",
+      "Because they are pieced from whatever is in the basket, every blanket is a one-off. Some come out bright and busy with children's novelty prints; others are quieter, worked in a limited set of colours. Ask and we will show you what is finished rather than have you choose from a photograph of something already gone."
+    ],
+    "details": [
+      "Cotton patchwork top, contrasting cotton backing",
+      "Bound edge all the way round",
+      "Pieced in squares or triangle blocks depending on the blanket",
+      "Every blanket is a one-off",
+      "Sizes and washing instructions on request"
+    ],
+    "images": [
+      {
+        "src": "/products/toddler-patchwork-blanket-1.jpg",
+        "alt": "Patchwork blanket laid flat, pieced in pinwheel triangle blocks of dusty pink, charcoal and cream with a cream border",
+        "width": 1024,
+        "height": 768
+      },
+      {
+        "src": "/products/toddler-patchwork-blanket-2.jpg",
+        "alt": "Bright patchwork blanket in red, navy and cream children's prints with one corner folded back to show the contrasting backing",
+        "width": 990,
+        "height": 793
+      },
+      {
+        "src": "/products/toddler-patchwork-blanket-3.jpg",
+        "alt": "Patchwork blanket of mixed cotton squares in blues, greens and pinks, laid out with a corner turned back",
+        "width": 975,
+        "height": 804
+      }
+    ],
+    "availability": {
+      "kind": "regular"
+    },
+    "hero": true
   },
   {
     "slug": "bookish-bundle",
