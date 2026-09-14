@@ -10,8 +10,76 @@ it. Most remaining work is content Kim has to supply, not code.
 
 The items below are roughly in the order they unblock each other. Items 1, 2
 and 4 need Kim's input before code can move. Items 3, 5, 6 and 7 are linked
-decisions and are best made together — see the note under item 5. Item 8
-covers the shop and is where the live open questions are.
+decisions and are best made together — see the note under item 5. Items 8
+and 9 cover the shop and are where the live open questions are.
+
+---
+
+## At a glance
+
+Every task in this backlog, in one place. The sections below hold the
+reasoning; this is the index. Statuses mean: **To do** is work someone can
+start, **Decide** needs an answer before any work makes sense, **On hold** is
+blocked on something outside the project, and **Accepted** is a known
+limitation we have chosen to live with.
+
+| # | Task | Status | Waiting on |
+| --- | --- | --- | --- |
+| — | ~~Real photographs of every product~~ | Done | |
+| — | ~~Real product names and descriptions~~ | Done | |
+| — | ~~Real "Our story" copy, from Kim's own bio~~ | Done | |
+| — | ~~A working WhatsApp number wired in~~ | Done | |
+| — | **Which domain the site lives on** | On hold | Kim |
+| — | **Real prices for the other fourteen products** | To do | Kim |
+| — | Swap the stand-in WhatsApp number for Kim's | To do | Kim |
+| — | Real customer reviews, published with permission | To do | Kim |
+| 1 | ~~Logo, wordmark, favicon and a palette from Kim's own~~ | Done | |
+| 1 | Check the palette against a sewn-in fabric label | To do | Kim |
+| 1 | Confirm the tone of the writing is Kim's voice | Decide | Kim |
+| 2 | ~~Multiple images, variants, stock fields, gallery~~ | Done | |
+| 2 | ~~Aspect ratios for cards and detail pages~~ | Done | |
+| 2 | Photograph Tote Bag, Memory Square, Pull-string Pouch | To do | Kim |
+| 2 | Agree a shot list and a hero setup she can repeat | To do | Kim |
+| 2 | Lead time field — the cart implies things are ready | To do | |
+| 2 | Dimensions, weight, SKU, materials as real fields | Later | |
+| 3 | ~~PayNow chosen; card payments not wanted~~ | Done | |
+| 3 | ~~Shopify costed and ruled out at this traffic~~ | Done | |
+| 3 | Agree the trigger for moving to Shopify | Decide | |
+| 3 | Keep to the porting disciplines (slugs, originals, SKU) | Ongoing | |
+| 4 | Ten story questions, answered in Kim's own words | To do | Kim |
+| 4 | How visible Kim wants to be — name, face, or neither | Decide | Kim |
+| 4 | First person or third, consistently | Decide | |
+| 5 | How often Kim expects to change products | Decide | Kim |
+| 5 | What stock record she keeps today, if any | Decide | Kim |
+| 5 | Who the fallback is when she is stuck | Decide | |
+| 6 | ~~Host decided, site deployed, rebuilding from GitHub~~ | Done | |
+| 6 | ~~Registrar identified — GoDaddy, plural domain~~ | Done | |
+| 6 | ~~Email on the domain sidestepped, using Kim's real address~~ | Done | |
+| 6 | **Replace the existing sewingmums.com, or use a subdomain** | On hold | Kim |
+| 6 | Who holds the GoDaddy login | On hold | Karen |
+| 6 | Whether the singular sewingmum.com is worth buying | Decide | |
+| 6 | Vercel Hobby is non-commercial and the site now takes money | Decide | |
+| 6 | Move the Vercel project to an account Kim can reach | To do | |
+| 6 | A `www` to apex redirect, once the domain is settled | To do | |
+| 6 | Google Business Profile, so the review link works | To do | Kim |
+| 7 | ~~Launch first, add a CMS later~~ | Done | |
+| 7 | Re-cost Sanity against Supabase, which gives no edit form | To do | |
+| 7 | Who holds the CMS account, and the fallback | Decide | |
+| 7 | Amend the remaining AGENTS.md rules when a database lands | To do | |
+| 8 | ~~Cart, cart page, header count, add to cart with print~~ | Done | |
+| 8 | ~~Checkout with a PayNow QR generated per order~~ | Done | |
+| 8 | ~~Order confirmation email through Resend~~ | Done | |
+| 8 | ~~Resend account and `RESEND_API_KEY` live~~ | Done | |
+| 8 | ~~Every confirmed order recorded in a Google Sheet~~ | Done | |
+| 8 | **Scan a generated QR with a real banking app** | To do | Karen |
+| 8 | Verify a sending domain so buyers get their receipt | On hold | Kim |
+| 8 | Rate-limit the order route before that domain is live | To do | |
+| 8 | Refund policy, and a PDPA notice for the details collected | To do | |
+| 8 | Whether delivery should be priced into the total | Decide | Kim |
+| 8 | Whether to add a payment gateway now a UEN exists | Decide | |
+| 8 | A payment made without returning leaves no row | Accepted | |
+| 8 | Stock does not decrement, so overselling is possible | Accepted | |
+| 9 | Automatic WhatsApp messages — assessed, not worth it | Won't do | |
 
 ---
 
@@ -670,12 +738,11 @@ that.
       re-prices the order from the catalogue rather than trusting the
       browser, sends through Resend, and the checkout swallows any failure
       because the WhatsApp message is what actually reaches Kim.
-- [ ] **Create the Resend account and set `RESEND_API_KEY` in Vercel.**
-      Nothing sends until this exists; the route returns a 503 and the
-      checkout carries on silently. Free tier is 3,000 emails a month and
-      100 a day, which is ample. **The account must be opened with
-      `karen.njx@gmail.com`**, because the test sender can only reach the
-      address that owns the account and that is the address the route copies.
+- [x] ~~**Create the Resend account and set `RESEND_API_KEY` in Vercel.**~~ —
+      done and confirmed with a live test on 14 September. The account is
+      under `karen.njx@gmail.com`, which matters: the test sender can only
+      reach the address that owns the account, and that is the address the
+      route copies. Free tier is 3,000 emails a month and 100 a day.
 
       **Interim arrangement, agreed 14 September.** The site stays on the
       Vercel address and the email stays on Resend's test sender while the
