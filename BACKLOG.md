@@ -1,73 +1,85 @@
-# Sewing Mum — backlog
+# Sewing Mums — backlog
 
-Last updated: 8 September 2026
+Last updated: 14 September 2026
 
-Where things stand: a working five-page prototype (home, our story, products,
-product detail, customer voice) is built and runs locally. Everything in it is
-placeholder content. Nothing is deployed and the domain is not pointed
-anywhere yet.
+Where things stand: the site is live at
+[sewing-mum.vercel.app](https://sewing-mum.vercel.app) with Kim's real
+photographs, her own story, fifteen products, a corporate and CSR page, and a
+working cart and PayNow checkout. The custom domain still does not resolve to
+it. Most remaining work is content Kim has to supply, not code.
 
-The seven items below are roughly in the order they unblock each other. Items
-1, 2 and 4 need Kim's input before code can move. Items 3, 5, 6 and 7 are
-linked decisions and are best made together — see the note under item 5.
+The items below are roughly in the order they unblock each other. Items 1, 2
+and 4 need Kim's input before code can move. Items 3, 5, 6 and 7 are linked
+decisions and are best made together — see the note under item 5. Item 8
+covers the shop and is where the live open questions are.
 
 ---
 
 ## Launch blockers
 
-The site cannot go public until these are done, regardless of anything else in
-this backlog.
+The site is already public on the Vercel address, so these are the things
+still standing between it and being properly launched on its own domain.
 
-- [ ] Real WhatsApp number in `lib/site.ts` (currently a dummy, so every
-      enquiry button leads nowhere)
-- [ ] Replace all nine product photos in `public/products/` — the current ones
-      are AI-generated stand-ins, not real work
-- [ ] Real product names, prices and descriptions in `data/products.json`
-- [ ] Real "Our story" copy in `app/about/page.tsx`
-- [ ] Real customer reviews in `data/reviews.json`, published with permission
-- [ ] Point the domain at Vercel (item 6 — the host is now decided, the domain
-      still resolves nowhere)
+- [ ] **Point `sewingmum.com` at Vercel.** It currently resolves to
+      `207.148.248.143`, an unrelated Vultr address that answers nothing, and
+      `www` points there too. Take the exact records from the Vercel project's
+      Settings → Domains page. This is the single biggest outstanding item.
+- [ ] **Real prices in `data/products.json`.** Only the Trio Bundle has one
+      and it is a placeholder $20 that Kim has not agreed. Nothing can be sold
+      until this is done — everything else falls back to "Price on enquiry".
+- [ ] **Swap the WhatsApp number for Kim's.** `lib/site.ts` currently holds
+      Karen's number (`6598250998`) as a stand-in so enquiries reach a person.
+- [ ] Real customer reviews in `data/reviews.json`, published with permission.
+      The file is empty and the page handles that gracefully, so this is not
+      blocking, but the page is thin without them.
+- [x] ~~Real WhatsApp number in `lib/site.ts`~~ — a real number is wired in,
+      pending the swap to Kim's above.
+- [x] ~~Replace all nine product photos — the current ones are AI-generated
+      stand-ins~~ — done. Every photo is now Kim's own, imported from her
+      Drive. Three products still show a branded "photograph coming"
+      placeholder: Tote Bag, Memory Square and Pull-string Pouch.
+- [x] ~~Real product names and descriptions in `data/products.json`~~ — done,
+      fifteen products following Kim's own numbered order. Prices excepted,
+      as above.
+- [x] ~~Real "Our story" copy in `app/about/page.tsx`~~ — done, written from
+      Kim's own bio and linking to her site.
 
 ---
 
 ## 1. Brand colour and identity
 
-**Why it matters:** everything visual is currently my guess at a warm handmade
-palette. It reads well but it is not Kim's brand, and changing it later means
-touching every page unless it stays in the tokens.
+**Why it matters:** changing this later means touching every page unless it
+stays in the tokens.
 
-**What exists now** — all in `app/globals.css`, used everywhere as token
-classes rather than raw hex, so a rebrand is a single-file edit:
+**Settled.** The palette is no longer a guess — it is sampled directly from
+Kim's own logo, and her wordmark and badge are both in `public/brand/`. All
+in `app/globals.css`, used as token classes rather than raw hex, so a further
+rebrand stays a single-file edit:
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| `cream` | `#fdf8f3` | page background |
-| `linen` / `linen-dark` | `#f4ebe0` / `#e7d9c8` | section bands, borders |
-| `ink` | `#3b2f2a` | body text, primary buttons |
-| `muted` | `#7a6a60` | secondary text |
-| `berry` | `#9c4a63` | accent, enquiry buttons, links |
-| `sage` | `#6f8462` | "made all year" badge |
-| `gold` | `#b8863a` | seasonal badge, star ratings |
+| `cream` | `#fdf9f7` | page background |
+| `linen` / `linen-dark` | `#f8eaea` / `#ecd2d4` | section bands, borders |
+| `ink` | `#3a2a2c` | body text |
+| `muted` | `#7c6669` | secondary text |
+| `berry` / `berry-dark` | `#9a3346` / `#7c2939` | the "sewing" script; buttons, links |
+| `rose` / `rose-soft` | `#d0838d` / `#e9bfc3` | the "mums" script; badges, hovers |
+| `spool` | `#a9784f` | the wooden spool; seasonal and stock badges |
 
-Fonts are currently Fraunces (headings) and Karla (body), both free from
-Google Fonts.
+Fonts are Fraunces (headings) and Karla (body), both free from Google Fonts.
 
-**Decisions needed:**
+Note that `--radius-card` now applies only to text panels. Image frames and
+product cards were squared off on 14 September at Kim's request.
 
-- [ ] Does Kim already have a logo, or colours she uses on packaging,
-      labels or her Instagram? If so those win over anything here.
+- [x] ~~Does Kim already have a logo, or colours she uses on packaging?~~ —
+      yes, and the whole palette now comes from it.
+- [x] ~~Do we want a real logo mark, or is the wordmark enough?~~ — both
+      exist: wordmark in the header, circular badge as the favicon.
 - [ ] Is there a sewn-in fabric label or care tag? Its colours and typeface
-      are the most authentic starting point for a brand palette.
-- [ ] Do we want a real logo mark, or is the wordmark enough? A wordmark is
-      cheaper and ages better; a mark is useful for the favicon and for
-      stamping on packaging.
+      would be worth checking the palette against.
 - [ ] Confirm the tone of the writing. Current copy is warm and plain-spoken,
-      first person, British spelling, and slightly dry. If that is not Kim's
-      voice it should change before more copy is written.
-
-**Recommendation:** collect photos of her existing labels, packaging and
-Instagram grid first, then pick the palette from those rather than designing
-from scratch. Budget a proper logo only after the site is live and earning.
+      British spelling, and slightly dry. If that is not Kim's voice it should
+      change before more copy is written.
 
 ---
 
@@ -79,20 +91,27 @@ re-photographing and re-writing everything later.
 
 **Fields captured today** (see `Product` in `lib/catalog.ts`): slug, name,
 category, price, blurb, long description, details list, images, availability,
-featured flag.
+featured and hero flags, coming-soon flag, variants, stock and low-stock
+threshold.
 
 **Fields likely still needed:**
 
-- [ ] **Multiple images per product** — the schema already accepts an array
-      but every product currently has one, and the detail page only renders
-      the first. Needs a gallery component.
-- [ ] **Variants** — does a bag come in more than one fabric or size at the
-      same price? If yes this is a real schema change and should be decided
-      before Shopify, because Shopify models variants strictly.
-- [ ] **Stock status** — distinct from seasonal availability. A product can be
-      in season but sold out. Currently unmodelled.
+- [x] ~~**Multiple images per product**~~ — done. Products carry an array and
+      the detail page shows them all. Products with variants get the
+      interactive gallery in `components/product-showcase.tsx`; the rest get a
+      hero plus a thumbnail grid.
+- [x] ~~**Variants**~~ — done as `ProductVariant`: a print name and the photo
+      that shows it. Listing them opts a product into the interactive gallery
+      and the print picker. Only the Trio Bundle uses it so far. Note this is
+      prints at one price, not sizes at different prices — that would be a
+      further change, and Shopify models it strictly.
+- [x] ~~**Stock status** — distinct from seasonal availability~~ — done as
+      `stock` and `lowStock`, driving "Only N left" and "Sold out". **Caveat:
+      nothing decrements it.** Kim keeps the number by hand, so it guides
+      shoppers but cannot prevent two people buying the last one. See item 8.
 - [ ] **Lead time / made to order** — some pieces are cut only after ordering.
-      Currently buried in the details list as free text.
+      Currently buried in the details list as free text. Now more pressing
+      than it was, because the cart implies something is ready to send.
 - [ ] **Structured dimensions** — currently prose ("roughly 38cm wide"). Should
       be structured if we ever want shipping calculations.
 - [ ] **Weight** — needed for real shipping rates later, not now.
@@ -116,8 +135,13 @@ a listing grid.
 
 - [ ] Agree the shot list above with Kim
 - [ ] Agree a fixed hero-shot setup she can reproduce for new products
-- [ ] Decide aspect ratios (suggest 1:1 for cards, allow 4:5 on detail pages)
-- [ ] Build the gallery component once there is more than one image per product
+- [ ] Photograph the three products still on the placeholder: Tote Bag,
+      Memory Square, Pull-string Pouch
+- [x] ~~Decide aspect ratios~~ — 1:1 crops on cards and in the interactive
+      gallery's thumbnails; `object-contain` on detail hero shots, so phone
+      photos of any proportion are never cropped.
+- [x] ~~Build the gallery component once there is more than one image per
+      product~~ — done, `components/product-showcase.tsx`.
 
 ---
 
@@ -268,12 +292,14 @@ never fires; use the enquiry-volume trigger below instead.
 
 - [ ] Agree the trigger for moving. Suggest: more than roughly ten enquiries a
       week, or Kim losing track of what is sold.
-- [ ] Confirm whether she wants to take card payments at all, or is happy with
-      PayNow / bank transfer arranged over WhatsApp
-- [ ] Check Shopify's monthly cost against actual monthly sales before
-      committing — it is not worth it below a certain volume
-- [ ] Consider lighter alternatives if payments are the only need: Shopify
-      Starter, Ecwid, or a simple PayNow QR
+- [x] ~~Confirm whether she wants to take card payments at all, or is happy
+      with PayNow~~ — PayNow, no cards. See item 8.
+- [x] ~~Check Shopify's monthly cost against actual monthly sales~~ — checked
+      on 14 September and ruled out for now: at current traffic the monthly
+      fee costs more than it saves.
+- [x] ~~Consider lighter alternatives if payments are the only need: Shopify
+      Starter, Ecwid, or a simple PayNow QR~~ — the PayNow QR was chosen and
+      is built.
 
 ---
 
@@ -379,10 +405,12 @@ argument for moving to (d) sooner.
 **Why it matters:** the domain is owned but points nowhere, so this is the last
 gate before anything is public.
 
-**Current position:** `sewingmum.com` is registered; there is no hosting yet.
-The site is a Next.js application which builds to twenty fully static pages,
-so it is cheap and easy to host. **Vercel was decided on 5 September 2026** —
-see the recommendation below. The domain is still not pointed at it.
+**Current position:** deployed and live on Vercel at
+[sewing-mum.vercel.app](https://sewing-mum.vercel.app), building from the
+GitHub repository on every push. Twenty-nine mostly static routes. **The
+domain is still the gap:** `sewingmum.com` resolves to `207.148.248.143`, a
+Vultr address that answers nothing, and `www` points there too. Until those
+records change, the only working address is the Vercel one.
 
 **Options:**
 
@@ -405,27 +433,36 @@ nothing — if Kim later moves to a full Shopify theme the domain just gets
 repointed, and the photos, copy and product data are all files in the
 repository. There is no lock-in to worry about.
 
-**On the free tier's licence.** Vercel's Hobby plan is licensed for personal,
-non-commercial use, which is worth knowing because a shop looks commercial at
-a glance. It is fine here: this is a CSR project and the site takes no money,
-since the only conversion action is a WhatsApp enquiry. If payments ever
-arrive they arrive on Shopify, on a paid Shopify plan, so the question
-resolves itself rather than needing Vercel Pro at $20 a month. Revisit only if
-this site itself starts transacting.
+**On the free tier's licence — this has changed and needs a decision.**
+Vercel's Hobby plan is licensed for personal, non-commercial use. The original
+reasoning here was that the site took no money, since the only conversion
+action was a WhatsApp enquiry, so any payments would land on Shopify instead.
+That is no longer true: as of 14 September the site has a cart and a PayNow
+checkout, and money is being asked for on the page. Payment still settles
+bank-to-bank rather than through the site, which is a fair argument that
+Vercel is not processing anything — but "a shop that asks for money" is
+exactly the case the Hobby licence is written against.
+
+- [ ] Decide whether to move to Vercel Pro at $20 a month, or to a host with
+      no such restriction, now that the site asks for payment. Worth settling
+      before the shop is promoted anywhere.
 
 **Decisions needed:**
 
+- [x] ~~Decide the host — Vercel~~
+- [x] ~~Deploy the site~~ — live, rebuilding automatically from GitHub.
+- [x] ~~Set up email on the domain if `hello@sewingmum.com` is to be real~~ —
+      sidestepped. `lib/site.ts` now uses Kim's real `kim@kimunderhill.com`
+      rather than inventing an address on a domain that does not resolve.
+- [ ] **Change the DNS records to point at Vercel** — apex and `www`, values
+      from the Vercel project's Settings → Domains page
 - [ ] Confirm where the domain is registered, and who holds the login. This
       matters more than it sounds: losing access to a registrar account is a
-      genuinely painful problem.
-- [x] Decide the host — Vercel
-- [ ] Create the Vercel account in Kim's name, or a shared account she can
-      access, not a personal one she cannot
+      genuinely painful problem, and someone currently has it pointed at a
+      Vultr server nobody has mentioned.
+- [ ] Move the Vercel project into an account in Kim's name, or a shared one
+      she can access, not a personal one she cannot
 - [ ] Set up a `www` to apex redirect, or pick one and stick to it
-- [ ] Decide whether to put the site behind a holding page first, so the
-      domain resolves to something while content is still being gathered
-- [ ] Set up email on the domain if `hello@sewingmum.com` is to be real — it
-      is currently a placeholder in `lib/site.ts` and goes nowhere
 - [ ] Create the Google Business Profile, so the "Write a Google review" link
       on the reviews page can be filled in. It is stubbed out and shows
       "coming soon" until then.
@@ -519,10 +556,11 @@ original question, and it is the one to avoid.
   functions async, so every page calling them needs `await` — about nine call
   sites. Mechanical, but it touches most of the app, so budget for it rather
   than being surprised by it.
-- `AGENTS.md` states "no database, no backend, no auth" as a hard rule.
-  Options 1 and 3 break it deliberately. The rule needs amending at the moment
-  we commit, so that future work does not keep arguing against a decision
-  already made.
+- `AGENTS.md` stated "no database, no backend, no auth" as a hard rule.
+  Options 1 and 3 break it deliberately. ~~The rule needs amending at the
+  moment we commit~~ — partly done on 14 September: the "no cart, no
+  checkout" rule is gone and the selling constraints are written down
+  instead. The database and auth lines still need amending when a CMS lands.
 
 **Recommendation: launch first, then option 1 when the need is real.** Get the
 real photos, copy and WhatsApp number in, point the domain, and let Kim send
@@ -550,14 +588,100 @@ acceptable.
 
 **Decisions needed:**
 
-- [ ] Confirm the sequence: launch on WhatsApp updates first and add the CMS
-      later, or build the CMS before launch anyway
-- [ ] If the CMS is wanted, confirm Sanity over the git-based alternatives
+- [x] ~~Confirm the sequence: launch first and add the CMS later~~ — launched
+      first. Kim's intention is a CMS with stock in a database; see item 8.
+- [ ] **Supabase has been named as the likely CMS backing store.** Item 7 was
+      written before that, and costs Sanity rather than Supabase. Re-cost
+      option 1 against Supabase plus a hand-built or off-the-shelf admin
+      before committing, because Supabase gives a database and auth but not a
+      product-editing form — that part is still option 3's problem.
 - [ ] Decide who holds the CMS admin account, and who the fallback is if Kim
       is locked out — the same question as the registrar login in item 6
 - [ ] Price Shopify Basic from day one against an interim CMS, and decide
       whether paying monthly before any revenue is acceptable here
-- [ ] Amend the `AGENTS.md` hard rules at the point we commit to a CMS
+- [ ] Amend the remaining `AGENTS.md` hard rules at the point we commit to a
+      database and a login
+
+---
+
+## 8. The shop: cart, checkout and payment
+
+**Why it matters:** this is the newest part of the site and the one with the
+most unfinished edges. Added 14 September 2026, replacing the earlier "no
+cart, no checkout" rule, which was a starting constraint rather than the
+intended end state. Shopify was reconsidered and ruled out for now: at this
+traffic its monthly fee costs more than it saves.
+
+**What is built.**
+
+- [x] ~~Cart~~ — lives in the browser's local storage, survives a reload,
+      stays in step across tabs. `lib/cart.ts`.
+- [x] ~~Add to cart with quantity and print~~ — on any product with a price.
+      Products with prints must have one chosen before adding, so no order
+      arrives saying "Trio Bundle, unspecified".
+- [x] ~~Cart icon with a count in the header~~, beside Enquire.
+- [x] ~~Cart page~~ — line items, quantity editing, removal, goods total.
+- [x] ~~Checkout with PayNow~~ — collects email and mobile, issues a short
+      order reference, and generates a PayNow QR per order.
+- [x] ~~Generate the QR rather than photograph one~~ — built from the UEN
+      `53221430K` using the public SGQR/EMVCo format, in `lib/paynow.ts`. The
+      amount is written in and marked uneditable, and the order reference
+      rides along in the bill-number field, so nobody can pay the wrong
+      amount and every payment arrives matchable to an order.
+
+**The constraint that shapes everything here.** A PayNow payment goes bank to
+bank. Nothing reports back to the site, so **the site can never say a payment
+succeeded** — it says the order was received and payment is being checked,
+and Kim confirms against her bank by hand. Every decision below follows from
+that.
+
+**Outstanding.**
+
+- [ ] **Scan the generated QR with a real banking app before taking live
+      orders.** The payload decodes correctly field by field and its checksum
+      matches the published CRC-16/CCITT-FALSE check value, but only a bank
+      app can prove a bank accepts it. Check it shows Sewing Mums, the right
+      amount and the reference — then stop, do not complete the payment.
+- [ ] **Order confirmation email.** Not built. The checkout collects an email
+      address but nothing sends to it; the order reaches Kim because the
+      customer sends it on WhatsApp as step two. Copy `karen.njx@gmail.com`
+      for the trial. Three things are needed, not one:
+      - a Resend account and an API key, set as `RESEND_API_KEY` in Vercel's
+        environment variables rather than committed to the repository;
+      - a **verified sending domain**. Resend's free tier is 3,000 emails a
+        month and 100 a day, which is ample, but its test address
+        `onboarding@resend.dev` can only send to your own account address —
+        so emailing an actual customer needs a domain verified by DNS
+        records, which loops back to the domain still not being set up.
+        Resend recommend a subdomain such as `notifications.sewingmum.com`;
+      - a server route to send from. The site is otherwise static, so this
+        would be the first real backend in the project.
+- [ ] **Nothing records orders.** There is no server and no database, so an
+      order exists only in the WhatsApp message and in Kim's bank statement.
+      Acceptable at this volume; the first thing to fix if it stops being so.
+- [ ] **Stock does not decrement.** Kim's hand-kept number guides shoppers but
+      cannot prevent overselling. The Supabase step in item 7 is what fixes
+      this properly.
+- [ ] **Delivery is not priced.** Agreed case by case over WhatsApp, and the
+      checkout says so, but that means the amount on the QR is for the pieces
+      only and delivery is settled afterwards by separate transfer. Decide
+      whether that is good enough or whether postage needs to be in the total.
+- [ ] **No refund or cancellation policy, and nothing said about data.**
+      Collecting an email and mobile brings PDPA obligations: say what the
+      details are for, and do not keep more than needed. A refund policy is
+      worth writing whether or not a gateway is ever used.
+- [ ] **Decide about a payment gateway** now that a UEN exists, which is what
+      makes one possible at all. It is the only way to get a genuinely
+      automatic receipt. Costed September 2026: HitPay is 0.9% with a minimum
+      of S$0.20 below S$100, and 0.65% + S$0.30 above, with no monthly fee —
+      but their QR shows "HITPAY PAYMENTS" rather than the business name
+      unless you pay 1.5%. Stripe is a flat 1.3% with no such caveat. Both
+      need business verification. At a few orders a week the fee is pennies;
+      what you are really buying is Kim's time.
+
+**Recommendation:** leave it as it is until order volume makes manual checking
+annoying. The free generated-QR route costs nothing and the cart and checkout
+pages do not change if a gateway is added later — only the payment step swaps.
 
 ---
 
@@ -566,10 +690,11 @@ acceptable.
 Deliberately parked. None of these are worth doing before the site has real
 content and real traffic.
 
-- Photo gallery with multiple images per product (needs item 2 first)
 - Structured data so Google shows products and prices in search results
 - Instagram feed embedded on the homepage
 - "Notify me when back in season" for seasonal pieces — currently handled by
   Kim noting names down manually, which is fine and arguably nicer
 - Analytics, to find out whether anyone is actually reading the story page
 - A second language, if a meaningful share of customers would prefer it
+- Prints as variants on products other than the Trio Bundle, once Kim says
+  which pieces are made up in more than one fabric
