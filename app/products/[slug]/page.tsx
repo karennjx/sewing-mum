@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AddToCart } from "@/components/add-to-cart";
 import { AvailabilityBadge } from "@/components/availability-badge";
+import { Badge } from "@/components/badge";
 import { EnquireButton } from "@/components/enquire-button";
 import {
   ProductShowcase,
+  ShowcaseAddToCart,
   ShowcaseEnquireButton,
   ShowcaseGallery,
   ShowcasePrintPicker,
@@ -16,8 +19,11 @@ import {
   getAllProducts,
   getCategory,
   getProductBySlug,
+  isBuyable,
   isSeasonal,
   seasonWindowLabel,
+  stockLabel,
+  stockState,
 } from "@/lib/catalog";
 import { getReviewsForProduct } from "@/lib/reviews";
 
@@ -74,6 +80,8 @@ export default async function ProductPage(
   // everything else on the page stays server-rendered and passes through it.
   const variants = product.variants ?? [];
   const isShowcase = variants.length > 0;
+  const buyable = isBuyable(product);
+  const stockNote = stockLabel(product);
 
   const layout = (
     <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-14">
@@ -83,7 +91,7 @@ export default async function ProductPage(
         <div className="space-y-3">
           {/* Photos come in whatever shape the maker's phone took them, from
               tall owl portraits to wide flat-lays, so contain rather than crop. */}
-          <div className="overflow-hidden rounded-card bg-linen">
+          <div className="overflow-hidden bg-linen">
             <Image
               src={heroImage.src}
               alt={heroImage.alt}
@@ -99,10 +107,7 @@ export default async function ProductPage(
           {otherImages.length > 0 ? (
             <ul className={`grid ${thumbnailColumns} items-start gap-3`}>
               {otherImages.map((image) => (
-                <li
-                  key={image.src}
-                  className="overflow-hidden rounded-card bg-linen"
-                >
+                <li key={image.src} className="overflow-hidden bg-linen">
                   <Image
                     src={image.src}
                     alt={image.alt}
@@ -135,8 +140,13 @@ export default async function ProductPage(
             {formatPrice(product.price)}
           </p>
         )}
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap items-center gap-2">
           <AvailabilityBadge product={product} />
+          {stockNote ? (
+            <Badge tone={stockState(product) === "sold-out" ? "neutral" : "spool"}>
+              {stockNote}
+            </Badge>
+          ) : null}
         </div>
 
         {isSeasonal(product) && seasonWindow ? (
@@ -162,11 +172,37 @@ export default async function ProductPage(
           </div>
         ) : null}
 
+        {buyable ? (
+          <div className="mt-8">
+            {isShowcase ? (
+              <ShowcaseAddToCart product={product} />
+            ) : (
+              <AddToCart
+                slug={product.slug}
+                print={null}
+                requiresPrint={false}
+                stock={product.stock}
+              />
+            )}
+          </div>
+        ) : null}
+
+        {/* Kept whatever else is on the page. A piece with no price, none left,
+            or a question the page does not answer still needs a way through,
+            and for most of the catalogue this is still the only way to buy. */}
         <div className="mt-8">
           {isShowcase ? (
-            <ShowcaseEnquireButton product={product} />
+            <ShowcaseEnquireButton
+              product={product}
+              size={buyable ? "sm" : "md"}
+              label={buyable ? "Ask about this piece" : undefined}
+            />
           ) : (
-            <EnquireButton product={product} />
+            <EnquireButton
+              product={product}
+              size={buyable ? "sm" : "md"}
+              label={buyable ? "Ask about this piece" : undefined}
+            />
           )}
           <p className="mt-3 text-xs text-muted">
             Opens WhatsApp with this piece already mentioned, so you do not have

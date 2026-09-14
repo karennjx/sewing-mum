@@ -6,6 +6,8 @@ const SIZE_CLASSES = {
   md: "px-6 py-3 text-base",
 } as const;
 
+export type EnquireButtonSize = keyof typeof SIZE_CLASSES;
+
 export function EnquireButton({
   product,
   size = "md",
@@ -14,7 +16,7 @@ export function EnquireButton({
   className = "",
 }: {
   product?: Product;
-  size?: keyof typeof SIZE_CLASSES;
+  size?: EnquireButtonSize;
   label?: string;
   /** Overrides the pre-filled WhatsApp text, for pages that open a different
    *  conversation from the usual "tell me about this piece". */

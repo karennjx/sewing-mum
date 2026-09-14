@@ -71,7 +71,7 @@ export default function AboutPage() {
         </div>
 
         <div className="lg:col-span-2">
-          <div className="overflow-hidden rounded-card bg-linen">
+          <div className="overflow-hidden bg-linen">
             <Image
               src={image.src}
               alt={image.alt}

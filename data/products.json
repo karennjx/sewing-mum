@@ -77,6 +77,8 @@
     "name": "Trio Bundle",
     "category": "sewing-mums",
     "price": 20,
+    "stock": 3,
+    "lowStock": 3,
     "featured": true,
     "blurb": "Three matching pieces — wallet, pouch and cup carrier — cut from one print.",
     "description": [

@@ -11,7 +11,11 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { EnquireButton } from "@/components/enquire-button";
+import { AddToCart } from "@/components/add-to-cart";
+import {
+  EnquireButton,
+  type EnquireButtonSize,
+} from "@/components/enquire-button";
 import type { Product, ProductImage, ProductVariant } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
@@ -188,7 +192,7 @@ export function ShowcaseGallery({
           downloads, which on a click reads as something having broken. Hidden
           with opacity rather than display:none so the browser still fetches
           them, and each is only a few tens of kilobytes at this width. */}
-      <div className="relative aspect-square overflow-hidden rounded-card bg-linen">
+      <div className="relative aspect-square overflow-hidden bg-linen">
         {images.map((image, index) => {
           const isActive = index === activeIndex;
           return (
@@ -231,7 +235,7 @@ export function ShowcaseGallery({
                   // Omitted rather than set to "false" on the others: screen
                   // readers and tooling go by whether the attribute is there.
                   aria-current={isActive ? "true" : undefined}
-                  className={`block aspect-square w-20 overflow-hidden rounded-lg border-2 transition-colors ${
+                  className={`block aspect-square w-20 overflow-hidden border-2 transition-colors ${
                     isActive
                       ? "border-berry"
                       : "border-transparent hover:border-rose"
@@ -329,12 +333,37 @@ export function ShowcasePrintPicker({
   );
 }
 
-export function ShowcaseEnquireButton({ product }: { product: Product }) {
+/** Feeds the chosen print into the cart, so a line reads "in rainbow circles"
+ *  rather than leaving Kim to ask which one they meant. */
+export function ShowcaseAddToCart({ product }: { product: Product }) {
+  const { chosenPrint } = useShowcase();
+
+  return (
+    <AddToCart
+      slug={product.slug}
+      print={chosenPrint}
+      requiresPrint
+      stock={product.stock}
+    />
+  );
+}
+
+export function ShowcaseEnquireButton({
+  product,
+  size,
+  label,
+}: {
+  product: Product;
+  size?: EnquireButtonSize;
+  label?: string;
+}) {
   const { chosenPrint } = useShowcase();
 
   return (
     <EnquireButton
       product={product}
+      size={size}
+      label={label}
       message={
         chosenPrint
           ? `Hi ${site.name}! I would like to enquire about the ${product.name} in the ${chosenPrint.toLowerCase()} print. Is that one ready?`

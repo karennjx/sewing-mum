@@ -1,15 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AvailabilityBadge } from "@/components/availability-badge";
-import { priceLabel, type Product } from "@/lib/catalog";
+import { Badge } from "@/components/badge";
+import {
+  priceLabel,
+  stockLabel,
+  stockState,
+  type Product,
+} from "@/lib/catalog";
 
 export function ProductCard({ product }: { product: Product }) {
   const image = product.images[0];
+  const stockNote = stockLabel(product);
 
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-card border border-linen-dark/60 bg-white transition-shadow hover:shadow-md"
+      className="group flex flex-col overflow-hidden border border-linen-dark/60 bg-white transition-shadow hover:shadow-md"
     >
       <div className="aspect-square overflow-hidden bg-linen">
         <Image
@@ -37,8 +44,13 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="flex-1 text-sm leading-relaxed text-muted">
           {product.blurb}
         </p>
-        <div className="pt-1">
+        <div className="flex flex-wrap items-center gap-2 pt-1">
           <AvailabilityBadge product={product} />
+          {stockNote ? (
+            <Badge tone={stockState(product) === "sold-out" ? "neutral" : "spool"}>
+              {stockNote}
+            </Badge>
+          ) : null}
         </div>
       </div>
     </Link>

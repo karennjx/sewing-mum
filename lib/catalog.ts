@@ -53,6 +53,15 @@ export type Product = {
    * so a piece with one print and no choice to make keeps the plain layout.
    */
   variants?: ProductVariant[];
+  /**
+   * How many are sewn and ready. Kim keeps this by hand and nothing decrements
+   * it when an order comes in, so it tells a shopper what to expect but cannot
+   * stop two people buying the last one. Leave it out for pieces she would
+   * rather not count, which then say nothing about stock at all.
+   */
+  stock?: number;
+  /** At or below this many, the page starts warning that stock is running low. */
+  lowStock?: number;
 };
 
 export type CategoryInfo = {
@@ -149,6 +158,46 @@ export function priceLabel(product: Product): string {
   return product.price === null
     ? "Price on enquiry"
     : formatPrice(product.price);
+}
+
+export type StockState = "untracked" | "ready" | "low" | "sold-out";
+
+export function stockState(product: Product): StockState {
+  if (product.stock === undefined) {
+    return "untracked";
+  }
+  if (product.stock <= 0) {
+    return "sold-out";
+  }
+  if (product.lowStock !== undefined && product.stock <= product.lowStock) {
+    return "low";
+  }
+  return "ready";
+}
+
+/** "Only 2 left" or "Sold out", or null when there is nothing worth saying. */
+export function stockLabel(product: Product): string | null {
+  switch (stockState(product)) {
+    case "low":
+      return `Only ${product.stock} left`;
+    case "sold-out":
+      return "Sold out";
+    default:
+      return null;
+  }
+}
+
+/**
+ * Whether this can go in a cart at all. A piece with no price, or no
+ * photograph yet, or none left, stays on the enquiry link instead — which is
+ * why every product keeps that button whatever this returns.
+ */
+export function isBuyable(product: Product): boolean {
+  return (
+    product.price !== null &&
+    product.comingSoon !== true &&
+    stockState(product) !== "sold-out"
+  );
 }
 
 export function isSeasonal(product: Product): boolean {

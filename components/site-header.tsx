@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CartButton } from "@/components/cart-button";
 import { ProductsMenu } from "@/components/products-menu";
 import { getCategories } from "@/lib/catalog";
 import { site, whatsappLink } from "@/lib/site";
@@ -51,6 +52,7 @@ export function SiteHeader() {
           >
             Enquire
           </a>
+          <CartButton />
         </nav>
       </div>
     </header>

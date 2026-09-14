@@ -95,7 +95,7 @@ export default function Home() {
             portrait and landscape, and unequal columns let the tall one
             stretch the row and squash the wide one. */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="aspect-square overflow-hidden rounded-card bg-linen">
+          <div className="aspect-square overflow-hidden bg-linen">
             <Image
               src={heroImage.src}
               alt={heroImage.alt}
@@ -107,7 +107,7 @@ export default function Home() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="mt-10 aspect-square overflow-hidden rounded-card bg-linen">
+          <div className="mt-10 aspect-square overflow-hidden bg-linen">
             <Image
               src={secondaryImage.src}
               alt={secondaryImage.alt}
@@ -209,7 +209,7 @@ export default function Home() {
             {CORPORATE_SAMPLES.map((sample) => (
               <div
                 key={sample.src}
-                className="aspect-square overflow-hidden rounded-card bg-linen"
+                className="aspect-square overflow-hidden bg-linen"
               >
                 <Image
                   src={sample.src}

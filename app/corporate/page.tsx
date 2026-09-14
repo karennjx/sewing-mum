@@ -96,7 +96,7 @@ export default function CorporatePage() {
         <div className="mt-8 grid gap-8 sm:grid-cols-2">
           {SAMPLES.map((sample, index) => (
             <article key={sample.client}>
-              <div className="aspect-square overflow-hidden rounded-card bg-linen">
+              <div className="aspect-square overflow-hidden bg-linen">
                 <Image
                   src={sample.image.src}
                   alt={sample.image.alt}
