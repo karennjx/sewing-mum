@@ -55,16 +55,24 @@ makes that a swap rather than a rewrite.
 
 ### The one server route
 
-`app/api/orders/route.ts` emails a copy of an order through Resend. It is
-the only server code in the project, and the bar for adding more is high.
+`app/api/orders/route.ts` emails a copy of an order through Resend and
+appends a row to Kim's order sheet. It is the only server code in the
+project, and the bar for adding more is high.
 
 - It re-prices every line from the catalogue and never trusts an amount
   from the browser.
 - The checkout must not depend on it. Email is a courtesy; the WhatsApp
   message is what actually reaches Kim, so a failure here is swallowed.
+- The two side effects are independent and both best effort. Neither may
+  be allowed to cost the other, and neither may block the order.
+- The sheet is written through an Apps Script bound to it — see
+  `tools/order-sheet.gs`, which is not built or deployed with the site.
+  It is a list for Kim, not a system of record: rows are written when a
+  shopper says they have paid, so abandoned checkouts leave no trace.
 - Secrets come from environment variables — `RESEND_API_KEY`,
-  `ORDER_EMAIL_FROM`, `ORDER_EMAIL_TO`. Never commit a key, and never
-  read one in a client component.
+  `ORDER_EMAIL_FROM`, `ORDER_EMAIL_TO`, `ORDER_SHEET_URL`,
+  `ORDER_SHEET_SECRET`. Never commit a key, and never read one in a
+  client component.
 - While `ORDER_EMAIL_FROM` is Resend's `onboarding@resend.dev`, the
   shopper cannot be emailed at all and the single copy comes to us. The
   UI must not claim otherwise. See the note in BACKLOG.md item 8 about

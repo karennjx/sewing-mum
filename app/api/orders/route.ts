@@ -190,13 +190,86 @@ function htmlBody(order: Order, lines: PricedLine[], total: number): string {
 </div>`;
 }
 
+/**
+ * Appends a row to the order sheet, through an Apps Script bound to it.
+ *
+ * A spreadsheet rather than a database because the job is a list Kim can
+ * read, sort and tick off, and she already knows how one works. It is not a
+ * system of record either — it is written when the shopper says they have
+ * paid, so an abandoned checkout leaves no row and a payment made without
+ * coming back is still only visible in the bank.
+ */
+async function recordOrder(
+  order: Order,
+  lines: PricedLine[],
+  total: number,
+): Promise<boolean> {
+  const url = process.env.ORDER_SHEET_URL;
+  if (!url) {
+    return false;
+  }
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        secret: process.env.ORDER_SHEET_SECRET ?? "",
+        reference: order.reference,
+        items: lines.map(describe).join("; "),
+        total,
+        email: order.email,
+        mobile: order.mobile,
+      }),
+    });
+    if (!response.ok) {
+      console.error("Order sheet refused the row", response.status);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Order sheet write failed", error);
+    return false;
+  }
+}
+
+async function sendCopy(
+  key: string,
+  order: Order,
+  lines: PricedLine[],
+  total: number,
+): Promise<{ ok: boolean; emailedShopper: boolean }> {
+  const from =
+    process.env.ORDER_EMAIL_FROM ?? `${site.name} <onboarding@resend.dev>`;
+  const owner = process.env.ORDER_EMAIL_TO ?? "karen.njx@gmail.com";
+  // Resend's test sender can only reach the address that owns the account, so
+  // until a domain is verified the shopper cannot be emailed at all and the
+  // one copy goes to us. It carries their address in the body either way.
+  const testSender = /resend\.dev>?\s*$/.test(from);
+
+  const { error } = await new Resend(key).emails.send({
+    from,
+    to: testSender ? [owner] : [order.email],
+    ...(testSender ? {} : { cc: [owner] }),
+    replyTo: site.email,
+    subject: `Order ${order.reference} — ${formatPrice(total)}`,
+    text: plainBody(order, lines, total),
+    html: htmlBody(order, lines, total),
+  });
+
+  if (error) {
+    console.error("Order email failed", error);
+    return { ok: false, emailedShopper: false };
+  }
+  return { ok: true, emailedShopper: !testSender };
+}
+
 function refuse(reason: string, status: number): Response {
   return Response.json({ ok: false, reason }, { status });
 }
 
 export async function POST(request: Request) {
   const key = process.env.RESEND_API_KEY;
-  if (!key) {
+  if (!key && !process.env.ORDER_SHEET_URL) {
     return refuse("not-configured", 503);
   }
 
@@ -218,28 +291,30 @@ export async function POST(request: Request) {
   }
   const total = lines.reduce((sum, line) => sum + line.amount, 0);
 
-  const from =
-    process.env.ORDER_EMAIL_FROM ?? `${site.name} <onboarding@resend.dev>`;
-  const owner = process.env.ORDER_EMAIL_TO ?? "karen.njx@gmail.com";
-  // Resend's test sender can only reach the address that owns the account, so
-  // until a domain is verified the shopper cannot be emailed at all and the
-  // one copy goes to us. It carries their address in the body either way.
-  const testSender = /resend\.dev>?\s*$/.test(from);
+  // Independent and both best effort: an unreachable sheet must not cost us
+  // the email, and a bounced email must not cost us the row.
+  const [recorded, sent] = await Promise.all([
+    recordOrder(order, lines, total),
+    key
+      ? sendCopy(key, order, lines, total)
+      : Promise.resolve({ ok: false, emailedShopper: false }),
+  ]);
 
-  const { error } = await new Resend(key).emails.send({
-    from,
-    to: testSender ? [owner] : [order.email],
-    ...(testSender ? {} : { cc: [owner] }),
-    replyTo: site.email,
-    subject: `Order ${order.reference} — ${formatPrice(total)}`,
-    text: plainBody(order, lines, total),
-    html: htmlBody(order, lines, total),
-  });
-
-  if (error) {
-    console.error("Order email failed", error);
-    return refuse("send-failed", 502);
+  if (!key) {
+    return Response.json(
+      { ok: false, reason: "not-configured", recorded },
+      { status: 503 },
+    );
   }
-
-  return Response.json({ ok: true, emailedShopper: !testSender });
+  if (!sent.ok) {
+    return Response.json(
+      { ok: false, reason: "send-failed", recorded },
+      { status: 502 },
+    );
+  }
+  return Response.json({
+    ok: true,
+    emailedShopper: sent.emailedShopper,
+    recorded,
+  });
 }

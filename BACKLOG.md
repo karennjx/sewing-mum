@@ -697,9 +697,24 @@ that.
       to any address given to it is worth abusing, even with fixed content.
       The proper fix arrives with a server-side order record, which is what
       lets the route send only for orders that exist.
-- [ ] **Nothing records orders.** There is no server and no database, so an
-      order exists only in the WhatsApp message and in Kim's bank statement.
-      Acceptable at this volume; the first thing to fix if it stops being so.
+- [x] ~~**Nothing records orders.**~~ — every confirmed order now appends a
+      row to a Google Sheet: date, reference, items, total, email, mobile,
+      and blank "Paid?" and "Sent?" columns Kim fills in herself. Written
+      through an Apps Script bound to the sheet, kept in
+      `tools/order-sheet.gs`. A spreadsheet rather than a database because
+      the job is a list Kim can read and tick off, and photos — the thing
+      that made a spreadsheet the wrong answer for *products* in item 5 —
+      do not come into it.
+- [ ] **Set `ORDER_SHEET_URL` and `ORDER_SHEET_SECRET` in Vercel**, then
+      redeploy. Until then nothing is written and the route carries on as
+      before. Setup instructions are in the header of `tools/order-sheet.gs`.
+- [ ] **Known gap, accepted on 14 September: a payment made without coming
+      back to the site leaves no row.** The row is written when the shopper
+      says they have paid, so if someone scans the QR, pays and closes the
+      tab, Kim sees money against a reference with nothing to match it to.
+      Recording at the moment the QR is issued would close this, at the cost
+      of a list full of abandoned checkouts. Revisit if an orphan payment
+      actually turns up.
 - [ ] **Stock does not decrement.** Kim's hand-kept number guides shoppers but
       cannot prevent overselling. The Supabase step in item 7 is what fixes
       this properly.
