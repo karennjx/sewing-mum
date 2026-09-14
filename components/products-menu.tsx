@@ -80,9 +80,23 @@ export function ProductsMenu({
             <Link
               href="/products"
               onClick={() => setOpen(false)}
-              className="block px-4 py-3 text-sm font-medium text-berry transition-colors hover:bg-linen"
+              className="block border-b border-linen-dark/60 px-4 py-3 text-sm font-medium text-berry transition-colors hover:bg-linen"
             >
               See everything &rarr;
+            </Link>
+            {/* Not a category: corporate work is a commission rather than
+                something on the shelf, but buyers look for it here first. */}
+            <Link
+              href="/corporate"
+              onClick={() => setOpen(false)}
+              className="block bg-linen/40 px-4 py-3 transition-colors hover:bg-linen"
+            >
+              <span className="block text-sm font-medium text-ink">
+                Corporate &amp; CSR
+              </span>
+              <span className="mt-0.5 block text-xs leading-snug text-muted">
+                Gifts customised with your branding, in bulk
+              </span>
             </Link>
           </div>
         </div>

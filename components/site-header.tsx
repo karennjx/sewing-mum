@@ -21,8 +21,14 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="flex items-center gap-5 text-sm">
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
           <ProductsMenu categories={categories} />
+          <Link
+            href="/corporate"
+            className="text-muted transition-colors hover:text-berry"
+          >
+            Corporate
+          </Link>
           <Link
             href="/about"
             className="text-muted transition-colors hover:text-berry"

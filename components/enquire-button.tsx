@@ -10,16 +10,22 @@ export function EnquireButton({
   product,
   size = "md",
   label = "Enquire on WhatsApp",
+  message: customMessage,
   className = "",
 }: {
   product?: Product;
   size?: keyof typeof SIZE_CLASSES;
   label?: string;
+  /** Overrides the pre-filled WhatsApp text, for pages that open a different
+   *  conversation from the usual "tell me about this piece". */
+  message?: string;
   className?: string;
 }) {
-  const message = product
-    ? `Hi ${site.name}! I would like to enquire about the ${product.name}. Could you tell me the price and what you have ready?`
-    : `Hi ${site.name}! I came from your website and would like to ask about your handmade pieces.`;
+  const message =
+    customMessage ??
+    (product
+      ? `Hi ${site.name}! I would like to enquire about the ${product.name}. Could you tell me the price and what you have ready?`
+      : `Hi ${site.name}! I came from your website and would like to ask about your handmade pieces.`);
 
   return (
     <a

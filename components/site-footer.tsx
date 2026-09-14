@@ -32,6 +32,14 @@ export function SiteFooter() {
             ))}
             <li>
               <Link
+                href="/corporate"
+                className="text-ink transition-colors hover:text-berry"
+              >
+                Corporate &amp; CSR
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/about"
                 className="text-ink transition-colors hover:text-berry"
               >

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { EnquireButton } from "@/components/enquire-button";
 import { getFeaturedProducts } from "@/lib/catalog";
 import { site } from "@/lib/site";
@@ -147,14 +148,20 @@ export default function AboutPage() {
 
       <section className="mt-16 rounded-card border border-linen-dark/60 bg-linen/50 p-8 text-center">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
-          Corporate gifts and one-offs
+          Working with companies
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">
-          Bulk orders for corporate gifting, event favours and Christmas
-          presents are some of the most useful work we can pass on to the
-          mothers. Tell us what you need and by when.
+          Bulk orders for corporate gifting, event door gifts and CSR programmes
+          are some of the most useful work we can pass on to the mothers, and we
+          can put your branding on the pieces.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/corporate"
+            className="inline-flex items-center rounded-full bg-berry px-4 py-2 text-sm font-medium text-cream transition-colors hover:bg-berry-dark"
+          >
+            Corporate &amp; CSR
+          </Link>
           <EnquireButton size="sm" label="Talk to us about an order" />
         </div>
       </section>

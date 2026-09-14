@@ -5,7 +5,13 @@ import { site } from "@/lib/site";
 // Required so the sitemap can also be emitted by `output: "export"` builds.
 export const dynamic = "force-static";
 
-const STATIC_ROUTES = ["", "/products", "/about", "/reviews"];
+const STATIC_ROUTES = [
+  "",
+  "/products",
+  "/corporate",
+  "/about",
+  "/reviews",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

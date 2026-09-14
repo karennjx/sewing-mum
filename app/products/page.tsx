@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EnquireButton } from "@/components/enquire-button";
 import { ProductCard } from "@/components/product-card";
 import { getCategories, getProductsByCategory } from "@/lib/catalog";
@@ -72,6 +73,15 @@ export default function ProductsPage() {
         <div className="mt-6">
           <EnquireButton size="sm" label="Ask about a commission" />
         </div>
+        <p className="mt-6 border-t border-linen-dark/60 pt-6 text-sm text-muted">
+          Buying for a company?{" "}
+          <Link
+            href="/corporate"
+            className="font-medium text-berry hover:text-berry-dark"
+          >
+            See corporate &amp; CSR collaborations &rarr;
+          </Link>
+        </p>
       </section>
     </div>
   );

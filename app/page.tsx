@@ -11,6 +11,21 @@ import {
 import { getAverageRating, getFeaturedReviews } from "@/lib/reviews";
 import { site } from "@/lib/site";
 
+const CORPORATE_SAMPLES = [
+  {
+    src: "/corporate/brand-on-piece.jpg",
+    alt: "A black cherry blossom brocade bag with a red trim, lettered with a client's brand name",
+    width: 1153,
+    height: 1178,
+  },
+  {
+    src: "/corporate/co-branded-label.jpg",
+    alt: "A coral cotton piece with a client's woven label sewn on beside the Sewing Mums label",
+    width: 833,
+    height: 832,
+  },
+];
+
 const PROMISES = [
   {
     title: "Made by mothers at home",
@@ -161,6 +176,52 @@ export default function Home() {
           {featured.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
+        </div>
+      </section>
+
+      {/* Corporate buyers want a different conversation from retail visitors,
+          so they get their own band here rather than a card in the catalogue. */}
+      <section className="border-y border-linen-dark/60 bg-linen/40">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 px-5 py-16 lg:grid-cols-5 lg:gap-14">
+          <div className="lg:col-span-3">
+            <p className="text-xs tracking-[0.2em] text-berry uppercase">
+              Corporate &amp; CSR
+            </p>
+            <h2 className="font-display mt-4 text-3xl font-semibold tracking-tight text-ink">
+              Bringing your brand into it
+            </h2>
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+              We customise pieces for companies &mdash; staff and client gifts,
+              event door gifts, and runs made for a CSR programme. A bulk order
+              is the steadiest work we can pass on to the mothers, and your
+              branding can go on the piece itself or on a label sewn in beside
+              ours.
+            </p>
+            <Link
+              href="/corporate"
+              className="mt-6 inline-flex items-center rounded-full bg-berry px-6 py-3 font-medium text-cream transition-colors hover:bg-berry-dark"
+            >
+              See what we can do for corporates
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 lg:col-span-2">
+            {CORPORATE_SAMPLES.map((sample) => (
+              <div
+                key={sample.src}
+                className="aspect-square overflow-hidden rounded-card bg-linen"
+              >
+                <Image
+                  src={sample.src}
+                  alt={sample.alt}
+                  width={sample.width}
+                  height={sample.height}
+                  sizes="(min-width: 1024px) 200px, 45vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,12 +1,15 @@
-# Copies chosen product photos out of the Drive folder into public/products,
-# resized to a sensible web width and re-encoded as JPEG. Source files are
-# named explicitly rather than by index so a reshuffle in Drive cannot silently
-# swap one photo for another.
+# Copies chosen photos out of the Drive folders into public/, resized to a
+# sensible web width and re-encoded as JPEG. Source files are named explicitly
+# rather than by index so a reshuffle in Drive cannot silently swap one photo
+# for another.
+#
+# An optional "crop" of "left,top,right,bottom" (fractions of the source) is
+# applied before the resize. Use tools/crop-preview.ps1 to choose one.
 
 Add-Type -AssemblyName System.Drawing
 
 $base = "G:\My Drive\Projects\Sewing Mum\Product photos"
-$dest = Join-Path $PSScriptRoot "..\public\products"
+$root = Join-Path $PSScriptRoot ".."
 $maxWidth = 1200
 $quality = 86
 
@@ -35,6 +38,12 @@ $jobs = @(
   @{ folder = "Product - Cup Sleeves"; file = "722977CC-FC8C-4FBF-BD07-87BED5E83B90_1_105_c.jpeg"; out = "cup-sleeve-1.jpg" }
   @{ folder = "Product - Cup Sleeves"; file = "AEBBE7D8-92F0-4E78-B8E2-F486A0F0180F_1_105_c.jpeg"; out = "cup-sleeve-2.jpg" }
   @{ folder = "Product - Cup Sleeves"; file = "SM - Cup Sleeves.jpg";                              out = "cup-sleeve-3.jpg" }
+
+  # Corporate collaboration samples. Both are cropped: the first to cut the
+  # "We customised your brand & name" caption baked into the Facebook version,
+  # the second to bring the two labels close enough to read.
+  @{ folder = "Corporate Collaboration"; file = "Corporate Sample FB_Image 1.jpg"; out = "brand-on-piece.jpg";    dir = "corporate"; crop = "0,0.27,1,0.845" }
+  @{ folder = "Corporate Collaboration"; file = "Corporate Sample FB_Image 2.jpg"; out = "co-branded-label.jpg"; dir = "corporate"; crop = "0,0.26,1,0.78" }
 )
 
 $enc = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
@@ -51,21 +60,34 @@ foreach ($j in $jobs) {
   }
 
   $img = [System.Drawing.Bitmap]::FromFile($srcPath)
+
+  if ($j.crop) {
+    $f = @($j.crop.Split(',') | ForEach-Object { [double]$_ })
+    $srcRect = New-Object System.Drawing.Rectangle(
+      [int]($f[0] * $img.Width), [int]($f[1] * $img.Height),
+      [int](($f[2] - $f[0]) * $img.Width), [int](($f[3] - $f[1]) * $img.Height))
+  } else {
+    $srcRect = New-Object System.Drawing.Rectangle(0, 0, $img.Width, $img.Height)
+  }
+
   # [Math]::Min(1, x) picks the int overload and rounds x, so force doubles.
-  $s = [Math]::Min([double]1.0, [double]$maxWidth / $img.Width)
-  $w = [int]($img.Width * $s); $h = [int]($img.Height * $s)
+  $s = [Math]::Min([double]1.0, [double]$maxWidth / $srcRect.Width)
+  $w = [int]($srcRect.Width * $s); $h = [int]($srcRect.Height * $s)
 
   $bmp = New-Object System.Drawing.Bitmap($w, $h)
   $g = [System.Drawing.Graphics]::FromImage($bmp)
   $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
   $g.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
   $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
-  $g.DrawImage($img, 0, 0, $w, $h)
+  $g.DrawImage($img, (New-Object System.Drawing.Rectangle(0, 0, $w, $h)), $srcRect, [System.Drawing.GraphicsUnit]::Pixel)
   $g.Dispose()
 
-  $outPath = Join-Path $dest $j.out
+  $subdir = if ($j.dir) { $j.dir } else { "products" }
+  $destDir = Join-Path $root "public\$subdir"
+  New-Item -ItemType Directory -Force -Path $destDir | Out-Null
+  $outPath = Join-Path $destDir $j.out
   $bmp.Save($outPath, $enc, $qp)
-  Write-Output ("{0,-28} {1}x{2,-5} {3,5} KB" -f $j.out, $w, $h, [math]::Round((Get-Item $outPath).Length / 1KB))
+  Write-Output ("{0,-14} {1,-28} {2}x{3,-5} {4,5} KB" -f $subdir, $j.out, $w, $h, [math]::Round((Get-Item $outPath).Length / 1KB))
   $bmp.Dispose(); $img.Dispose()
 }
 
