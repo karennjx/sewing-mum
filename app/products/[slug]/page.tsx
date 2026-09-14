@@ -53,10 +53,13 @@ export default async function ProductPage(
   const category = getCategory(product.category);
   const [heroImage, ...otherImages] = product.images;
   // Most pieces have two photos under the hero, which sit happily side by side.
-  // The Trio Bundle has three, one per colourway, and in two columns the third
-  // would sit alone on a second row at double the width of its siblings.
+  // Beyond that a two-column strip gets too deep — the Trio Bundle's six photos
+  // would run to three rows — so three or more thumbnails go into a tighter
+  // three-column grid instead. The grid is items-start as well, so each tile
+  // hugs its own photo; stretched to the row height, the shorter ones show a
+  // band of bare background that reads as a rendering fault.
   const thumbnailColumns =
-    otherImages.length === 3 ? "grid-cols-3" : "grid-cols-2";
+    otherImages.length >= 3 ? "grid-cols-3" : "grid-cols-2";
   const seasonWindow = seasonWindowLabel(product);
   const reviews = getReviewsForProduct(product.slug);
 
@@ -90,7 +93,7 @@ export default async function ProductPage(
           </div>
 
           {otherImages.length > 0 ? (
-            <ul className={`grid ${thumbnailColumns} gap-3`}>
+            <ul className={`grid ${thumbnailColumns} items-start gap-3`}>
               {otherImages.map((image) => (
                 <li
                   key={image.src}
@@ -102,7 +105,7 @@ export default async function ProductPage(
                     width={image.width}
                     height={image.height}
                     sizes={
-                      otherImages.length === 3
+                      otherImages.length >= 3
                         ? "(min-width: 1024px) 156px, 30vw"
                         : "(min-width: 1024px) 236px, 45vw"
                     }
