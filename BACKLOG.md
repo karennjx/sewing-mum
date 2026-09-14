@@ -35,6 +35,11 @@ still standing between it and being properly launched on its own domain.
       site with this one, or put this one on a subdomain such as
       `shop.sewingmums.com` and leave it standing. Either way the records are
       edited in the GoDaddy DNS panel and need that account.
+
+      **On hold (14 September)** until Karen confirms which domain is
+      actually held and finds the login it sits under. Nothing else in the
+      project is waiting on this — the site runs on the Vercel address, and
+      the Resend account and key can be set up without it.
 - [ ] **Real prices in `data/products.json`.** Only the Trio Bundle has one
       and it is a placeholder $20 that Kim has not agreed. Nothing can be sold
       until this is done — everything else falls back to "Price on enquiry".
