@@ -15,6 +15,14 @@
  *     Google will warn you and ask you to authorise it. That is expected:
  *     "Anyone" means anyone who knows the URL, which is why there is a
  *     secret as well.
+ *
+ *     "Anyone" and "Anyone with a Google account" are not the same, and
+ *     picking the second gives a 403 with an HTML sign-in page, because a
+ *     server has no Google session to offer. If rows silently fail to
+ *     appear, check this setting first.
+ *
+ *     The URL must be the deployment one ending in /exec. The /dev URL
+ *     needs a signed-in browser and will never work from the site.
  *  5. Copy the deployment URL. In Vercel, set:
  *       ORDER_SHEET_URL     = that URL
  *       ORDER_SHEET_SECRET  = the SECRET you chose

@@ -705,9 +705,8 @@ that.
       the job is a list Kim can read and tick off, and photos — the thing
       that made a spreadsheet the wrong answer for *products* in item 5 —
       do not come into it.
-- [ ] **Set `ORDER_SHEET_URL` and `ORDER_SHEET_SECRET` in Vercel**, then
-      redeploy. Until then nothing is written and the route carries on as
-      before. Setup instructions are in the header of `tools/order-sheet.gs`.
+- [x] ~~Set `ORDER_SHEET_URL` and `ORDER_SHEET_SECRET` in Vercel~~ — done
+      and confirmed working with a live test order on 15 September.
 - [ ] **Known gap, accepted on 14 September: a payment made without coming
       back to the site leaves no row.** The row is written when the shopper
       says they have paid, so if someone scans the QR, pays and closes the
