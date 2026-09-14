@@ -2,9 +2,10 @@ export const site = {
   name: "Sewing Mums",
   founder: "Kim",
   // Canonical links, the sitemap and link previews are all built from this,
-  // so it has to be an address that actually resolves. sewingmum.com is
-  // registered but its DNS still points elsewhere — put it back the moment
-  // that is fixed.
+  // so it has to be an address that actually resolves. The domain we own is
+  // sewingmums.com, plural, at GoDaddy — but it still serves a different
+  // site, so this stays on the Vercel address until that is settled. The
+  // singular sewingmum.com is someone else's and is parked for sale.
   url: "https://sewing-mum.vercel.app",
   tagline: "Handmade by single mothers in Singapore",
   description:

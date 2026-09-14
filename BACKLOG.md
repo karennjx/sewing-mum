@@ -20,10 +20,21 @@ covers the shop and is where the live open questions are.
 The site is already public on the Vercel address, so these are the things
 still standing between it and being properly launched on its own domain.
 
-- [ ] **Point `sewingmum.com` at Vercel.** It currently resolves to
-      `207.148.248.143`, an unrelated Vultr address that answers nothing, and
-      `www` points there too. Take the exact records from the Vercel project's
-      Settings → Domains page. This is the single biggest outstanding item.
+- [ ] **Sort out which domain this site lives on.** Checked properly on 14
+      September, and the picture is not what this backlog assumed:
+      - `sewingmum.com`, singular — **not ours.** Its nameservers are
+        `ns.buydomains.com` and `this-domain-for-sale.com`, so it is parked
+        and listed for sale by a domain reseller. The Vultr address it
+        resolves to is that reseller's parking page. Everything this backlog
+        previously said about "the domain we registered" pointed at this.
+      - `sewingmums.com`, plural — **ours**, at GoDaddy, on nameservers
+        `ns67`/`ns68.domaincontrol.com`. It already serves a live site
+        headed "Stitch Your Creativity Together", with a contact section and
+        no shop.
+      So this is a decision before it is a DNS change: replace that existing
+      site with this one, or put this one on a subdomain such as
+      `shop.sewingmums.com` and leave it standing. Either way the records are
+      edited in the GoDaddy DNS panel and need that account.
 - [ ] **Real prices in `data/products.json`.** Only the Trio Bundle has one
       and it is a placeholder $20 that Kim has not agreed. Nothing can be sold
       until this is done — everything else falls back to "Price on enquiry".
@@ -407,10 +418,12 @@ gate before anything is public.
 
 **Current position:** deployed and live on Vercel at
 [sewing-mum.vercel.app](https://sewing-mum.vercel.app), building from the
-GitHub repository on every push. Twenty-nine mostly static routes. **The
-domain is still the gap:** `sewingmum.com` resolves to `207.148.248.143`, a
-Vultr address that answers nothing, and `www` points there too. Until those
-records change, the only working address is the Vercel one.
+GitHub repository on every push. Thirty mostly static routes plus one server
+route. **The domain is still the gap**, and for a different reason than this
+backlog recorded — see the launch blockers above. In short: the singular
+`sewingmum.com` was never ours, the plural `sewingmums.com` is, it is at
+GoDaddy, and it already has a different website on it. Until that is
+resolved, the only working address is the Vercel one.
 
 **Options:**
 
@@ -454,12 +467,17 @@ exactly the case the Hobby licence is written against.
 - [x] ~~Set up email on the domain if `hello@sewingmum.com` is to be real~~ —
       sidestepped. `lib/site.ts` now uses Kim's real `kim@kimunderhill.com`
       rather than inventing an address on a domain that does not resolve.
-- [ ] **Change the DNS records to point at Vercel** — apex and `www`, values
-      from the Vercel project's Settings → Domains page
-- [ ] Confirm where the domain is registered, and who holds the login. This
-      matters more than it sounds: losing access to a registrar account is a
-      genuinely painful problem, and someone currently has it pointed at a
-      Vultr server nobody has mentioned.
+- [ ] **Decide whether this site replaces the existing `sewingmums.com` or
+      sits on a subdomain beside it**, then change the records in GoDaddy to
+      the values from the Vercel project's Settings → Domains page
+- [x] ~~Confirm where the domain is registered~~ — GoDaddy, on its
+      `domaincontrol.com` nameservers, so DNS is edited there.
+- [ ] Confirm who holds that GoDaddy login, and who built the site currently
+      on it. Losing access to a registrar account is a genuinely painful
+      problem, and repointing the apex takes that site down.
+- [ ] Decide whether `sewingmum.com` (singular) is worth buying from the
+      reseller holding it, or whether the plural is the name and that is
+      that. The brand is plural, so probably the latter.
 - [ ] Move the Vercel project into an account in Kim's name, or a shared one
       she can access, not a personal one she cannot
 - [ ] Set up a `www` to apex redirect, or pick one and stick to it
