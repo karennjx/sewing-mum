@@ -283,11 +283,27 @@ export function ShowcaseGallery({
 export function ShowcasePrintPicker({
   variants,
   images,
+  buyable,
 }: {
   variants: readonly ProductVariant[];
   images: readonly ProductImage[];
+  /** A print on a priced piece rides along in the cart; on an enquiry-only
+   *  piece it is just something we promise to mention. */
+  buyable: boolean;
 }) {
   const { chosenPrint, choosePrint } = useShowcase();
+
+  const choice = chosenPrint?.toLowerCase() ?? null;
+  let hint: string;
+  if (choice === null) {
+    hint = buyable
+      ? "Pick a print before you add it to the cart."
+      : "Pick a print and we will mention it when you message us.";
+  } else {
+    hint = buyable
+      ? `Your order will say ${choice}.`
+      : `We will mention the ${choice} print when you message us.`;
+  }
 
   return (
     <div>
@@ -325,9 +341,8 @@ export function ShowcasePrintPicker({
         })}
       </ul>
       <p className="mt-3 text-xs leading-relaxed text-muted">
-        {chosenPrint
-          ? `We will mention the ${chosenPrint.toLowerCase()} print when you message us.`
-          : "Pick a print and we will mention it when you message us. Prints change as fabric runs out, so we will confirm what is ready."}
+        {hint} Prints change as fabric runs out, so we will confirm what is
+        ready.
       </p>
     </div>
   );

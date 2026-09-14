@@ -168,7 +168,11 @@ export default async function ProductPage(
             the message it changes belong together. */}
         {isShowcase ? (
           <div className="mt-8">
-            <ShowcasePrintPicker variants={variants} images={product.images} />
+            <ShowcasePrintPicker
+              variants={variants}
+              images={product.images}
+              buyable={buyable}
+            />
           </div>
         ) : null}
 
