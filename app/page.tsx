@@ -11,7 +11,11 @@ import {
 import type { PromiseMark } from "@/components/ornaments";
 import { StarRating } from "@/components/star-rating";
 import { StitchLine } from "@/components/stitch-line";
-import { getCategories, getCategoryImage } from "@/lib/catalog";
+import {
+  getCategories,
+  getCategoryImage,
+  getProductBySlug,
+} from "@/lib/catalog";
 import { getAverageRating, getFeaturedReviews } from "@/lib/reviews";
 
 const CORPORATE_SAMPLES = [
@@ -42,27 +46,22 @@ const HERO_PHOTO = {
 };
 
 /**
- * The two pieces propped over the corner of the hero photograph.
+ * The two pieces propped over the corner of the hero photograph, in the order
+ * they are stacked: the bundle in front, the owl behind it.
  *
- * Studio shots supplied for the banner, deliberately not wired into the
- * catalogue: they are the same owl and the same trio bundle those product pages
- * already sell, but Kim asked to keep them to the banner for now, so those
- * pages keep their own photographs.
+ * These are the products' own lead photographs, read through the catalogue.
+ * They used to be a separate pair of files under /home, on the understanding
+ * that the banner wanted studio shots and the product pages had their own; once
+ * the product pages took these same shots the two were byte-for-byte identical,
+ * which is two copies to keep in step for no gain.
  */
-const BANNER_CARDS = [
-  {
-    src: "/home/banner-trio-bundle.jpg",
-    alt: "The trio bundle in a blue mandala print — a snap wallet, a flap pouch and a strapped cup carrier holding a tumbler, on a wooden board",
-    width: 819,
-    height: 1024,
-  },
-  {
-    src: "/home/banner-patchwork-owl.jpg",
-    alt: "The patchwork owl, with a wave-print head, red felt eyes, polka dot sides and a red floral belly, sitting on a cream knitted throw",
-    width: 819,
-    height: 1024,
-  },
-];
+const BANNER_CARDS = ["trio-bundle", "patchwork-owl"].map((slug) => {
+  const product = getProductBySlug(slug);
+  if (!product) {
+    throw new Error(`Hero banner references a missing product: ${slug}`);
+  }
+  return product.images[0];
+});
 
 const PROMISES: readonly {
   mark: PromiseMark;

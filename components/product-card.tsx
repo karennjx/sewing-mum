@@ -24,7 +24,13 @@ export function ProductCard({ product }: { product: Product }) {
           alt={image.alt}
           width={image.width}
           height={image.height}
-          sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
+          // Wider than the card, because the box is square and about half the
+          // catalogue is landscape. object-cover on a 4:3 photo in a square box
+          // scales it until the height fits, so the width it needs is a third
+          // more than the card is wide; asking for the card width fetched 320
+          // for a 427px job and the photos came out soft. The portrait ones
+          // over-fetch a little as a result, which is the cheaper mistake.
+          sizes="(min-width: 1024px) 430px, (min-width: 640px) 67vw, 133vw"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
       </div>
