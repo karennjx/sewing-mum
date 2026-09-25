@@ -20,6 +20,7 @@
 @theme inline {
   --font-display: var(--font-display-family);
   --font-sans: var(--font-body-family);
+  --font-hand: var(--font-hand-family);
 }
 
 body {

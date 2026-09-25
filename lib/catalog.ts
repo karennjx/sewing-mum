@@ -141,6 +141,25 @@ export function getCategories(): readonly CategoryInfo[] {
   return CATEGORIES;
 }
 
+/**
+ * A photo to stand for a category on the homepage tiles.
+ *
+ * Takes the first product in the category that has a real photograph and is not
+ * already leading the hero, so the visitor is not shown the same piece twice
+ * before they have scrolled. Null where a category has nothing photographed
+ * yet, and the tile then falls back to text alone.
+ */
+export function getCategoryImage(category: Category): ProductImage | null {
+  const product = products.find(
+    (entry) =>
+      entry.category === category &&
+      entry.comingSoon !== true &&
+      entry.hero !== true &&
+      entry.images.length > 0,
+  );
+  return product?.images[0] ?? null;
+}
+
 export function getCategory(slug: Category): CategoryInfo {
   const category = CATEGORIES.find((entry) => entry.slug === slug);
   if (!category) {
