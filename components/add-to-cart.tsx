@@ -32,6 +32,7 @@ export function AddToCart({
   slug,
   print,
   requiresPrint,
+  onePerChoice = false,
   stock,
 }: {
   slug: string;
@@ -39,21 +40,26 @@ export function AddToCart({
   print: string | null;
   /** True when the piece comes in prints, so one has to be picked first. */
   requiresPrint: boolean;
+  /** Each choice is a single item, so there is no quantity to pick. */
+  onePerChoice?: boolean;
   /** Caps the stepper, for the pieces Kim counts. */
   stock?: number;
 }) {
   const [quantity, setQuantity] = useState(1);
   const cart = useCart();
 
-  const inCart = cart
-    .filter((line) => line.slug === slug && (print === null || line.print === print))
-    .reduce((total, line) => total + line.quantity, 0);
+  const linesHere = cart.filter(
+    (line) => line.slug === slug && (print === null || line.print === print),
+  );
+  const inCart = linesHere.reduce((total, line) => total + line.quantity, 0);
+  const piecesInCart = linesHere.map((line) => line.print).join(", ");
 
   // What is left once the cart is taken into account, so the stepper cannot
   // quietly offer a fourth of something we said there were three of. Stock is
   // Kim's hand-kept number and can be wrong either way, so this is a guard
   // against the obvious mistake, not a guarantee.
-  const remaining = stock === undefined ? undefined : Math.max(0, stock - inCart);
+  const cap = onePerChoice ? 1 : stock;
+  const remaining = cap === undefined ? undefined : Math.max(0, cap - inCart);
   const ceiling = remaining === undefined ? 99 : remaining;
   const pickedNone = requiresPrint && print === null;
   const noneLeft = remaining === 0;
@@ -62,6 +68,7 @@ export function AddToCart({
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3">
+        {onePerChoice ? null : (
         <div className="flex items-center rounded-full border border-linen-dark">
           <button
             type="button"
@@ -88,6 +95,7 @@ export function AddToCart({
             <Sign of="plus" />
           </button>
         </div>
+        )}
 
         <button
           type="button"
@@ -103,19 +111,23 @@ export function AddToCart({
       </div>
 
       {pickedNone ? (
-        <p className="mt-3 text-xs text-muted">Pick a print first.</p>
+        <p className="mt-3 text-xs text-muted">
+          {onePerChoice ? "Pick a number first." : "Pick a print first."}
+        </p>
       ) : null}
 
       {inCart > 0 ? (
         <p className="mt-3 text-xs text-muted">
-          {inCart} in your cart.{" "}
+          {onePerChoice
+            ? `${piecesInCart} ${linesHere.length === 1 ? "is" : "are"} in your cart.`
+            : `${inCart} in your cart.`}{" "}
           <Link href="/cart" className="font-medium text-berry hover:underline">
             View cart
           </Link>
         </p>
       ) : null}
 
-      {noneLeft && inCart > 0 ? (
+      {noneLeft && inCart > 0 && !onePerChoice ? (
         <p className="mt-1 text-xs text-muted">
           That is all we have ready. Enquire if you would like more made.
         </p>

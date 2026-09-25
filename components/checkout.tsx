@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import {
   cartTotal,
   clearCart,
   describeLines,
   money,
-  resolveCartLines,
-  useCart,
+  useResolvedCart,
   type CartProduct,
   type ResolvedLine,
 } from "@/lib/cart";
@@ -47,7 +46,7 @@ function mobileLooksWrong(mobile: string): boolean {
 
 export function Checkout({ products }: { products: readonly CartProduct[] }) {
   const hydrated = useSyncExternalStore(subscribe, onClient, onServer);
-  const cart = useCart();
+  const lines = useResolvedCart(products);
 
   const [stage, setStage] = useState<Stage>("details");
   const [contact, setContact] = useState<Contact>({ email: "", mobile: "" });
@@ -62,10 +61,6 @@ export function Checkout({ products }: { products: readonly CartProduct[] }) {
   } | null>(null);
   const [receipt, setReceipt] = useState<Receipt>("idle");
 
-  const lines = useMemo(
-    () => resolveCartLines(cart, products),
-    [cart, products],
-  );
   const total = cartTotal(lines);
 
   if (!hydrated) {

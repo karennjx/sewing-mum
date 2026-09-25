@@ -172,6 +172,7 @@ export default async function ProductPage(
               variants={variants}
               images={product.images}
               buyable={buyable}
+              kind={product.variantKind}
             />
           </div>
         ) : null}

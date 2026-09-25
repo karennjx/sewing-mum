@@ -53,7 +53,9 @@ const HERO_PHOTO = {
  * They used to be a separate pair of files under /home, on the understanding
  * that the banner wanted studio shots and the product pages had their own; once
  * the product pages took these same shots the two were byte-for-byte identical,
- * which is two copies to keep in step for no gain.
+ * which is two copies to keep in step for no gain. The owl's lead has to stay
+ * its single example owl rather than a numbered line-up, which at card size
+ * reads as a stock list.
  */
 const BANNER_CARDS = ["trio-bundle", "patchwork-owl"].map((slug) => {
   const product = getProductBySlug(slug);

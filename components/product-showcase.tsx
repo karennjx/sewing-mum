@@ -284,14 +284,27 @@ export function ShowcasePrintPicker({
   variants,
   images,
   buyable,
+  kind = "print",
 }: {
   variants: readonly ProductVariant[];
   images: readonly ProductImage[];
   /** A print on a priced piece rides along in the cart; on an enquiry-only
    *  piece it is just something we promise to mention. */
   buyable: boolean;
+  kind?: Product["variantKind"];
 }) {
   const { chosenPrint, choosePrint } = useShowcase();
+
+  if (kind === "piece") {
+    return (
+      <PiecePicker
+        variants={variants}
+        chosen={chosenPrint}
+        choose={choosePrint}
+        buyable={buyable}
+      />
+    );
+  }
 
   const choice = chosenPrint?.toLowerCase() ?? null;
   let hint: string;
@@ -348,6 +361,66 @@ export function ShowcasePrintPicker({
   );
 }
 
+/** Numbered one-offs, matched to the badges in the line-up photos. No
+ *  swatches: a thumbnail of six owls says nothing about which one is No. 3,
+ *  so choosing one brings up its line-up in the main photo instead. */
+function PiecePicker({
+  variants,
+  chosen,
+  choose,
+  buyable,
+}: {
+  variants: readonly ProductVariant[];
+  chosen: string | null;
+  choose: (variant: ProductVariant) => void;
+  buyable: boolean;
+}) {
+  let hint: string;
+  if (chosen === null) {
+    hint = buyable
+      ? "Find the one you like in the numbered photos and pick its number."
+      : "Pick a number and we will mention it when you message us.";
+  } else {
+    hint = buyable
+      ? `Your order will say ${chosen}.`
+      : `We will mention ${chosen} when you message us.`;
+  }
+
+  return (
+    <div>
+      <h2 className="text-xs tracking-wider text-muted uppercase">
+        Choose your owl
+      </h2>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {variants.map((variant) => {
+          const isChosen = chosen === variant.name;
+          return (
+            <li key={variant.name}>
+              <button
+                type="button"
+                onClick={() => choose(variant)}
+                aria-pressed={isChosen}
+                aria-label={variant.name}
+                className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm tabular-nums transition-colors ${
+                  isChosen
+                    ? "border-berry bg-berry font-medium text-cream"
+                    : "border-linen-dark text-ink hover:border-rose"
+                }`}
+              >
+                {variant.name.replace(/^No\.\s*/, "")}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <p className="mt-3 text-xs leading-relaxed text-muted">
+        {hint} Each number is a single owl, and the ones still listed are the
+        ones still here.
+      </p>
+    </div>
+  );
+}
+
 /** Feeds the chosen print into the cart, so a line reads "in rainbow circles"
  *  rather than leaving Kim to ask which one they meant. */
 export function ShowcaseAddToCart({ product }: { product: Product }) {
@@ -358,6 +431,7 @@ export function ShowcaseAddToCart({ product }: { product: Product }) {
       slug={product.slug}
       print={chosenPrint}
       requiresPrint
+      onePerChoice={product.variantKind === "piece"}
       stock={product.stock}
     />
   );
@@ -380,9 +454,11 @@ export function ShowcaseEnquireButton({
       size={size}
       label={label}
       message={
-        chosenPrint
-          ? `Hi ${site.name}! I would like to enquire about the ${product.name} in the ${chosenPrint.toLowerCase()} print. Is that one ready?`
-          : undefined
+        chosenPrint === null
+          ? undefined
+          : product.variantKind === "piece"
+            ? `Hi ${site.name}! I would like to enquire about the ${product.name}, ${chosenPrint}. Is that one still available?`
+            : `Hi ${site.name}! I would like to enquire about the ${product.name} in the ${chosenPrint.toLowerCase()} print. Is that one ready?`
       }
     />
   );

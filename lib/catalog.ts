@@ -54,6 +54,13 @@ export type Product = {
    */
   variants?: ProductVariant[];
   /**
+   * What each variant is. "print" (the default) is a fabric the piece is made
+   * up in again and again. "piece" is one finished item — a numbered line-up of
+   * owls — so there is only ever one of it: the cart holds at most one of each,
+   * and Kim takes the number off the list once it has sold.
+   */
+  variantKind?: "print" | "piece";
+  /**
    * How many are sewn and ready. Kim keeps this by hand and nothing decrements
    * it when an order comes in, so it tells a shopper what to expect but cannot
    * stop two people buying the last one. Leave it out for pieces she would
@@ -217,6 +224,11 @@ export function isBuyable(product: Product): boolean {
     product.comingSoon !== true &&
     stockState(product) !== "sold-out"
   );
+}
+
+/** True when each variant is a single finished item rather than a print. */
+export function isOneOfAKind(product: Product): boolean {
+  return product.variantKind === "piece";
 }
 
 export function isSeasonal(product: Product): boolean {

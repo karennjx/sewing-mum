@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CartContents } from "@/components/cart-contents";
 import type { CartProduct } from "@/lib/cart";
-import { getAllProducts } from "@/lib/catalog";
+import { getAllProducts, isOneOfAKind } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Your cart",
@@ -21,6 +21,8 @@ export default function CartPage() {
     name: product.name,
     price: product.price,
     image: product.images[0],
+    options: product.variants?.map((variant) => variant.name) ?? null,
+    onePerChoice: isOneOfAKind(product),
   }));
 
   return (

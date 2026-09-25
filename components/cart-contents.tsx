@@ -9,9 +9,8 @@ import {
   describeLines,
   money,
   removeFromCart,
-  resolveCartLines,
   setQuantity,
-  useCart,
+  useResolvedCart,
   type CartProduct,
 } from "@/lib/cart";
 import { site, whatsappLink } from "@/lib/site";
@@ -29,9 +28,7 @@ export function CartContents({
   // this the page would say "your cart is empty" for a beat before the real
   // contents appeared, to someone who knows perfectly well that it is not.
   const hydrated = useSyncExternalStore(subscribe, onClient, onServer);
-  const cart = useCart();
-
-  const lines = resolveCartLines(cart, products);
+  const lines = useResolvedCart(products);
   const total = cartTotal(lines);
 
   if (!hydrated) {
@@ -101,6 +98,11 @@ export function CartContents({
               ) : null}
 
               <div className="mt-1 flex flex-wrap items-center gap-4">
+                {/* No stepper for a numbered one-off: there is only one No. 3,
+                    and a "+" that does nothing reads as broken. */}
+                {product.onePerChoice ? (
+                  <span className="text-sm text-muted">One of a kind</span>
+                ) : (
                 <div className="flex items-center rounded-full border border-linen-dark">
                   <button
                     type="button"
@@ -126,6 +128,7 @@ export function CartContents({
                     +
                   </button>
                 </div>
+                )}
 
                 <button
                   type="button"

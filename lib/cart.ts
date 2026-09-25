@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useMemo, useSyncExternalStore } from "react";
 import type { ProductImage } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
@@ -196,6 +196,10 @@ export type CartProduct = {
   name: string;
   price: number | null;
   image: ProductImage;
+  /** The variant names still on offer, or null for a piece with none. */
+  options: readonly string[] | null;
+  /** Each variant is a single item, so a line can never be more than one. */
+  onePerChoice: boolean;
 };
 
 export type ResolvedLine = {
@@ -207,9 +211,11 @@ export type ResolvedLine = {
 
 /**
  * Pairs stored lines with their products, dropping any whose product has
- * since lost its price or left the catalogue. Those are dropped rather than
- * shown as unbuyable because it was Kim's change, not the shopper's mistake,
- * and there is nothing for them to do about it.
+ * since lost its price or left the catalogue, or whose print or numbered piece
+ * is no longer listed — which for a one-off owl means someone else bought it.
+ * Those are dropped rather than shown as unbuyable because it was Kim's
+ * change, not the shopper's mistake, and there is nothing for them to do
+ * about it.
  */
 export function resolveCartLines(
   cart: readonly CartLine[],
@@ -221,8 +227,43 @@ export function resolveCartLines(
     if (!product || product.price === null) {
       return [];
     }
-    return [{ line, product, price: product.price }];
+    if (
+      product.options !== null &&
+      (line.print === null || !product.options.includes(line.print))
+    ) {
+      return [];
+    }
+    const resolved =
+      product.onePerChoice && line.quantity !== 1 ? { ...line, quantity: 1 } : line;
+    return [{ line: resolved, product, price: product.price }];
   });
+}
+
+/**
+ * The cart resolved against the catalogue, with whatever was dropped or capped
+ * written back to storage. Otherwise the header badge, which only sees the
+ * stored lines, would go on counting an owl that has sold after the cart
+ * itself stopped showing it.
+ */
+export function useResolvedCart(
+  products: readonly CartProduct[],
+): ResolvedLine[] {
+  const cart = useCart();
+  const resolved = useMemo(
+    () => resolveCartLines(cart, products),
+    [cart, products],
+  );
+
+  useEffect(() => {
+    const changed =
+      resolved.length !== cart.length ||
+      resolved.some(({ line }, index) => line !== cart[index]);
+    if (changed) {
+      commit(resolved.map(({ line }) => line));
+    }
+  }, [cart, resolved]);
+
+  return resolved;
 }
 
 export function cartTotal(lines: readonly ResolvedLine[]): number {

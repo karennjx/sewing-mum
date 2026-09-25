@@ -1,5 +1,10 @@
 import { Resend } from "resend";
-import { formatPrice, getProductBySlug, isBuyable } from "@/lib/catalog";
+import {
+  formatPrice,
+  getProductBySlug,
+  isBuyable,
+  isOneOfAKind,
+} from "@/lib/catalog";
 import type { Product } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
@@ -106,6 +111,7 @@ function printIsValid(product: Product, print: string | null): boolean {
 /** Null if any line no longer describes something we sell. */
 function priceOrder(lines: readonly IncomingLine[]): PricedLine[] | null {
   const priced: PricedLine[] = [];
+  const onePieceLines = new Set<string>();
   for (const line of lines) {
     const product = getProductBySlug(line.slug);
     if (!product || !isBuyable(product) || product.price === null) {
@@ -113,6 +119,15 @@ function priceOrder(lines: readonly IncomingLine[]): PricedLine[] | null {
     }
     if (!printIsValid(product, line.print)) {
       return null;
+    }
+    // There is one owl No. 3. Two of it, or it on two lines, is not an order
+    // that can be filled.
+    if (isOneOfAKind(product)) {
+      const key = `${line.slug}\u0000${line.print ?? ""}`;
+      if (line.quantity !== 1 || onePieceLines.has(key)) {
+        return null;
+      }
+      onePieceLines.add(key);
     }
     priced.push({
       name: product.name,

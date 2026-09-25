@@ -3,39 +3,54 @@
     "slug": "patchwork-owl",
     "name": "Patchwork Owl",
     "category": "sewing-mums",
-    "price": null,
+    "price": 30,
     "featured": false,
     "blurb": "A round, softly stuffed owl in patchwork cotton, with big appliqué eyes.",
     "description": [
       "The owls are what Sewing Mums is best known for. Each one is a round, softly stuffed body with a contrasting patchwork belly panel, fabric appliqué eyes sewn on by hand, and two stubby feet at the bottom so it sits up on a shelf or a bed.",
-      "No two come out the same. The prints depend on what is in the basket that week, so the owl you receive will be its own combination of fabrics and eye colours. They are made in more than one size, from small ones that fit in two hands up to floor cushions. Tell us roughly what you are after and we will send photographs of the ones that are finished."
+      "No two come out the same — the prints depend on what is in the basket that week. The first photograph is an example, to show the size and the stitching up close; the twelve in the numbered photographs are the ones finished now: pick yours by its number. Each number is a single owl, so once it has gone it has gone, and the next batch will be photographed in its place. Owls in other sizes, up to floor cushions, can be made on request."
     ],
     "details": [
       "Cotton print patchwork, softly stuffed",
       "Fabric appliqué eyes, sewn rather than glued on",
-      "Made in several sizes — ask what is ready",
+      "Each numbered owl is a single piece",
       "Every owl is a different combination of prints",
       "Measurements and washing instructions on request"
     ],
     "images": [
       {
-        "src": "/products/patchwork-owl-1.jpg",
-        "alt": "A patchwork owl with a blue wave-print head, big red felt eyes, pale blue polka dot sides and a red floral belly panel, sitting on a cream knitted throw",
+        "src": "/products/patchwork-owl-example.jpg",
+        "alt": "An example patchwork owl, not one of the numbered ones: a blue wave-print head, big red felt eyes with a blue beak, pale blue polka dot sides and a red floral belly panel, sitting on a cream knitted throw",
         "width": 819,
         "height": 1024
       },
       {
-        "src": "/products/patchwork-owl-2.jpg",
-        "alt": "Nine patchwork owls arranged in rows, each in different cotton prints with appliqué eyes in yellow, green, red and blue",
-        "width": 998,
-        "height": 789
+        "src": "/products/patchwork-owl-lineup-1.jpg",
+        "alt": "Owls 1 to 6, stacked in two rows on a beige sofa, all with heads in a cream print of small grey cartoon animals. 1: yellow eyes, red star belly, teal paisley side. 2: red eyes, red paisley flower belly, brown leaf-print sides. 3: green eyes, maroon paisley belly, cream and orange floral sides, pale blue elephant feet. 4: brown eyes, navy rocket-print belly, orange floral sides, white paw feet. 5: blue eyes, green palm-leaf belly, pink and white striped sides. 6: yellow eyes, red and green floral belly, teal patterned sides",
+        "width": 1024,
+        "height": 768
       },
       {
-        "src": "/products/patchwork-owl-3.jpg",
-        "alt": "Three large patchwork owls side by side in mixed cotton prints, showing the range of fabric combinations",
+        "src": "/products/patchwork-owl-lineup-2.jpg",
+        "alt": "Owls 7 to 12, stacked in two rows on a beige sofa, all with heads in a multicoloured paisley print. 7: blue eyes, red star belly, green geometric sides. 8: red eyes, cartoon-character belly, orange floral sides. 9: grey eyes, navy rocket-print belly, cream floral sides. 10: purple eyes, navy rainbow-print belly, pink and white striped sides. 11: green eyes, cream belly with small orange flowers, teal patterned sides. 12: blue eyes, green leaf-print belly, pale pink floral sides",
         "width": 1024,
         "height": 768
       }
+    ],
+    "variantKind": "piece",
+    "variants": [
+      { "name": "No. 1", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 2", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 3", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 4", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 5", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 6", "image": "/products/patchwork-owl-lineup-1.jpg" },
+      { "name": "No. 7", "image": "/products/patchwork-owl-lineup-2.jpg" },
+      { "name": "No. 8", "image": "/products/patchwork-owl-lineup-2.jpg" },
+      { "name": "No. 9", "image": "/products/patchwork-owl-lineup-2.jpg" },
+      { "name": "No. 10", "image": "/products/patchwork-owl-lineup-2.jpg" },
+      { "name": "No. 11", "image": "/products/patchwork-owl-lineup-2.jpg" },
+      { "name": "No. 12", "image": "/products/patchwork-owl-lineup-2.jpg" }
     ],
     "availability": {
       "kind": "regular"

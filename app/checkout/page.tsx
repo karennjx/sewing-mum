@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Checkout } from "@/components/checkout";
-import { getAllProducts } from "@/lib/catalog";
+import { getAllProducts, isOneOfAKind } from "@/lib/catalog";
 import type { CartProduct } from "@/lib/cart";
 
 export const metadata: Metadata = {
@@ -15,6 +15,8 @@ export default function CheckoutPage() {
     name: product.name,
     price: product.price,
     image: product.images[0],
+    options: product.variants?.map((variant) => variant.name) ?? null,
+    onePerChoice: isOneOfAKind(product),
   }));
 
   return (
