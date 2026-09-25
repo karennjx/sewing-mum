@@ -99,13 +99,19 @@ export function WaveEdge({ className }: MarkProps) {
   );
 }
 
-export type PromiseMark = "home" | "wage" | "ask";
+export type PromiseMark = "home" | "wage" | "ask" | "sew";
 
 const PATHS: Record<PromiseMark, string> = {
   // A house, for work that happens at home.
   home: "M4 11.6 12 4.5l8 7.1V20a1 1 0 0 1-1 1h-4.5v-5.5h-5V21H5a1 1 0 0 1-1-1v-8.4Z",
   // A heart, for the wage the order pays.
   wage: "M12 20.1l-1-.9C6.3 15 3.4 12.4 3.4 9.2 3.4 6.7 5.4 4.7 7.9 4.7c1.4 0 2.8.7 3.9 1.9 1.1-1.2 2.5-1.9 3.9-1.9 2.5 0 4.5 2 4.5 4.5 0 3.2-2.9 5.8-7.6 10l-1 .9Z",
+  // A spool of thread, for the sewing itself. A machine was drawn here first
+  // and did not survive the size: the arm, the needle and the gap beneath it
+  // all fall under 4px at the 28px these render at, and it closed up into a
+  // shape that read as a lamp. The spool is also the mark in the logo, so the
+  // simpler icon is the more particular one.
+  sew: "M6 5.6h12M6 18.4h12M7.9 5.6v12.8M16.1 5.6v12.8M16.1 11.4c2.5.3 3.8 1.5 4 3.6",
   // A gift, for the piece that arrives.
   ask: "M4.5 11h15v9a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-9ZM3.5 7.8h17V11h-17V7.8ZM12 7.8V21M12 7.8C10.6 7.8 7.6 7.4 7.6 5.6S9.3 3.7 10.2 4.5 12 7.8 12 7.8s.9-2.5 1.8-3.3 2.6-.3 2.6 1.4-3 2.2-4.4 2.2Z",
 };
