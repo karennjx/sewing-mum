@@ -2,29 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { EnquireButton } from "@/components/enquire-button";
 import {
-  CurvedArrow,
   Heart,
+  PointerLine,
   PromiseIcon,
   Squiggle,
   WaveEdge,
 } from "@/components/ornaments";
 import type { PromiseMark } from "@/components/ornaments";
 import { StarRating } from "@/components/star-rating";
+import { StitchLine } from "@/components/stitch-line";
 import { getCategories, getCategoryImage } from "@/lib/catalog";
 import { getAverageRating, getFeaturedReviews } from "@/lib/reviews";
 
 const CORPORATE_SAMPLES = [
   {
     src: "/corporate/brand-on-piece.jpg",
-    alt: "A black cherry blossom brocade bag with a red trim, lettered with a client's brand name",
-    width: 1153,
-    height: 1178,
+    alt: "A black cherry blossom brocade bag with a red trim and cord handles, lettered with a client's brand name",
+    width: 819,
+    height: 1024,
   },
   {
     src: "/corporate/co-branded-label.jpg",
-    alt: "A coral cotton piece with a client's woven label sewn on beside the Sewing Mums label",
-    width: 833,
-    height: 832,
+    alt: "Three folded cotton pieces in different prints, each with a client's woven label sewn on beside the Sewing Mums label",
+    width: 819,
+    height: 1024,
   },
 ];
 
@@ -81,7 +82,7 @@ const PROMISES: readonly {
   {
     mark: "ask",
     title: "Buy it, or just ask",
-    body: "Pieces with a price can go in the cart and be paid by PayNow. For everything else, tell us what caught your eye on WhatsApp and we will sort out sizing, fabric and delivery together.",
+    body: "Shop ready-made pieces, or speak to us about fabrics, sizing and custom orders.",
   },
 ];
 
@@ -93,28 +94,33 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-to-b from-linen/70 via-linen/20 to-cream">
-        <div className="mx-auto grid max-w-5xl items-center gap-9 px-5 pt-10 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.14fr)] lg:gap-10 lg:pt-16 lg:pb-14">
-          <div>
+        <div className="mx-auto grid max-w-5xl items-center gap-9 px-5 pt-10 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-10 lg:pt-16 lg:pb-14">
+          <div className="animate-rise">
             <p className="text-xs tracking-[0.2em] text-berry uppercase">
               A Singapore social enterprise
             </p>
             <h1 className="font-display mt-5 text-4xl leading-[1.1] font-semibold tracking-tight text-ink sm:text-5xl">
-              Beautiful things, made by mothers{" "}
+              Beautiful things,{" "}
+              {/* Held together on desktop. The photograph leaves the headline
+                  about 380px, and "made by mothers" wants 375 of it, so the
+                  natural wrap flips between two different three-line
+                  arrangements on a few pixels of scrollbar. */}
+              <span className="lg:whitespace-nowrap">made by mothers</span>{" "}
               <span className="relative inline-block whitespace-nowrap">
                 at home
                 <Squiggle className="absolute -bottom-2.5 left-0 h-3 w-full text-rose" />
               </span>
             </h1>
-            <p className="mt-11 max-w-lg text-lg leading-relaxed text-muted">
-              Fabric crafts, toys, games and good-to-haves &mdash; every one of
-              them sewn at home, by hand, by a mother who needs the work.
+            <p className="mt-11 max-w-md text-lg leading-relaxed text-muted">
+              Thoughtfully sewn gifts and everyday pieces that create flexible
+              paid work for mothers in Singapore.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href="/products"
                 className="inline-flex items-center rounded-full bg-berry px-6 py-3 font-medium text-cream transition-colors hover:bg-berry-dark"
               >
-                See what&rsquo;s available
+                Explore what we make &rarr;
               </Link>
               <Link
                 href="/about"
@@ -136,19 +142,23 @@ export default function Home() {
 
           {/* The photograph leads, with two pieces propped over the corner of
               it like prints left on a table. The frames are white padding
-              rather than rounded corners, so the photo edges stay square. The
-              top padding reserves room for the handwritten aside, which is
-              absolutely placed so it sits against the photo's top edge. */}
-          <div className="relative lg:-ml-6 lg:pt-14">
-            <div className="absolute top-0 right-6 z-20 hidden lg:block">
-              <div className="relative">
+              rather than rounded corners, so the photo edges stay square.
+              Pulled left into the gutter so it sits nearer the headline. */}
+          <div className="relative lg:-ml-6">
+            {/* On the photograph rather than above it. The top left of the frame
+                is a flat sunlit wall — luminance 229, almost no variation —
+                so berry ink reads cleanly there, which it would not over the
+                window on the right. Sitting inside the frame also costs the
+                column no height, which is what keeps the two sides level. */}
+            <div className="absolute top-4 left-5 z-20 hidden lg:block">
+              <div className="relative animate-rise [animation-delay:520ms]">
                 <p className="font-hand -rotate-3 text-2xl leading-tight text-berry">
                   Made with love
                   <br />
                   at home
                 </p>
                 <Heart className="absolute -top-1 -right-6 h-4 w-4 text-rose" />
-                <CurvedArrow className="absolute -right-3 -bottom-8 h-10 w-8 text-rose-soft" />
+                <PointerLine className="absolute top-12 left-8 h-24 w-36 text-rose/80" />
               </div>
             </div>
 
@@ -161,34 +171,42 @@ export default function Home() {
                 alt={HERO_PHOTO.alt}
                 width={HERO_PHOTO.width}
                 height={HERO_PHOTO.height}
-                sizes="(min-width: 1024px) 560px, 100vw"
+                sizes="(min-width: 1024px) 600px, 100vw"
                 loading="eager"
                 fetchPriority="high"
-                className="h-full w-full object-cover"
+                className="animate-settle h-full w-full object-cover"
               />
             </div>
 
             {/* Portrait shots, so the frames keep 4:5 rather than cropping
-                square. Desktop only: below lg the hero stacks and the photo
-                runs nearly full width, where these overhang the screen edge
-                and crowd the band beneath. */}
-            <div className="absolute -bottom-6 right-20 z-10 hidden w-36 rotate-[-5deg] bg-white p-2 shadow-lg lg:block">
+                square. They overlap each other by design, and arrive a beat
+                after the photograph. Desktop only: below lg the hero stacks and
+                the photo runs nearly full width, where these overhang the
+                screen edge and crowd the band beneath.
+
+                The overlap is deliberately narrow, and the trio bundle sits on
+                top of the owl rather than under it. The bundle's cup carrier
+                runs to within a few percent of its own right edge, so anything
+                lying over it hides a piece; the owl is centred with about a
+                tenth of its frame clear on the left, which is the only side
+                here with room to be covered. */}
+            <div className="animate-rise absolute -bottom-6 right-28 z-20 hidden w-40 rotate-[-5deg] bg-white p-2 shadow-lg [animation-delay:280ms] lg:block">
               <Image
                 src={BANNER_CARDS[0].src}
                 alt={BANNER_CARDS[0].alt}
                 width={BANNER_CARDS[0].width}
                 height={BANNER_CARDS[0].height}
-                sizes="144px"
+                sizes="160px"
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
-            <div className="absolute -right-6 -bottom-7 z-10 hidden w-32 rotate-[6deg] bg-white p-2 shadow-lg lg:block">
+            <div className="animate-rise absolute -right-6 -bottom-7 z-10 hidden w-36 rotate-[6deg] bg-white p-2 shadow-lg [animation-delay:400ms] lg:block">
               <Image
                 src={BANNER_CARDS[1].src}
                 alt={BANNER_CARDS[1].alt}
                 width={BANNER_CARDS[1].width}
                 height={BANNER_CARDS[1].height}
-                sizes="128px"
+                sizes="144px"
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
@@ -200,18 +218,16 @@ export default function Home() {
         {/* Absolutely placed, so it sits inside the hero's bottom padding
             rather than adding its own height to it. In the flow it pushed the
             band a further 32px down and the gap after the buttons overshot. */}
-        <WaveEdge className="absolute bottom-0 left-0 block h-6 w-full text-linen/60 sm:h-8" />
+        <WaveEdge className="absolute bottom-0 left-0 block h-4 w-full text-linen/60 sm:h-5" />
       </section>
 
       <section className="bg-linen/60">
-        <div className="mx-auto max-w-5xl px-5 pt-10 pb-12">
-          <div className="relative grid gap-9 sm:grid-cols-3 sm:gap-8">
-            {/* Stitched through the three icons. Each icon sits on a cream
-                disc, which breaks the line where it passes behind. */}
-            <div
-              aria-hidden="true"
-              className="absolute top-7 right-[16%] left-[16%] hidden border-t-2 border-dashed border-rose-soft sm:block"
-            />
+        <div className="mx-auto max-w-5xl px-5 pt-7 pb-10">
+          <div className="relative grid gap-8 sm:grid-cols-3">
+            {/* Stitched through the three icons, and drawn on first sight.
+                Each icon sits on a cream disc, which breaks the line where it
+                passes behind. */}
+            <StitchLine className="absolute top-7 right-[16%] left-[16%] hidden border-t-2 border-dashed border-rose-soft sm:block" />
             {PROMISES.map((promise) => (
               <div key={promise.title} className="relative text-center">
                 <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-cream text-berry ring-1 ring-rose-soft">
@@ -276,6 +292,29 @@ export default function Home() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* A dark band to stop the page reading as one long wash of cream. It is
+          deliberately the only one: the maroon token earns its weight by being
+          used here and then only in small doses elsewhere. Short, centred and
+          edge to edge, on the same grid as every other section. */}
+      <section className="bg-maroon text-cream">
+        <div className="mx-auto max-w-5xl px-5 py-14 text-center">
+          <Squiggle className="mx-auto h-4 w-24 text-rose/60" />
+          <h2 className="font-display mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Small stitches. Brighter tomorrows.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-linen/80">
+            Every purchase creates meaningful paid work for a mother in
+            Singapore.
+          </p>
+          <Link
+            href="/about"
+            className="mt-8 inline-flex items-center rounded-full border border-rose/50 px-6 py-3 font-medium text-cream transition-colors hover:border-cream hover:bg-cream/10"
+          >
+            Learn more about our story &rarr;
+          </Link>
         </div>
       </section>
 

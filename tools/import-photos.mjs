@@ -45,7 +45,9 @@ const jobs = [
   { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 3.jpg", out: "trio-bundle-5.jpg" },
   { folder: "Product - 3. Trio Bundle", file: "2026 - Wallet Bundle 5.jpg", out: "trio-bundle-6.jpg" },
 
-  { folder: "Product - 2. Sun and Moon Cushion", file: "Sun and moon cushion_FB Image 1.jpg", out: "sun-and-moon-cushion-1.jpg" },
+  // sun-and-moon-cushion-1.jpg was imported from "Product - 2. Sun and Moon
+  // Cushion" and has since been replaced by hand — see the note by the
+  // Christmas placemats below.
   { folder: "Product - 5. Woven Bag", file: "Woven bag_GB Image 1.jpg", out: "woven-bag-1.jpg" },
   { folder: "Product - 11. Cosmestic Pouch", file: "Cosmetic Pouch_FB_Image 1.jpg", out: "cosmetic-pouch-1.jpg" },
 
@@ -59,8 +61,11 @@ const jobs = [
   { folder: "Product - 7. Placemat", file: "619E4E07-5010-437C-B043-C4BBFBA61915_1_105_c.jpeg", out: "placemats-2.jpg" },
   { folder: "Product - 7. Placemat", file: "9B4BA88C-87EC-4ECE-AFA6-0B3AEB2CB1F2_1_105_c.jpeg", out: "placemats-3.jpg" },
 
-  // Christmas Placemats
-  { folder: "Product - 7. Placemat", file: "E509844E-9EAF-48B9-A8CA-4332C440DF90_4_5005_c.jpeg", out: "christmas-placemats-1.jpg" },
+  // Christmas Placemats. The first of these no longer comes from Drive: it, and
+  // the sun and moon cushion above, were replaced with photographs supplied
+  // directly, so public/products/ holds the only copies. Both jobs are deleted
+  // rather than commented out, because leaving them would mean the next run of
+  // this script quietly overwrote the new photographs with the old ones.
   { folder: "Product - 7. Placemat", file: "A3416282-3C55-4AEA-9608-03AA49FCFE10_4_5005_c.jpeg", out: "christmas-placemats-2.jpg" },
   { folder: "Product - 7. Placemat", file: "SM - Placemats (Xmas).jpeg", out: "christmas-placemats-3.jpg" },
 
@@ -75,11 +80,13 @@ const jobs = [
   { folder: "0. Photos", file: "SM - Coasters 2.jpeg", out: "coasters-2.jpg" },
   { folder: "0. Photos", file: "SM - Coasters.jpg", out: "coasters-1.jpg" },
 
-  // Corporate collaboration samples. Both are cropped: the first to cut the
-  // "We customised your brand & name" caption baked into the Facebook version,
-  // the second to bring the two labels close enough to read.
-  { folder: "Corporate Collaboration", file: "Corporate Sample FB_Image 1.jpg", out: "brand-on-piece.jpg", dir: "corporate", crop: [0, 0.27, 1, 0.845] },
-  { folder: "Corporate Collaboration", file: "Corporate Sample FB_Image 2.jpg", out: "co-branded-label.jpg", dir: "corporate", crop: [0, 0.26, 1, 0.78] },
+  // The two corporate samples used to be imported from here, cropped out of
+  // Facebook exports that had captions baked into them. Both have since been
+  // replaced with proper photographs that came to us directly rather than
+  // through Drive, so there is nothing to import: public/corporate/ holds the
+  // only copies. The jobs are gone rather than commented out, because leaving
+  // them would mean the next run of this script quietly put the old Facebook
+  // crops back.
 ];
 
 let failed = 0;

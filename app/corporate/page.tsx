@@ -19,9 +19,9 @@ const SAMPLES = [
     body: "For She Brilliance the name went directly onto the piece, here on a black cherry blossom brocade finished with a red trim and cord handles.",
     image: {
       src: "/corporate/brand-on-piece.jpg",
-      alt: "A black cherry blossom brocade bag with a red trim, the name She Brilliance lettered across the front",
-      width: 1153,
-      height: 1178,
+      alt: "A black cherry blossom brocade bag with a red trim and red cord handles, the name She Brilliance lettered across the front",
+      width: 819,
+      height: 1024,
     },
   },
   {
@@ -30,9 +30,9 @@ const SAMPLES = [
     body: "For Media Clubroom a woven label carrying their name was sewn in next to the Sewing Mums label, across a run of pieces cut from three different cottons.",
     image: {
       src: "/corporate/co-branded-label.jpg",
-      alt: "A coral cotton piece with a woven Media Clubroom label sewn on beside the Sewing Mums by Ultimate Balance label",
-      width: 833,
-      height: 832,
+      alt: "Three folded cotton pieces — cream with birds, coral with birds, and a red and white stripe — each with a woven Media Clubroom label sewn beside the Sewing Mums by Ultimate Balance label",
+      width: 819,
+      height: 1024,
     },
   },
 ];
@@ -102,7 +102,11 @@ export default function CorporatePage() {
                   alt={sample.image.alt}
                   width={sample.image.width}
                   height={sample.image.height}
-                  sizes="(min-width: 640px) 360px, 90vw"
+                  // Two columns of a 1024px container less its padding and the
+                  // gap, so 480 at the top end. The old 360 here was short of
+                  // the 469 these actually render at, and the browser was
+                  // fetching a width too small for the box.
+                  sizes="(min-width: 1024px) 480px, (min-width: 640px) calc(50vw - 36px), 90vw"
                   // The first sample reaches the fold on a laptop screen, so it
                   // is the page's largest contentful paint.
                   loading={index === 0 ? "eager" : "lazy"}

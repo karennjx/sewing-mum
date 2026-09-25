@@ -48,27 +48,31 @@ export function Heart({ className }: MarkProps) {
   );
 }
 
-/** Points from the handwritten aside towards the photograph. */
-export function CurvedArrow({ className }: MarkProps) {
+/**
+ * The line running from the handwritten aside across the photograph towards her
+ * hands at the needle. Shallow rather than steep, because the sewing sits well
+ * to the right of the aside and only a little below it. One uneven arc with a
+ * small open head rather than a drawn triangle, so it reads as pen on paper.
+ */
+export function PointerLine({ className }: MarkProps) {
   return (
     <svg
-      viewBox="0 0 48 56"
+      viewBox="0 0 100 72"
       fill="none"
       aria-hidden="true"
       className={className}
     >
       <path
-        d="M6 4c14 6 24 18 26 38"
+        d="M4 8c14 24 40 38 72 44"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
       />
       <path
-        d="M24 34l8 9 8-7"
+        d="M76 52l-13 2M76 52l-6-12"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );

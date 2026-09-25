@@ -13,6 +13,10 @@
   --color-rose: #d0838d;
   --color-rose-soft: #e9bfc3;
   --color-spool: #a9784f;
+  /* The same hue and saturation as berry, taken down in lightness. Dark enough
+     to carry cream text at 11:1 and to anchor a full-width band, without
+     leaving the logo's family for a generic burgundy. */
+  --color-maroon: #5c1f2e;
 
   --radius-card: 1rem;
 }
@@ -23,7 +27,52 @@
   --font-hand: var(--font-hand-family);
 }
 
+/* Entry motion for the hero. Plain CSS animations rather than anything
+   scroll-aware, so the homepage stays a Server Component: they run once on
+   load and are done. Both animate the standalone `translate` and `scale`
+   properties rather than `transform`, which leaves the rotate-* utilities on
+   the propped photographs untouched. */
+@theme {
+  --animate-rise: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-settle: settle 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 14px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      scale: 1.05;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}
+
 body {
   background-color: var(--color-cream);
   color: var(--color-ink);
+}
+
+/* Anyone who has asked their system for less movement gets the finished state
+   immediately. `both` fill on the keyframes above means cutting the duration
+   leaves the element where it was going, not where it started. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
