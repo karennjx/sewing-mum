@@ -99,7 +99,15 @@ export function WaveEdge({ className }: MarkProps) {
   );
 }
 
-export type PromiseMark = "home" | "wage" | "ask" | "sew";
+export type PromiseMark =
+  | "home"
+  | "wage"
+  | "ask"
+  | "sew"
+  | "swatch"
+  | "brief"
+  | "label"
+  | "parcel";
 
 const PATHS: Record<PromiseMark, string> = {
   // A house, for work that happens at home.
@@ -114,6 +122,19 @@ const PATHS: Record<PromiseMark, string> = {
   sew: "M6 5.6h12M6 18.4h12M7.9 5.6v12.8M16.1 5.6v12.8M16.1 11.4c2.5.3 3.8 1.5 4 3.6",
   // A gift, for the piece that arrives.
   ask: "M4.5 11h15v9a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-9ZM3.5 7.8h17V11h-17V7.8ZM12 7.8V21M12 7.8C10.6 7.8 7.6 7.4 7.6 5.6S9.3 3.7 10.2 4.5 12 7.8 12 7.8s.9-2.5 1.8-3.3 2.6-.3 2.6 1.4-3 2.2-4.4 2.2Z",
+  // Two swatches laid over each other, for a choice of fabrics. Squares rather
+  // than the pinked-edge swatch the mockup drew: a zigzag border closes up into
+  // a grey fuzz well before these reach the size they render at.
+  swatch: "M4.6 9.4h10v10h-10zM9.4 4.6h10v10h-10z",
+  // A page of notes, for the brief a company sends in.
+  brief: "M6 4h12v16H6zM9 9h6M9 12.5h6M9 16h3.5",
+  // A label, for the branding sewn into the piece. No punched hole: a hole big
+  // enough to read at 28px would be most of the width of the tag's point, and
+  // anything in proportion blobs shut under a 1.6 stroke.
+  label: "M9 5.5h8.4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9L4.6 12z",
+  // A box, for the finished order going out.
+  parcel:
+    "M12 4.6 4.8 8.4v7.2L12 19.4l7.2-3.8V8.4zM4.8 8.4 12 12.2l7.2-3.8M12 12.2v7.2",
 };
 
 export function PromiseIcon({

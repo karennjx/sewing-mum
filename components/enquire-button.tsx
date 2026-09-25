@@ -6,17 +6,29 @@ const SIZE_CLASSES = {
   md: "px-6 py-3 text-base",
 } as const;
 
+const VARIANT_CLASSES = {
+  solid: "bg-berry text-cream hover:bg-berry-dark",
+  /** For the maroon band. A berry fill all but vanishes on maroon — they are
+   *  the same hue two steps of lightness apart — so this outlines in rose
+   *  instead, matching the buttons the other maroon bands already carry. */
+  onMaroon:
+    "border border-rose/50 text-cream hover:border-cream hover:bg-cream/10",
+} as const;
+
 export type EnquireButtonSize = keyof typeof SIZE_CLASSES;
+export type EnquireButtonVariant = keyof typeof VARIANT_CLASSES;
 
 export function EnquireButton({
   product,
   size = "md",
+  variant = "solid",
   label = "Enquire on WhatsApp",
   message: customMessage,
   className = "",
 }: {
   product?: Product;
   size?: EnquireButtonSize;
+  variant?: EnquireButtonVariant;
   label?: string;
   /** Overrides the pre-filled WhatsApp text, for pages that open a different
    *  conversation from the usual "tell me about this piece". */
@@ -34,7 +46,7 @@ export function EnquireButton({
       href={whatsappLink(message)}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-berry font-medium text-cream transition-colors hover:bg-berry-dark ${SIZE_CLASSES[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors ${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]} ${className}`}
     >
       {label}
     </a>
